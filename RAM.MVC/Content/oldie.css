@@ -1,0 +1,5 @@
+* { zoom: 1; }
+
+.header-content > .wrapper { display: block; }
+.header-branding { display: block; float: left; width: 40%; }
+.header-navbar { display: block; float: right; width: 60%; }

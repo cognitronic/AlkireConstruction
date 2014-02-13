@@ -1,0 +1,29 @@
+﻿@using RAM.Core.Domain.Blog;
+@model RAM.Controllers.ViewModels.BlogView
+
+    @foreach(Blog post in Model.Posts.Take(3))
+    {
+        <div class='span4'>
+            <div class='white-card recent-post clearfix'>
+                <h5 class='recent-post-header'>
+                <a href="@Url.Action("ByTitle", new {category = @post.Category.Name.Replace(' ', '-'), title = @post.Title.Replace(' ', '-') })">@post.Title</a>
+                </h5>
+                <div class='post-info clearfix'>
+                <div class='pull-left'>
+                    <span class='post-date'>@post.DatePosted.ToString("MMMM dd, yyyy", System.Globalization.CultureInfo.InvariantCulture)</span>
+                    <a href="@Url.Action("ByCategory", new {category = @post.Category.Name.Replace(' ', '-') })" class="post-comments">@post.Category.Name</a>
+                </div>
+                <div class='pull-right'>
+                    <a href="#" class="post-like"><i class='icon-heart'></i>
+                    250
+                    </a>
+                </div>
+                </div>
+                <img alt="Photo-card-big-1" class="post-image" src="/Images/test-square.png" />
+                <p class='post-content separated'>
+                    @Html.Raw(@post.PostPreview)
+                </p>
+                <a href="@Url.Action("ByTitle", new {category = @post.Category.Name.Replace(' ', '-'), title = @post.Title.Replace(' ', '-') })" class="btn btn-primary btn-extra pull-right">Read More &gt;</a>
+            </div>
+        </div>
+    }

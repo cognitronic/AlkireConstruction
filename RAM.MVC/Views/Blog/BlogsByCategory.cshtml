@@ -1,0 +1,14 @@
+﻿@using RAM.Core.Domain.Blog;
+@model RAM.Controllers.ViewModels.BlogView
+@{
+    ViewBag.Title = "Culture Boss | Perfomance Management Software Blog";
+}
+
+<section class='section-wrapper posts-w'>
+    <div class='container'>
+        <div class='row'>
+    @Html.Partial("BlogList", Model)
+    @Html.Action("Sidebar", "Blog")
+        </div>
+    </div>
+</section>

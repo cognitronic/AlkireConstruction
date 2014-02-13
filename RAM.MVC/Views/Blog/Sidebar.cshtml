@@ -1,0 +1,49 @@
+﻿@model IList<RAM.Core.Domain.Blog.IBlogCategory>
+
+<div class='span4'>
+    <div class='blog-side-bar'>
+        <div class='blog-categories widget-tp'>
+          <h3>
+              <i class='icon-th-list'></i>
+              Post Categories
+          </h3>
+          <ul>
+              <li>
+                  <a href="/Blog">All</a>
+              </li>
+              @foreach( RAM.Core.Domain.Blog.BlogCategory item in Model)
+              {
+                <li>
+                    <a href="@Url.Action("ByCategory", new {category = @item.Name.Replace(' ', '-') })">
+                        @item.Name 
+                    </a>
+                </li>
+              }
+          </ul>
+        </div>
+        
+        <div class='blog-recent-tweets widget-tp'>
+            <h3>
+                <i class='icon-twitter-sign'></i>
+                Recent Tweets
+            </h3>
+            <ul>
+                <li>
+                <a href="#">about 7 hours ago</a>
+                All work and no play makes Jack a dull boy<br />
+                <a href="#">here's Johnny</a>
+                </li>
+                <li>
+                <a href="#">about 7 hours ago</a>
+                All work and no play makes Jack a dull boy<br />
+                <a href="#">here's Johnny</a>
+                </li>
+                <li>
+                <a href="#">about 7 hours ago</a>
+                All work and no play makes Jack a dull boy<br />
+                <a href="#">here's Johnny</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

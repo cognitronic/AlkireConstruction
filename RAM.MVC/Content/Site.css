@@ -1,0 +1,7 @@
+﻿.industrial-main-image{
+    height: 500px;
+    width: 100%;
+    padding: 20px 0px;
+    margin-bottom: 50px;
+    background-image: url('/Images/portfolio/industrialBanner.png')
+}

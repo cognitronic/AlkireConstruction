@@ -1,0 +1,71 @@
+﻿@using RAM.Core.Domain.Blog;
+@model RAM.Controllers.ViewModels.BlogView
+
+ <!-- Begin Content -->
+  <div class='span8'>
+    <div class='row'>
+        <div class='span8'>
+        <h3 class='section-header'>Culture Boss Blog</h3>
+        </div>
+    </div>
+      @if(Model.Posts.Count() > 0)
+      {
+          foreach (Blog post in Model.Posts)
+          {
+            <div class='row'>
+                <div class='span8'>
+                    <div class='white-card recent-post clearfix extra-padding'>
+                        <h5 class='recent-post-header'>
+                        <a href="@Url.Action("ByTitle", new {category = @post.Category.Name.Replace(' ', '-'), title = @post.Title.Replace(' ', '-') })">@post.Title</a>
+                        </h5>
+                        <div class='post-info clearfix'>
+                            <div class='pull-left'>
+                                <span class='post-date'>@post.DatePosted.ToString("MMMM dd, yyyy")</span>
+                                <a href="@Url.Action("ByCategory", new {category = @post.Category.Name.Replace(' ', '-') })" class="post-comments">
+                                    @post.Category.Name
+                                </a>
+                            </div>
+                            @*<div class='pull-right'>
+                                <a href="#" class="post-like"><i class='icon-heart'></i>
+                                250
+                                </a>
+                            </div>*@
+                        </div>
+                        <div class='row-fluid'>
+                            <div class='span4'>
+                                <div class='decor-image post-image-aside'>
+                                <img alt="@post.Title" src="@post.ImagePath" />
+                                </div>
+                            </div>
+                            <div class='span8'>
+                                <p class='post-content'>
+                                 @Html.Raw(@post.PostPreview)
+                                </p>
+                                <a href="@Url.Action("ByTitle", new {category = @post.Category.Name.Replace(' ', '-'), title = @post.Title.Replace(' ', '-') })" class="btn btn-extra pull-right">Read More &gt;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          }
+      }
+      else
+      {
+        <div class='row'>
+            <div class='span8'>
+                <div class='white-card recent-post clearfix extra-padding'>
+                    <h5 class='recent-post-header'>
+                    <a href="single_post.html">No Posts Found</a>
+                    </h5>
+                    <div class='post-info clearfix'>
+                        <div class='pull-left'>
+                        </div>
+                        <div class='pull-right'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      }
+  </div>
+  <!-- End Content -->

@@ -1,0 +1,695 @@
+/* -----------------------------------------------------------------------------
+
+    Arcite
+    by Shakespeare Themes
+
+
+	TABLE OF CONTENTS
+
+	1.) General
+	2.) Components
+	3.) Header
+	4.) Core
+	5.) Bottom Panel
+	6.) Footer
+	7.) Responsive
+
+----------------------------------------------------------------------------- */
+
+/* -----------------------------------------------------------------------------
+
+    1.) GENERAL
+
+----------------------------------------------------------------------------- */
+
+	/* -------------------------------------------------------------------------
+		COLORS
+	-------------------------------------------------------------------------- */
+
+	// BODY BACKGROUND
+	$body-bg-color: #14252a;
+
+	// CONTENT
+	$content-bg-color: #FFF;
+	$font-color: #7f808a;
+	$heading-color: #282828;
+	$subtitle-color: #bababa;
+	$soft-light-color: #f2f2f2;
+	$soft-medium-color: #e5e5e5;
+
+	// ACCENTS
+	$accent-color-1: #df4e44;
+	$accent-color-2: #dbae49;
+	$accent-color-3: #253a41;
+
+	// BUTTONS
+	$button-bg-1: #df4e44;
+	$button-bg-2: #dbae49;
+	$button-bg-3: #253a41;
+
+	// MAIN MENU
+	$menu-item-color: #FFF;
+	$submenu-bg: #FFF;
+	$submenu-item-color: #253a41;
+
+	// BOTTOM PANEL / CONNECT
+	$bottom-panel-connect-bg: #df4e44;
+	$bottom-panel-connect-title: #FFF;
+	$bottom-panel-connect-font: #FFF;
+	$bottom-panel-connect-link: #FFF;
+
+	// BOTTOM PANEL / WIDGETS
+	$bottom-panel-widgets-bg: #0c0c0c;
+	$bottom-panel-widgets-title: #FFF;
+	$bottom-panel-widgets-font: #bcbcbc;
+	$bottom-panel-widgets-link: #df4e44;
+
+	/* -------------------------------------------------------------------------
+		MIXINS
+	-------------------------------------------------------------------------- */
+
+	// BOX SHADOW
+	@mixin box-shadow ( $shadow1, $shadow2:false ) {
+		$params: $shadow1;
+		@if $shadow2 { $params: $shadow1, $shadow2; }
+		-moz-box-shadow: $params;
+		-webkit-box-shadow: $params;
+		box-shadow: $params;
+	}
+
+	// DOTS PAGINATION
+	@mixin dots-pagination-dark {
+		.owl-page { background-color: #666; background-color: rgba(0,0,0,0.3); }
+		.owl-page.active,
+		.owl-page:hover { background-color: #333; background-color: rgba(0,0,0,0.6); }
+	}
+	@mixin dots-pagination-light {
+		.owl-page { background-color: #EEE; background-color: rgba(255,255,255,0.4); }
+		.owl-page.active,
+		.owl-page:hover { background-color: #FFF; background-color: rgba(255,255,255,0.7); }
+	}
+
+	// TEXT SHADOWS
+	@mixin text-shadow-dark {
+		text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+	}
+	@mixin text-shadow-light {
+		text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+	}
+
+	// TITLE STRIP
+	@mixin title-strip {
+		&:before {
+			background-color: $accent-color-1;
+			background-image: -webkit-linear-gradient( left, $body-bg-color, $body-bg-color 33%, $accent-color-2 33%, $accent-color-2 66%, $accent-color-1 66% );
+			background-image: -moz-linear-gradient( left, $body-bg-color, $body-bg-color 33%, $accent-color-2 33%, $accent-color-2 66%, $accent-color-1 66% );
+			background-image: -ms-linear-gradient( left, $body-bg-color, $body-bg-color 33%, $accent-color-2 33%, $accent-color-2 66%, $accent-color-1 66% );
+			background-image: linear-gradient( to right, $body-bg-color, $body-bg-color 33%, $accent-color-2 33%, $accent-color-2 66%, $accent-color-1 66% );
+			background-size: 100% 6px; background-position: 50% 100%; background-repeat: no-repeat;
+		}
+	}
+	@mixin title-strip-light {
+		&:before {
+			background-color: #FFF;
+			background-image: none;
+		}
+	}
+
+	// VERTICAL GRADIENT
+	@mixin vertical-gradient( $from, $to ) {
+		background-image: -webkit-gradient( linear, left top, left bottom, from( $from ), to( $to ) );
+		background-image: -webkit-linear-gradient( top, $from, $to );
+		background-image:    -moz-linear-gradient( top, $from, $to );
+		background-image:      -o-linear-gradient( top, $from, $to );
+		background-image:         linear-gradient( to bottom, $from, $to );
+	}
+
+	/* -------------------------------------------------------------------------
+		DEFAULTS
+	------------------------------------------------------------------------- */
+
+	body { color: $font-color; background-color: $body-bg-color; background-image: none; }
+	.body-inner { background-image: none; }
+	a, a:hover, a:active, a:focus { color: $accent-color-1; }
+
+	/* -------------------------------------------------------------------------
+		TYPOGRAPHY
+	------------------------------------------------------------------------- */
+
+	h1, h2, h3, h4, h5, h6 { color: $heading-color; }
+	kbd { border-color: $font-color; }
+	table {
+		th, td { border-color: #e5e5e5; }
+	}
+
+	/* -------------------------------------------------------------------------
+		FORMS
+	------------------------------------------------------------------------- */
+
+	.default-form {
+		label { color: $heading-color;
+			> span { color: $accent-color-1; }
+		}
+		input, textarea, select { color: #555; background-color: #e5e5e5; }
+		input.error, textarea.error, select.error { color: #d40041; background-color: #ffdfe0; }
+	}
+
+
+/* -----------------------------------------------------------------------------
+
+    2.) COMPONENTS
+
+----------------------------------------------------------------------------- */
+
+	// ACCORDION CONTAINER
+	.accordion-container {
+		.accordion-item { border-color: $soft-medium-color; }
+		.accordion-item-title:before { color: $accent-color-1; }
+	}
+	.accordion-light {
+		.accordion-item { border-color: #FFF; border-color: rgba(255,255,255,0.6); }
+		.accordion-item-title:before { color: #FFF; @include text-shadow-dark; }
+	}
+
+	// ALERT MESSAGE
+	.alert-message { text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+		&.warning { color: #d40041; background-color: #ffdfe0;
+			.close-message { color: #d40041; }
+		}
+		&.success { color: #499143; background-color: #d4fbd3;
+			.close-message { color: #499143; }
+		}
+		&.info { color: #265E88; background-color: #E1EDF9;
+			.close-message { color: #265E88; }
+		}
+		&.notification { color: #C88435; background-color: #FFF4CF;
+			.close-message { color: #C88435; }
+		}
+	}
+
+	// BUTTON
+	.button { color: #FFF; background-color: $button-bg-1;
+		&:hover { color: #FFF; @include box-shadow( inset 0 0 100px rgba(255,255,255,0.15) ); }
+		&:active { @include box-shadow( inset 0 0 50px rgba(0,0,0,0.1) ); }
+		&.style-2 { color: $button-bg-1; background-color: transparent; @include box-shadow(0 0 0 2px $button-bg-1); }
+		&.style-2:hover { @include box-shadow(0 0 0 2px rgba( $button-bg-1, 0.6 )); }
+		&.color-2 { background-color: $button-bg-2; }
+		&.color-2.style-2 { color: $button-bg-2; background-color: transparent; @include box-shadow(0 0 0 2px $button-bg-2); }
+		&.color-2.style-2:hover { @include box-shadow(0 0 0 2px rgba( $button-bg-2, 0.6 )); }
+		&.color-3 { background-color: $button-bg-3; }
+		&.color-3.style-2 { color: $button-bg-3; background-color: transparent; @include text-shadow-light; @include box-shadow(0 0 0 2px $button-bg-3); }
+		&.color-3.style-2:hover { @include box-shadow(0 0 0 2px rgba( $button-bg-3, 0.6 )); }
+		&:active { color: #FFF; }
+	}
+
+	// CODE
+	.code-container { border-color: $accent-color-2; }
+
+	// CONTENT BOX
+	.content-box-light { color: #FFF; @include text-shadow-dark;
+		h2 { color: #FFF; }
+		h3 {  @include text-shadow-light; }
+		h4 {  @include text-shadow-light; }
+		kbd { border-color: #FFF; }
+		a { color: #FFF; }
+	}
+
+	// CONTENT DIVIDER
+	.content-divider { color: $soft-medium-color;
+		> hr { border-color: $soft-medium-color; }
+		&.color-light { color: #FFF; color: rgba(255,255,255,0.4);
+			> hr { border-color: #FFF; border-color: rgba(255,255,255,0.4); }
+		}
+		&.has-icon hr:before,
+		&.has-icon hr:after { border-color: $soft-medium-color; }
+		&.color-light.has-icon hr:before,
+		&.color-light.has-icon hr:after { border-color: #FFF; border-color: rgba(255,255,255,0.2); }
+		&.color-transparent > hr { border-color: transparent; }
+	}
+
+	// COUNTER
+	.counter-container {
+		.counter { color: $accent-color-1; }
+		.counter-label { color: $heading-color; @include text-shadow-light; }
+		&.color-light {
+			.counter { color: #FFF; @include text-shadow-dark; }
+		}
+	}
+
+	// HELP
+	.help { border-color: $font-color; }
+
+	// ICON CONTAINER
+	.icon-container { color: $accent-color-1;
+		&.style-2 { color: #FFF; background-color: $accent-color-1; }
+		&.color-2 { color: $accent-color-2; }
+		&.color-2.style-2 { color: #FFF; background-color: $accent-color-2; }
+		&.color-2.style-3 { border-color: $accent-color-2; }
+		&.color-3 { color: $accent-color-3; }
+		&.color-3.style-2 { color: #FFF; background-color: $accent-color-3; }
+		&.color-3.style-3 { border-color: $accent-color-3; }
+	}
+
+	// LOADING ANIM
+	.loading-anim { background: rgba(0,0,0,0.2);
+		> span { background-image: url( '../../img/loader_2x.gif' );
+			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader( src='../../img/loader_2x.gif', sizingMethod='scale');
+			-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader( src='../../img/loader_2x.gif', sizingMethod='scale')";
+		}
+	}
+
+	// PAGINATION
+	.pagination {
+		> li {
+			> a { color: $heading-color; background-color: #EEE; }
+			> a:hover,
+			> a.active { color: #FFF; background-color: $accent-color-1; }
+		}
+	}
+
+	// PERSON
+	.person-container {
+		.person-portrait { border-color: $accent-color-1; }
+		.person-title { color: $subtitle-color; }
+		&.color-light .person-portrait { border-color: #FFF; }
+		&.color-light .person-title { color: #FFF; }
+	}
+
+	// PORTFOLIO GALLERY
+	.portfolio-gallery {
+
+		// AJAXED DETAIL
+		.gallery-ajaxed-detail { border-color: #e5e5e5; border-color: rgba(0,0,0,0.1); }
+		.gallery-ajaxed-close { color: $heading-color; }
+
+		// CATEGORY LIST
+		.category-list > li > a { color: $heading-color; background-color: #EEE; }
+		.category-list > li > a:hover,
+		.category-list > li > a.active { color: #FFF; background-color: $accent-color-1; }
+
+		// GALLERY ITEM
+		.gallery-item .loading-anim-container { background-color: #000; background-color: rgba(0,0,0,0.9); }
+		.gallery-item .loading-anim { background: transparent; }
+		.item-info { background-color: $accent-color-1; background-color: rgba( $accent-color-1, 0.95 ); }
+		.item-info a { color: #FFF; @include text-shadow-dark; }
+		.owl-pagination { @include dots-pagination-dark; }
+
+	}
+
+	// PRICING TABLE
+	.pricing-table { border-color: $soft-medium-color;
+		.pricing-table-header { color: $heading-color; background-color: $soft-medium-color; }
+		&.popular {
+			.pricing-table-header { color: #FFF; background-color: $accent-color-1; }
+			.pricing-table-title { color: #FFF; }
+		}
+		&.color-light { color: $font-color; text-shadow: none; background-color: #FFF; border: 0;
+			.pricing-table-header { color: $heading-color; background-color: #EEE; @include text-shadow-light; }
+		}
+		&.popular.color-light {
+			.pricing-table-header { color: #FFF; background-color: $accent-color-3; @include text-shadow-dark; }
+		}
+	}
+
+	// PROGRESS BAR
+	.progress-bar { color: #FFF; background-color: $soft-light-color;
+		.progress-bar-inner { background-color: $accent-color-1; }
+		&.color-2 .progress-bar-inner { background-color: $accent-color-2; }
+		&.color-3 .progress-bar-inner { background-color: $accent-color-3; }
+	}
+
+	// QUOTE
+	blockquote { border-color: $soft-medium-color;
+		cite { color: $heading-color; }
+	}
+
+	// SECTION HEADING
+	.section-heading {
+		.heading-title { @include title-strip; }
+		.heading-subtitle { color: $subtitle-color; }
+		&.color-light .heading-title { @include title-strip-light; }
+		&.color-light .heading-subtitle { color: $heading-color; @include text-shadow-light; }
+	}
+
+	// SERVICE
+	.service-container {
+		.service-icon { border-color: $accent-color-1;
+			> span { color: #FFF; background-color: $accent-color-1; }
+		}
+		&.icon-style-3 .service-icon {
+			> span { color: $accent-color-1; background-color: transparent; }
+		}
+		&.color-light { color: #FFF;
+			.service-icon { border-color: #FFF;
+				> span { color: $heading-color; background-color: #FFF; }
+			}
+		}
+		&.color-light.icon-style-3 .service-icon {
+			> span { color: #FFF; background-color: transparent; }
+		}
+	}
+
+	// SOCIAL ICONS
+	.social-icons a { color: $accent-color-1; }
+	.social-icons.color-light a { color: #FFF; }
+
+	// TABS
+	.tabs-container {
+		.tab-title-list { border-color: $soft-medium-color;
+			> .tab-title { color: $heading-color; background-color: $soft-medium-color; }
+			> .tab-title.active { color: $accent-color-1; border-color: $content-bg-color; background-color: transparent; }
+		}
+		.tab-content-list { border-color: $soft-medium-color; }
+	}
+
+
+/* -----------------------------------------------------------------------------
+
+    3.) HEADER
+
+----------------------------------------------------------------------------- */
+
+// FIXED HEADER
+.header-content { @include vertical-gradient( rgba(255,255,255,0.05), transparent ); background-position: center 0; border-color: rgba(255,255,255,0.1); }
+.enable-fixed-header {
+	#header { background-color: $body-bg-color; background-image: none; }
+	.header-inner { background-image: none; }
+}
+
+	// HEADER MENU
+	.header-menu {
+		a { color: $menu-item-color; @include text-shadow-dark; }
+		.menu-items > li.active > a > span,
+		.menu-items > li.hover > a > span,
+		.menu-items > li > a:hover > span { border-color: rgba(255,255,255,0.1); }
+		.menu-items {
+
+			// SUBMENU
+			.sub-menu { color: $submenu-item-color; background-color: $submenu-bg; background-color: rgba($submenu-bg,0.95); @include box-shadow( 0 1px 1px rgba(0,0,0,0.15) ); }
+			.sub-menu a { color: $submenu-item-color; @include text-shadow-light; }
+			> li > .sub-menu:after { border-bottom-color: $submenu-bg; border-bottom-color: rgba($submenu-bg,0.95); }
+
+		}
+	}
+
+	// HEADER SEARCH
+	.header-search-ico { color: $menu-item-color; }
+
+	// HEADER SEARCH FORM
+	.header-search-input { color: #FFF; @include text-shadow-dark; border-bottom-color: rgba(255,255,255,0.1); }
+
+	// HEADER SEARCH TAGS
+	.header-search-tags .tags-title { color: #FFF; }
+	.header-search-tags .tags-list > li > a { color: #FFF; background: rgba(255,255,255,0.05); }
+	.header-search-tags .tags-list > li > a:hover { background: rgba(255,255,255,0.1); }
+
+
+/* -----------------------------------------------------------------------------
+
+    4.) CORE
+
+----------------------------------------------------------------------------- */
+
+#core { background-color: $content-bg-color; }
+#main-content { color: $font-color; }
+
+	/* -------------------------------------------------------------------------
+        HOME SECTIONS
+    ------------------------------------------------------------------------- */
+
+	// MAIN SLIDER
+	.main-slider { color: #FFF; @include text-shadow-dark;
+		a { color: #FFF; }
+		h1, h2, h3, h4 { color: #FFF; @include text-shadow-dark; }
+
+		// ITEMS
+		.slider-item-content { background-color: rgba(0,0,0,0.4); }
+
+		// PAGINATION
+		.slider-pagination { border-color: rgba(255,255,255,0.1); }
+		.slider-pagination > li > button { color: #FFF; }
+		.slider-pagination > li.active > button { border-color: rgba(255,255,255,0.6); }
+
+		// NAVIGATION
+		.slider-navigation-prev > button,
+		.slider-navigation-next > button {
+			color: #FFF;
+		}
+
+		// INDICATOR
+		.slider-indicator { background-color: #EEE; background-color: rgba(255,255,255,0.5);
+			> span { background-color: #FFF; background-color: rgba(255,255,255,0.9); }
+		}
+
+	}
+
+	// SERVICES SECTION
+	.services-section { background-color: $accent-color-1; background-image: url( '../../../dummies/section_bg_02.jpg' );
+		.content-box-inner { background-color: $accent-color-1; background-color: rgba( $accent-color-1, 0.95 ); }
+	}
+
+	// CTA SECTION
+	.cta-section { background-color: $accent-color-2; background-image: url( '../../../dummies/section_bg_01.jpg' );
+		.content-box-inner { background-color: $accent-color-2; background-color: rgba( $accent-color-2, 0.95 ); }
+	}
+
+	// CLIENT TESTIMONIALS
+	.testimonials-section-alt { background-color: $accent-color-2; background-image: url( '../../../dummies/section_bg_01.jpg' );
+		.content-box-inner { background-color: $accent-color-2; background-color: rgba( $accent-color-2, 0.95 ); }
+	}
+	.client-testimonials {
+		.client-portraits {
+			> li { border-color: #000; border-color: rgba(0,0,0,0.2); }
+			> li:hover { border-color: rgba(0,0,0,0.3); }
+			> li.active { border-color: $accent-color-1; }
+		}
+		.testimonial-list {
+			cite { color: $heading-color; }
+			.owl-pagination { @include dots-pagination-dark; }
+		}
+		&.color-light {
+			.client-portraits {
+				> li { border-color: #FFF; }
+				> li.active { border-color: $accent-color-3; }
+			}
+			.testimonial-list {
+				cite { @include text-shadow-light; }
+			}
+		}
+	}
+
+	// CLIENT LIST
+	.client-list .owl-pagination { @include dots-pagination-dark; }
+
+	// TEAM SECTION
+	.team-section { background-color: $accent-color-1; background-image: url( '../../../dummies/section_bg_01.jpg' );
+		.content-box-inner { background-color: $accent-color-1; background-color: rgba( $accent-color-1, 0.95 ); }
+	}
+
+	// PRICING SECTION
+	.pricing-section { background-color: $accent-color-1; background-image: url( '../../../dummies/section_bg_02.jpg' );
+		.content-box-inner { background-color: $accent-color-1; background-color: rgba( $accent-color-1, 0.95 ); }
+	}
+
+	/* -------------------------------------------------------------------------
+        SUBPAGE
+    ------------------------------------------------------------------------- */
+
+	// PAGE HEADING
+	.page-heading { border-color: #f2f2f2;
+		.heading-title { @include title-strip; }
+		.heading-subtitle { color: $subtitle-color; }
+		.heading-breadcrumbs { color: $subtitle-color; }
+	}
+
+ 	/* -------------------------------------------------------------------------
+        BLOG
+    ------------------------------------------------------------------------- */
+
+	// FEATURED MEDIA
+	.page-featured-quote { color: #FFF; background-color: $accent-color-3;
+		blockquote cite { color: #FFF; }
+	}
+	.page-featured-link { color: #FFF; background-color: $accent-color-3;
+		a { color: #FFF; }
+	}
+
+	// BLOG LIST, DETAIL
+	.blog-list,
+	.blog-detail {
+
+		// POST HEADER
+		.post-title,
+		.post-title a { color: $heading-color; }
+		.post-info,
+		.post-info a { color: $heading-color; }
+		.post-info .ico { color: $accent-color-1; }
+
+		// POST CONTENT
+		.post-quote blockquote { color: #FFF; background-color: $accent-color-3;
+			cite { color: #FFF; }
+		}
+		.post-link { color: #FFF; background-color: $accent-color-3;
+			a { color: #FFF; }
+		}
+		.post-lead { color: $heading-color; }
+
+		// POST FOOTER
+		.post-tags > li > a { color: #FFF; background-color: $accent-color-1; }
+
+		// RELATED POSTS
+		.related-post-title a { color: $heading-color; }
+
+		// POST COMMENTS
+		.comment-list {
+
+			.author-name { color: $heading-color; }
+			.comment-date { color: $subtitle-color; }
+
+		}
+
+	}
+
+	/* -------------------------------------------------------------------------
+        PORTFOLIO
+    ------------------------------------------------------------------------- */
+
+	.portfolio-detail {
+
+		// PROJECT IMAGES
+		.project-images.layout-slider {
+			.owl-pagination { @include dots-pagination-dark; }
+		}
+
+		// PROJECT INFO
+		.project-info {
+			> dt { color: $heading-color; }
+		}
+
+	}
+
+ 	/* -------------------------------------------------------------------------
+        VARIOUS
+    ------------------------------------------------------------------------- */
+
+	// SEARCH RESULTS
+	.search-results-form { background-color: $accent-color-3; }
+	.search-results .search-result {
+		.result-title a { color: $heading-color; }
+		.search-query { border-color: $accent-color-1; }
+	}
+
+	// NOT FOUND
+	.not-found-info { color: #FFF; background-color: $accent-color-3; }
+
+
+/* -----------------------------------------------------------------------------
+
+    5.) BOTTOM PANEL
+
+----------------------------------------------------------------------------- */
+
+	/* -------------------------------------------------------------------------
+        BOTTOM PANEL CONNECT
+    ------------------------------------------------------------------------- */
+
+	.bottom-panel-connect { color: $bottom-panel-connect-font; @include text-shadow-dark; background-color: $bottom-panel-connect-bg; background-image: url( '../../../dummies/section_bg_02.jpg' );
+		background-position: no-repeat; background-size: cover;
+		h3 { color: $bottom-panel-connect-title; @include text-shadow-dark; }
+		a { color: $bottom-panel-connect-link; }
+	}
+	.bottom-panel-connect-inner { background-color: $bottom-panel-connect-bg; background-color: rgba( $bottom-panel-connect-bg, 0.95 ); }
+
+	// TWITTER FEED
+	.twitter-feed-tweets {
+		.tweet_time > a { color: $heading-color; @include text-shadow-light; }
+	}
+	.twitter-feed .owl-pagination { @include dots-pagination-light; }
+
+	// SUBSCRIBE FORM
+	.subscribe-form .alert-message { color: #FFF; @include text-shadow-dark; background-color: transparent; border-color: #FFF; border-color: rgba(255,255,255,0.8); }
+	.subscribe-form-input { color: $font-color; background-color: #FFF; background-color: rgba(255,255,255,0.95); }
+
+	/* -------------------------------------------------------------------------
+		BOTTOM PANEL WIDGETS
+	------------------------------------------------------------------------- */
+
+	.bottom-panel-widgets { color: $bottom-panel-widgets-font; background-color: $bottom-panel-widgets-bg;
+
+		a { color: $bottom-panel-widgets-link; }
+		.widget-title { color: $bottom-panel-widgets-title; }
+		.widget-title:after { background-color: $bottom-panel-widgets-title; }
+
+		// CONTACT WIDGET
+		.contact-widget { background-image: url( '../../img/world_map_light.png' );
+			.social-links a { color: $bottom-panel-widgets-title; }
+		}
+
+	}
+	// PAGINATED
+	.bottom-panel-widgets.paginated {
+		.owl-pagination { @include dots-pagination-light; }
+	}
+
+	/* -------------------------------------------------------------------------
+		BACK TO TOP
+	------------------------------------------------------------------------- */
+
+	#back-to-top { background-color: transparent;
+		> .ico { color: #FFF; }
+	}
+	#back-to-top:hover { background-color: rgba(0,0,0,0.6); }
+
+
+/* -----------------------------------------------------------------------------
+
+    6.) FOOTER
+
+----------------------------------------------------------------------------- */
+
+#footer { color: #FFF;
+	a { color: #FFF; }
+}
+
+
+/* -----------------------------------------------------------------------------
+
+    7.) RESPONSIVE
+
+----------------------------------------------------------------------------- */
+
+    /* -------------------------------------------------------------------------
+        SMALL DEVICES
+    ------------------------------------------------------------------------- */
+
+    @media ( max-width: 991px ) {
+
+	// DEFAULTS
+	body { background-repeat: no-repeat; background-size: cover; }
+	.enable-fixed-header #header,
+	.enable-fixed-header .header-inner { background: none; }
+	.header-content { border-color: transparent; background-image: none; }
+
+	// HEADER
+	.header-navbar {
+		// HEADER MENU
+		.menu-items {
+			> li { border-color: #FFF; border-color: rgba(255,255,255,0.2); }
+			> li.active { border-color: #FFF; border-color: rgba(255,255,255,0.4); }
+			.sub-menu { background: transparent; @include box-shadow(none);
+				a { color: #FFF; @include text-shadow-dark; }
+			}
+			> li > .sub-menu > li { border-color: rgba(255,255,255,0.1); }
+			.item-toggle { color: #FFF; }
+		}
+	}
+
+	// MAIN CONTENT
+	.main-slider {
+		.slider-pagination-container > .wrapper	{ border-color: rgba(255, 255, 255, 0.1); }
+	}
+
+	// SIDEBAR
+	#sidebar { border-top: 1px solid rgba(0,0,0,0.05); }
+
+	}
