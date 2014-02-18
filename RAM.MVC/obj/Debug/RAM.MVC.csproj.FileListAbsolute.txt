@@ -46,7 +46,6 @@ C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\IdeaSeed.Core.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\IdeaSeed.Web.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Microsoft.Practices.ServiceLocation.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Microsoft.Practices.ServiceLocation.xml
-C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Newtonsoft.Json.xml
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\StructureMap.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\StructureMap.xml
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\System.Net.Http.Formatting.xml
@@ -70,4 +69,6 @@ C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\WebApiContrib.IoC.StructureMap.dl
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\NHibernate.xml
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Iesi.Collections.xml
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Couchbase.AspNet.dll
-C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Couchbase.xml
+C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Enyim.Caching.pdb
+C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Couchbase.pdb
+C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Couchbase.AspNet.pdb

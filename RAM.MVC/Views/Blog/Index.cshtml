@@ -1,14 +1,14 @@
 ﻿@using RAM.Core.Domain.Blog;
 @model RAM.Controllers.ViewModels.BlogView
 @{
-    ViewBag.Title = "Culture Boss | Design and Development Blog";
+    ViewBag.Title = "Alkire Construction | General Contracting Blog";
 }
 
 <section class='section-wrapper posts-w'>
     <div class='container'>
         <div class='row'>
     @Html.Action("GetList", "Blog")
-    @Html.Action("Sidebar", "Blog")
+    @*@Html.Action("Sidebar", "Blog")*@
         </div>
     </div>
 </section>

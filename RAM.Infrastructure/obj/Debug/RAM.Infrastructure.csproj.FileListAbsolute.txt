@@ -31,6 +31,5 @@ C:\Projects\AlkireConstruction\RAM\RAM.Infrastructure\bin\Debug\log4net.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Infrastructure\bin\Debug\IdeaSeed.Core.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Infrastructure\bin\Debug\IdeaSeed.Web.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Infrastructure\bin\Debug\log4net.xml
-C:\Projects\AlkireConstruction\RAM\RAM.Infrastructure\obj\Debug\RAM.Infrastructure.csprojResolveAssemblyReference.cache
 C:\Projects\AlkireConstruction\RAM\RAM.Infrastructure\obj\Debug\RAM.Infrastructure.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Infrastructure\obj\Debug\RAM.Infrastructure.pdb

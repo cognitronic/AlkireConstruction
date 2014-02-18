@@ -11,9 +11,9 @@ namespace RAM.Core.Domain.Project
     public interface IProject : ISystemObject
     {
         int ID { get; set; }
-        int Title { get; set; }
+        string Title { get; set; }
         int Category { get; set; }
-        IList<string> ImagePaths { get; set; }
+        IList<ProjectImage> Images { get; set; }
         DateTime ProjectDate { get; set; }
         string Description { get; set; }
         string DefaultImagePath { get; set; }

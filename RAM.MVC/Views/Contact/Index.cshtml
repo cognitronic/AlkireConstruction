@@ -1,7 +1,100 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "General contracting career opportunities - Alkire Construction";
 }
 
-<h2>Index</h2>
+<!-- PAGE HEADING : begin -->
+<header class="page-heading">
+    <h1 class="heading-title">Contact page</h1>
+    <ul class="heading-breadcrumbs">
+        <li><a href="index.html">Home</a> /</li>
+        <li>Contact Page</li>
+    </ul>
+</header>
+<!-- PAGE HEADING : end -->
+<!-- MAIN CONTENT : begin -->
+<div id="main-content" class="no-top-padding">
 
+    <!-- CONTACT MAP : begin -->
+    <section>
+        <div class="contact-map">
+            <iframe src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=sk&amp;geocode=&amp;q=prague&amp;aq=&amp;sll=37.661590,&amp;sspn=0.136542,0.264187&amp;t=m&amp;ie=UTF8&amp;hq=&amp;ll=37.661590,-121.009982&amp;spn=0.011913,0.033023&amp;z=14&amp;output=embed"></iframe>
+        </div>
+    </section>
+    <!-- CONTACT MAP : end -->
+
+    <div class="wrapper">
+
+        <div class="row">
+            <div class="col-sm-4">
+
+                <!-- CONTACT INFO : begin -->
+                <h2>Address</h2>
+                <p>
+                    <strong>Alkire Construction</strong><br>
+                    1202 College Ct<br>
+                    Modesto, CA 95350
+                </p>
+                <ul class="icon-list">
+                    <li><i class="fa fa-phone"></i> (124) 456-789</li>
+                    <li><i class="fa fa-envelope"></i> <a href="mailto:hi@alkireconstruction.net">hi@alkireconstruction.net</a></li>
+                    <li><i class="fa fa-facebook"></i> Like Us on Facebook</li>
+                </ul>
+                <!-- CONTACT INFO : end -->
+
+            </div>
+            <div class="col-sm-8">
+
+                <!-- CONTACT FORM : begin -->
+                <h2>Send us a message</h2>
+                <form action="contact-form.php" method="post" class="default-form validate" id="contact-form">
+
+                    <!-- FORM VALIDATION ERROR MESSAGE : begin -->
+                    <p class="alert-message warning validation" style="display: none;"><i class="ico fa fa-exclamation-circle"></i><strong>Fields with (*) are required!</strong><br>All required fields must be filled correctly.</p>
+                    <!-- FORM VALIDATION ERROR MESSAGE : end -->
+                    <!-- SENDING REQUEST ERROR MESSAGE : begin -->
+                    <p class="alert-message warning request" style="display: none;"><i class="ico fa fa-exclamation-circle"></i><strong>Form not sent!</strong><br>There was a connection problem. Try again later.</p>
+                    <!-- SENDING REQUEST ERROR MESSAGE : end -->
+
+                    <div class="form-fields">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>
+                                    <label for="field_name">Name <span>*</span></label>
+                                    <input type="text" id="field_name" name="field_name" class="required">
+                                </p>
+                                <p>
+                                    <label for="field_email">Email <span>*</span></label>
+                                    <input type="text" id="field_email" name="field_email" class="required email">
+                                </p>
+                                <p class="contact-hp-email">
+                                    <input type="text" id="field_email_hp" name="field_email_hp">
+                                </p>
+                                <p>
+                                    <label for="field_phone">Phone</label>
+                                    <input type="text" id="field_phone" name="field_phone">
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+                                    <label for="field_subject">Subject</label>
+                                    <input type="text" id="field_subject" name="field_subject">
+                                </p>
+                                <p>
+                                    <label for="field_message">Message <span>*</span></label>
+                                    <textarea id="field_message" name="field_message" class="required"></textarea>
+                                </p>
+                                <p><button class="button size-medium submit" data-loading-label="Sending..."><span>SEND MESSAGE</span></button></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+                <!-- CONTACT FORM : end -->
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- MAIN CONTENT : end -->

@@ -12,32 +12,36 @@ namespace RAM.Core.Domain.Project
     [Serializable]
     public class Project : EntityBase, IProject
     {
-        public int ID { get; set; }
+        [DataMember]
+        public virtual int ID { get; set; }
+        [DataMember]
+        public virtual string Title { get; set; }
+        [DataMember]
+        public virtual int Category { get; set; }
+        [DataMember]
+        private IList<ProjectImage> _images = new List<ProjectImage>();
+        [DataMember]
+        public virtual IList<ProjectImage> Images { get { return _images; } set { _images = value; } }
 
-        public int Title { get; set; }
-
-        public int Category { get; set; }
-
-        public IList<string> ImagePaths { get; set; }
-
-        public DateTime ProjectDate { get; set; }
-
-        public string Description { get; set; }
-
-        public string DefaultImagePath { get; set; }
-
-        public DateTime DateCreated { get; set; }
-
-        public int EnteredBy { get; set; }
+        [DataMember]
+        public virtual DateTime ProjectDate { get; set; }
+        [DataMember]
+        public virtual string Description { get; set; }
+        [DataMember]
+        public virtual string DefaultImagePath { get; set; }
+        [DataMember]
+        public virtual DateTime DateCreated { get; set; }
+        [DataMember]
+        public virtual int EnteredBy { get; set; }
 
         protected override void Validate()
         {
             throw new NotImplementedException();
         }
 
-
-        public Guid SystemID { get; set; }
-
-        public string Type { get; set; }
+        [DataMember]
+        public virtual Guid SystemID { get; set; }
+        [DataMember]
+        public virtual string Type { get; set; }
     }
 }

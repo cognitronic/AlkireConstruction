@@ -16,6 +16,7 @@ namespace RAM.Core
 
         #region Cache
         public static string Cache_BlogPosts = "Cache_BlogPosts";
+        public static string Cache_Projects = "Cache_Projects";
         #endregion
     }
 }

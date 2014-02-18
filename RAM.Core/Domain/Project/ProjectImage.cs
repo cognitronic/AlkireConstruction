@@ -12,17 +12,18 @@ namespace RAM.Core.Domain.Project
     [Serializable]
     public class ProjectImage : EntityBase, IProjectImage
     {
-        public int ID { get; set; }
-        public int ProjectID { get; set; }
-
-        public string ImagePath { get; set; }
-
-        public string AltText { get; set; }
-
-
-        public Guid SystemID { get; set; }
-
-        public string Type { get; set; }
+        [DataMember]
+        public virtual int ID { get; set; }
+        [DataMember]
+        public virtual int ProjectID { get; set; }
+        [DataMember]
+        public virtual string ImagePath { get; set; }
+        [DataMember]
+        public virtual string AltText { get; set; }
+        [DataMember]
+        public virtual Guid SystemID { get; set; }
+        [DataMember]
+        public virtual string Type { get; set; }
 
         protected override void Validate()
         {

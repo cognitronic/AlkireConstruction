@@ -1,6 +1,9 @@
-﻿
+﻿@using RAM.Core.Domain.Project;
+@using RAM.Controllers.ViewModels;
+@model ProjectView
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Alkire Construction - Modesto Industrial, Commercial, and Residential General Contracting Projects";
 }
 
 <!-- PAGE HEADING : begin -->
@@ -25,108 +28,29 @@
                 <!-- CATEGORY LIST : begin -->
                 <ul class="category-list">
                     <li><a href="#" class="active" data-category="*">All</a></li>
-                    <li><a href="#" data-category="category-illustration">Industrial</a></li>
-                    <li><a href="#" data-category="category-print">Commercial</a></li>
-                    <li><a href="#" data-category="category-various">Residential</a></li>
-                    <li><a href="#" data-category="category-buildingmaintenance">Building Maintenance</a></li>
+                    <li><a href="#" data-category="category-Industrial">Industrial</a></li>
+                    <li><a href="#" data-category="category-Commercial">Commercial</a></li>
+                    <li><a href="#" data-category="category-Residential">Residential</a></li>
+                    <li><a href="#" data-category="category-BuildingMaintenance">Building Maintenance</a></li>
                 </ul>
                 <!-- CATEGORY LIST : end -->
                 <!-- GALLERY LIST : begin -->
                 <div class="gallery-list">
                     
-
-                    <!-- ITEM 1 : begin -->
-                    <div class="gallery-item category-various">
-                        <div class="gallery-item-inner">
-                            <a class="item-thumb" href="/projects/Industrial/Modesto-Concrete-Factory"><img src="/images/portfolio/project1.jpg" alt=""></a>
-                            <div class="item-info">
-                                <h4 class="item-title"><a href="/projects/Industrial/Modesto-Concrete-Factory">Modesto Concrete Factory</a></h4>
-                                <div class="item-tools">
-                                    <a class="lightbox" href="/images/portfolio/project1.jpg" data-lightbox-group="portfolio-projects"><i class="fa fa-expand"></i></a>
+                    @foreach (var item in Model.Projects) 
+                    {
+                        <div class="gallery-item category-@Enum.GetName(typeof(ProjectType), item.Category)">
+                            <div class="gallery-item-inner">
+                                <a class="item-thumb" href="/projects/@Enum.GetName(typeof(ProjectType),item.Category)/@item.Title.Replace(" ", "-")"><img src="@item.DefaultImagePath" alt=""></a>
+                                <div class="item-info">
+                                    <h4 class="item-title"><a href="/projects/@Enum.GetName(typeof(ProjectType),item.Category)/@item.Title.Replace(" ", "-")">@item.Title</a></h4>
+                                    <div class="item-tools">
+                                        <a class="lightbox" href="@item.DefaultImagePath" data-lightbox-group="portfolio-projects"><i class="fa fa-expand"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- ITEM 1 : end -->
-                    <!-- ITEM 2 : begin -->
-                    <div class="gallery-item category-illustration category-print">
-                        <div class="gallery-item-inner">
-                            <a class="item-thumb" href="portfolio-detail-list.html"><img src="/images/portfolio/project2.jpg" alt=""></a>
-                            <div class="item-info">
-                                <h4 class="item-title"><a href="portfolio-detail-list.html">Photography 2</a></h4>
-                                <div class="item-tools">
-                                    <a class="lightbox" href="/images/portfolio/project2.jpg" data-lightbox-group="portfolio-projects"><i class="fa fa-expand"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ITEM 2 : end -->
-                    <!-- ITEM 3 : begin -->
-                    <div class="gallery-item category-various">
-                        <div class="gallery-item-inner">
-                            <a class="item-thumb" href="portfolio-detail-list.html"><img src="/images/portfolio/project3.jpg" alt=""></a>
-                            <div class="item-info">
-                                <h4 class="item-title"><a href="portfolio-detail-list.html">Photography 3</a></h4>
-                                <div class="item-tools">
-                                    <a class="lightbox" href="/images/portfolio/project3.jpg" data-lightbox-group="portfolio-projects"><i class="fa fa-expand"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ITEM 3 : end -->
-                    <!-- ITEM 4 : begin -->
-                    <div class="gallery-item category-various category-illustration">
-                        <div class="gallery-item-inner">
-                            <a class="item-thumb" href="portfolio-detail-list.html"><img src="/images/portfolio/project4.jpg" alt=""></a>
-                            <div class="item-info">
-                                <h4 class="item-title"><a href="portfolio-detail-list.html">Photography 4</a></h4>
-                                <div class="item-tools">
-                                    <a class="lightbox" href="/images/portfolio/project4.jpg" data-lightbox-group="portfolio-projects"><i class="fa fa-expand"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ITEM 4 : end -->
-                    <!-- ITEM 5 : begin -->
-                    <div class="gallery-item category-illustration category-various">
-                        <div class="gallery-item-inner">
-                            <a class="item-thumb" href="portfolio-detail-list.html"><img src="/images/portfolio/project5.jpg" alt=""></a>
-                            <div class="item-info">
-                                <h4 class="item-title"><a href="portfolio-detail-list.html">Photography 5</a></h4>
-                                <div class="item-tools">
-                                    <a class="lightbox" href="/images/portfolio/project5.jpg" data-lightbox-group="portfolio-projects"><i class="fa fa-expand"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ITEM 5 : begin -->
-                    <!-- ITEM 6 : begin -->
-                    <div class="gallery-item category-print">
-                        <div class="gallery-item-inner">
-                            <a class="item-thumb" href="portfolio-detail-list.html"><img src="/images/portfolio/project8.jpg" alt=""></a>
-                            <div class="item-info">
-                                <h4 class="item-title"><a href="portfolio-detail-list.html">Photography 6</a></h4>
-                                <div class="item-tools">
-                                    <a class="lightbox" href="/images/portfolio/project8.jpg" data-lightbox-group="portfolio-projects"><i class="fa fa-expand"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ITEM 6 : begin -->
-                    <!-- ITEM 7 : begin -->
-                    <div class="gallery-item category-print">
-                        <div class="gallery-item-inner">
-                            <a class="item-thumb" href="portfolio-detail-list.html"><img src="/images/portfolio/project7.jpg" alt=""></a>
-                            <div class="item-info">
-                                <h4 class="item-title"><a href="portfolio-detail-list.html">Photography 7</a></h4>
-                                <div class="item-tools">
-                                    <a class="lightbox" href="/images/portfolio/project7.jpg" data-lightbox-group="portfolio-projects"><i class="fa fa-expand"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ITEM 7 : end -->
-
+                    }
                 </div>
                 <!-- GALLERY LIST : end -->
 

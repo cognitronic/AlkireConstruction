@@ -1,49 +1,77 @@
 ﻿@model IList<RAM.Core.Domain.Blog.IBlogCategory>
 
-<div class='span4'>
-    <div class='blog-side-bar'>
-        <div class='blog-categories widget-tp'>
-          <h3>
-              <i class='icon-th-list'></i>
-              Post Categories
-          </h3>
-          <ul>
-              <li>
-                  <a href="/Blog">All</a>
-              </li>
-              @foreach( RAM.Core.Domain.Blog.BlogCategory item in Model)
-              {
-                <li>
-                    <a href="@Url.Action("ByCategory", new {category = @item.Name.Replace(' ', '-') })">
-                        @item.Name 
-                    </a>
-                </li>
-              }
-          </ul>
-        </div>
-        
-        <div class='blog-recent-tweets widget-tp'>
-            <h3>
-                <i class='icon-twitter-sign'></i>
-                Recent Tweets
-            </h3>
-            <ul>
-                <li>
-                <a href="#">about 7 hours ago</a>
-                All work and no play makes Jack a dull boy<br />
-                <a href="#">here's Johnny</a>
-                </li>
-                <li>
-                <a href="#">about 7 hours ago</a>
-                All work and no play makes Jack a dull boy<br />
-                <a href="#">here's Johnny</a>
-                </li>
-                <li>
-                <a href="#">about 7 hours ago</a>
-                All work and no play makes Jack a dull boy<br />
-                <a href="#">here's Johnny</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
+
+    <!-- SIDEBAR : begin -->
+    <aside id="sidebar">
+        <ul class="widget-list">
+
+            <!-- MENU WIDGET : begin -->
+            <li class="widget menu-widget">
+                <h3 class="widget-title">Categories</h3>
+                <div class="widget-content">
+                    <div class="widget-content-inner">
+                        <ul>
+                            <li><a href="#">Industrial</a></li>
+                            <li><a href="#">Commercial</a></li>
+                            <li><a href="#">Residential</a></li>
+                            <li><a href="#">Building Maintenance</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <!-- MENU WIDGET : end -->
+            <!-- POSTS WIDGET : begin -->
+            <li class="widget posts-widget">
+                <h3 class="widget-title">Latest Posts<span class="decor"></span></h3>
+                <div class="widget-content">
+                    <div class="widget-content-inner">
+                        <ul class="post-list paginated">
+
+                            <!-- POST 1 : begin -->
+                            <li class="post has-thumb">
+                                <h4 class="post-title"><a href="#">Danny Schreiber Remodel</a></h4>
+                                <ul class="post-info">
+                                    <li><i class="ico fa fa-clock-o"></i> January 3</li>
+                                    <li><i class="ico fa fa-folder"></i> <a href="#">floors</a>, <a href="#">cabinets</a></li>
+                                </ul>
+                            </li>
+                            <!-- POST 1 : end -->
+                            <!-- POST 2 : begin -->
+                            <li class="post has-thumb">
+                                <h4 class="post-title"><a href="#">Office Remodel</a></h4>
+                                <ul class="post-info">
+                                    <li><i class="ico fa fa-clock-o"></i> January 27</li>
+                                    <li><i class="ico fa fa-folder"></i> <a href="#">plumbing</a>, <a href="#">windows</a></li>
+                                </ul>
+                            </li>
+                            <!-- POST 2 : end -->
+
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <!-- POSTS WIDGET : end -->
+            <!-- INSTAGRAM WIDGET : begin -->
+            <li class="widget images-feed-widget">
+                <h3 class="widget-title">Instagram</h3>
+                <div class="widget-content">
+                    <div class="widget-content-inner">
+                        <div class="instagram-feed loading" data-id="241041378" data-limit="9"><span class="loading-anim"><span></span></span></div>
+                    </div>
+                </div>
+            </li>
+            <!-- INSTAGRAM WIDGET : end -->
+            <!-- FLICKR WIDGET : begin -->
+            <li class="widget images-feed-widget">
+                <h3 class="widget-title">FLICKR</h3>
+                <div class="widget-content">
+                    <div class="widget-content-inner">
+                        <div class="flickr-feed loading" data-id="88230091@N08" data-limit="9"><span class="loading-anim"><span></span></span></div>
+                    </div>
+                </div>
+            </li>
+            <!-- FLICKR WIDGET : end -->
+
+        </ul>
+    </aside>
+    <!-- SIDEBAR : end -->

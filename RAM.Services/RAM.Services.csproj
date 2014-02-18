@@ -100,6 +100,7 @@
     <Compile Include="Implementations\BlogCategoryService.cs" />
     <Compile Include="Implementations\BlogService.cs" />
     <Compile Include="Implementations\HRRMarketingAuthenticationService.cs" />
+    <Compile Include="Implementations\ProjectService.cs" />
     <Compile Include="Implementations\UserInvalidException.cs" />
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Interfaces\IBlogCategoryService.cs" />

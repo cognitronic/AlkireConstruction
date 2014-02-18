@@ -1,71 +1,193 @@
 ﻿@using RAM.Core.Domain.Blog;
 @model RAM.Controllers.ViewModels.BlogView
 
- <!-- Begin Content -->
-  <div class='span8'>
-    <div class='row'>
-        <div class='span8'>
-        <h3 class='section-header'>Culture Boss Blog</h3>
+<!-- PAGE HEADING : begin -->
+<header class="page-heading">
+    <h1 class="heading-title">Blog</h1>
+    <ul class="heading-breadcrumbs">
+        <li><a href="/">Home</a> /</li>
+        <li>Blog</li>
+    </ul>
+</header>
+<!-- PAGE HEADING : end -->
+<!-- WRAPPER : begin -->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-9">
+
+            <!-- MAIN CONTENT : begin -->
+            <div id="main-content">
+
+                <!-- BLOG LIST : begin -->
+                <section class="blog-list">
+
+                    <!-- BLOG POST 1 : begin -->
+                    <article class="blog-post">
+
+                        <!-- POST HEADER : begin -->
+                        <header class="post-header">
+                            <h2 class="post-title"><a href="blog-image.html">Image Post Type</a></h2>
+                            <ul class="post-info">
+                                <li><i class="ico fa fa-clock-o"></i> 7 JAN 2013</li>
+                                <li><i class="ico fa fa-user"></i><a href="#">Admin</a></li>
+                                <li><i class="ico fa fa-folder"></i><a href="#">Lighting</a>, <a href="#">Concrete</a></li>
+                                <li><i class="ico fa fa-comments"></i><a href="#">1 Comment</a></li>
+                            </ul>
+                        </header>
+                        <!-- POST HEADER : end -->
+                        <!-- POST CONTENT : begin -->
+                        <div class="post-content">
+                            <p class="post-featured-image">
+                                <a href="blog-image.html"><img src="/images/banner2.jpg" alt=""></a>
+                            </p>
+                            <p class="post-lead">Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.</p>
+                            <p>Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet.</p>
+                        </div>
+                        <!-- POST CONTENT : end -->
+                        <!-- POST FOOTER : begin -->
+                        <footer class="post-footer">
+                            <p><a href="blog-image.html" class="button size-medium">Read More</a></p>
+                        </footer>
+                        <!-- POST FOOTER : end -->
+
+                    </article>
+                    <!-- BLOG POST 1 : end -->
+                    <!-- CONTENT DIVIDER : begin -->
+                    <div class="content-divider size-small space-large has-icon"><hr><i class="ico fa fa-star-o"></i></div>
+                    <!-- CONTENT DIVIDER : end -->
+                    <!-- BLOG POST 2 : begin -->
+                    <article class="blog-post">
+
+                        <!-- POST HEADER : begin -->
+                        <header class="post-header">
+                            <h2 class="post-title"><a href="blog-standard.html">Standard Post Type</a></h2>
+                            <ul class="post-info">
+                                <li><i class="ico fa fa-clock-o"></i> 7 JAN 2013</li>
+                                <li><i class="ico fa fa-user"></i><a href="#">Admin</a></li>
+                                <li><i class="ico fa fa-folder"></i><a href="#">Lighting</a>, <a href="#">Concrete</a></li>
+                                <li><i class="ico fa fa-comments"></i><a href="#">1 Comment</a></li>
+                            </ul>
+                        </header>
+                        <!-- POST HEADER : end -->
+                        <!-- POST CONTENT : begin -->
+                        <div class="post-content">
+                            <p class="post-lead">
+                                Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Aenean imperdiet.
+                                Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
+                            </p>
+                            <p>
+                                Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus.
+                                Vestibulum volutpat pretium libero. Cras id dui. Aenean ut eros et nisl sagittis vestibulum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede.
+                                Sed lectus. Donec mollis hendrerit risus. Phasellus nec sem in justo pellentesque facilisis. Etiam imperdiet imperdiet orci. Nunc nec neque. Phasellus leo dolor.
+                            </p>
+                        </div>
+                        <!-- POST CONTENT : end -->
+                        <!-- POST FOOTER : begin -->
+                        <footer class="post-footer">
+                            <p><a href="blog-standard.html" class="button size-medium">Read More</a></p>
+                        </footer>
+                        <!-- POST FOOTER : end -->
+
+                    </article>
+                    <!-- BLOG POST 2 : end -->
+                    <!-- CONTENT DIVIDER : begin -->
+                </section>
+                <!-- BLOG LIST : end -->
+                <!-- CONTENT DIVIDER : begin -->
+                <div class="content-divider space-medium color-transparent"><hr></div>
+                <!-- CONTENT DIVIDER : end -->
+                <!-- PAGINATION : begin -->
+                <ul class="pagination textalign-left">
+                    <li><a href="#" class="active">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                </ul>
+                <!-- PAGINATION : end -->
+
+            </div>
+            <!-- MAIN CONTENT : end -->
+
+        </div>
+        <div class="col-md-3 sidebar-column">
+
+            <!-- SIDEBAR : begin -->
+            <aside id="sidebar">
+                <ul class="widget-list">
+
+                    <!-- MENU WIDGET : begin -->
+                    <li class="widget menu-widget">
+                        <h3 class="widget-title">Categories</h3>
+                        <div class="widget-content">
+                            <div class="widget-content-inner">
+                                <ul>
+                                    <li><a href="#">Industrial</a></li>
+                                    <li><a href="#">Commercial</a></li>
+                                    <li><a href="#">Residential</a></li>
+                                    <li><a href="#">Building Maintenance</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- MENU WIDGET : end -->
+                    <!-- POSTS WIDGET : begin -->
+                    <li class="widget posts-widget">
+                        <h3 class="widget-title">Latest Posts<span class="decor"></span></h3>
+                        <div class="widget-content">
+                            <div class="widget-content-inner">
+                                <ul class="post-list paginated">
+
+                                    <!-- POST 1 : begin -->
+                                    <li class="post has-thumb">
+                                        <h4 class="post-title"><a href="#">Danny Schreiber Remodel</a></h4>
+                                        <ul class="post-info">
+                                            <li><i class="ico fa fa-clock-o"></i> January 3</li>
+                                            <li><i class="ico fa fa-folder"></i> <a href="#">floors</a>, <a href="#">cabinets</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- POST 1 : end -->
+                                    <!-- POST 2 : begin -->
+                                    <li class="post has-thumb">
+                                        <h4 class="post-title"><a href="#">Office Remodel</a></h4>
+                                        <ul class="post-info">
+                                            <li><i class="ico fa fa-clock-o"></i> January 27</li>
+                                            <li><i class="ico fa fa-folder"></i> <a href="#">plumbing</a>, <a href="#">windows</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- POST 2 : end -->
+
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- POSTS WIDGET : end -->
+                    <!-- INSTAGRAM WIDGET : begin -->
+                    <li class="widget images-feed-widget">
+                        <h3 class="widget-title">Instagram</h3>
+                        <div class="widget-content">
+                            <div class="widget-content-inner">
+                                <div class="instagram-feed loading" data-id="262455397" data-limit="9"><span class="loading-anim"><span></span></span></div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- INSTAGRAM WIDGET : end -->
+                    <!-- FLICKR WIDGET : begin -->
+                    <li class="widget images-feed-widget">
+                        <h3 class="widget-title">FLICKR</h3>
+                        <div class="widget-content">
+                            <div class="widget-content-inner">
+                                <div class="flickr-feed loading" data-id="117737192@N04" data-limit="9"><span class="loading-anim"><span></span></span></div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- FLICKR WIDGET : end -->
+
+                </ul>
+            </aside>
+            <!-- SIDEBAR : end -->
+
         </div>
     </div>
-      @if(Model.Posts.Count() > 0)
-      {
-          foreach (Blog post in Model.Posts)
-          {
-            <div class='row'>
-                <div class='span8'>
-                    <div class='white-card recent-post clearfix extra-padding'>
-                        <h5 class='recent-post-header'>
-                        <a href="@Url.Action("ByTitle", new {category = @post.Category.Name.Replace(' ', '-'), title = @post.Title.Replace(' ', '-') })">@post.Title</a>
-                        </h5>
-                        <div class='post-info clearfix'>
-                            <div class='pull-left'>
-                                <span class='post-date'>@post.DatePosted.ToString("MMMM dd, yyyy")</span>
-                                <a href="@Url.Action("ByCategory", new {category = @post.Category.Name.Replace(' ', '-') })" class="post-comments">
-                                    @post.Category.Name
-                                </a>
-                            </div>
-                            @*<div class='pull-right'>
-                                <a href="#" class="post-like"><i class='icon-heart'></i>
-                                250
-                                </a>
-                            </div>*@
-                        </div>
-                        <div class='row-fluid'>
-                            <div class='span4'>
-                                <div class='decor-image post-image-aside'>
-                                <img alt="@post.Title" src="@post.ImagePath" />
-                                </div>
-                            </div>
-                            <div class='span8'>
-                                <p class='post-content'>
-                                 @Html.Raw(@post.PostPreview)
-                                </p>
-                                <a href="@Url.Action("ByTitle", new {category = @post.Category.Name.Replace(' ', '-'), title = @post.Title.Replace(' ', '-') })" class="btn btn-extra pull-right">Read More &gt;</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          }
-      }
-      else
-      {
-        <div class='row'>
-            <div class='span8'>
-                <div class='white-card recent-post clearfix extra-padding'>
-                    <h5 class='recent-post-header'>
-                    <a href="single_post.html">No Posts Found</a>
-                    </h5>
-                    <div class='post-info clearfix'>
-                        <div class='pull-left'>
-                        </div>
-                        <div class='pull-right'>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      }
-  </div>
-  <!-- End Content -->
+</div>
+<!-- WRAPPER : end -->

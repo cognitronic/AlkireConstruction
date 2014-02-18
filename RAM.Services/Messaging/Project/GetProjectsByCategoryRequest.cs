@@ -10,6 +10,13 @@ namespace RAM.Services.Messaging.Project
     [Serializable]
     public class GetProjectsByCategoryRequest
     {
+        public GetProjectsByCategoryRequest()
+        { }
+        public GetProjectsByCategoryRequest(int categoryid, string categoryname)
+        {
+            CategoryID = categoryid;
+            CategoryName = categoryname;
+        }
         [DataMember]
         public int CategoryID { get; set; }
         [DataMember]

@@ -15,7 +15,7 @@ namespace RAM.Controllers.ViewModels
 
         public IList<IProject> Projects { get; set; }
         public NavigationView NavView { get; set; }
-        IProject SelectedProject { get; set; }
+        public IProject SelectedProject { get; set; }
 
     }
 }

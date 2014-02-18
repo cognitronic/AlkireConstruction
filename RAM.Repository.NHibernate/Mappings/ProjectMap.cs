@@ -21,7 +21,7 @@ namespace RAM.Repository.NHibernate.Mappings
             Map(x => x.Description);
             Map(x => x.EnteredBy);
             Map(x => x.ProjectDate);
-            HasMany<ProjectImage>(x => x.ImagePaths)
+            HasMany<ProjectImage>(x => x.Images)
                 .KeyColumn("ProjectID");
         }
     }

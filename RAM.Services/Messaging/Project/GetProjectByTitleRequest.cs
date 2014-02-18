@@ -11,6 +11,12 @@ namespace RAM.Services.Messaging.Project
     [Serializable]
     public class GetProjectByTitleRequest
     {
+        public GetProjectByTitleRequest() { }
+
+        public GetProjectByTitleRequest(string title)
+        {
+            Title = title;
+        }
         [DataMember]
         public string Title { get; set; }
     }

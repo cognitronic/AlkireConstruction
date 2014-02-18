@@ -47,14 +47,15 @@
     </Reference>
     <Reference Include="Couchbase, Version=1.2.9.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CouchbaseNetClient.1.2.9\lib\net40\Couchbase.dll</HintPath>
+      <HintPath>..\References\Couchbase.dll</HintPath>
     </Reference>
-    <Reference Include="Couchbase.AspNet">
-      <HintPath>..\packages\CouchbaseAspNet.1.2.1\lib\net40\Couchbase.AspNet.dll</HintPath>
-    </Reference>
-    <Reference Include="Enyim.Caching, Version=1.2.9.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
+    <Reference Include="Couchbase.AspNet, Version=1.2.1.0, Culture=neutral, PublicKeyToken=eb5d0ec6e2efe5a9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CouchbaseNetClient.1.2.9\lib\net40\Enyim.Caching.dll</HintPath>
+      <HintPath>..\References\Couchbase.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Enyim.Caching, Version=2.12.0.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Enyim.Caching.dll</HintPath>
     </Reference>
     <Reference Include="IdeaSeed.Core">
       <HintPath>..\References\IdeaSeed.Core.dll</HintPath>
@@ -66,9 +67,9 @@
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\References\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
@@ -544,6 +545,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Views\Projects\ByTitle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RAM.Controllers\RAM.Controllers.csproj">

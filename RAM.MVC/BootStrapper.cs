@@ -8,6 +8,7 @@ using RAM.Services.Implementations;
 using RAM.Services.Interfaces;
 using StructureMap;
 using RAM.Core.Domain.Blog;
+using RAM.Core.Domain.Project;
 using StructureMap.Configuration.DSL;
 using RAM.Infrastructure.Configuration;
 using RAM.Infrastructure.Logging;
@@ -45,6 +46,7 @@ namespace RAM.MVC
                     //Repositories
                     For<IUserRepository>().Use<UserRepository>();
                     For<IBlogRepository>().Use<BlogRepository>();
+                    For<IProjectRepository>().Use<ProjectRepository>();
                     For<IBlogCategoryRepository>().Use<BlogCategoryRepository>();
 
                     For<IUnitOfWork>().Use<NHUnitOfWork>();
@@ -59,11 +61,13 @@ namespace RAM.MVC
                 //Models
                 For<IUser>().Use<User>();
                 For<IBlog>().Use<Blog>();
+                For<IProject>().Use<Project>();
                 For<IBlogCategory>().Use<BlogCategory>();
 
                 //Services
                 For<IUserService>().Use<UserService>();
                 For<IBlogService>().Use<BlogService>();
+                For<IProjectService>().Use<ProjectService>();
                 For<IBlogCategoryService>().Use<BlogCategoryService>();
 
                 // Logger
@@ -105,11 +109,13 @@ namespace RAM.MVC
                 {
                     x.For<IUserService>().Use<UserService>();
                     x.For<IBlogService>().Use<BlogService>();
+                    x.For<IProjectService>().Use<ProjectService>();
                     x.For<IBlogCategoryService>().Use<BlogCategoryService>();
                     x.For<IUserRepository>().Use<UserRepository>();
 
 
                     x.For<IBlogRepository>().Use<BlogRepository>();
+                    x.For<IProjectRepository>().Use<ProjectRepository>();
                     x.For<IBlogCategoryRepository>().Use<BlogCategoryRepository>();
 
                     x.For<IUnitOfWork>().Use<NHUnitOfWork>();
@@ -118,6 +124,7 @@ namespace RAM.MVC
 
                     x.For<IUser>().Use<User>();
                     x.For<IBlog>().Use<Blog>();
+                    x.For<IProject>().Use<Project>();
                     x.For<IBlogCategory>().Use<BlogCategory>();
 
                     x.For<ILogger>().Use<Log4NetAdapter>();
