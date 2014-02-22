@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappings\BannerMap.cs" />
     <Compile Include="Mappings\BlogCategoryMap.cs" />
     <Compile Include="Mappings\BlogMap.cs" />
     <Compile Include="Mappings\ProjectImageMap.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="NHUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryTranslator.cs" />
+    <Compile Include="Repositories\BannerRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\BlogCategoryRepository.cs" />
     <Compile Include="Repositories\BlogRepository.cs" />

@@ -1,6 +1,5 @@
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\obj\Debug\RAM.MVC.csprojResolveAssemblyReference.cache
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\AutoMapper.Net4.dll
-C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\RAM.MVC.dll.config
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\RAM.MVC.dll
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\RAM.MVC.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Antlr3.Runtime.dll
@@ -71,4 +70,5 @@ C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Iesi.Collections.xml
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Couchbase.AspNet.dll
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Enyim.Caching.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Couchbase.pdb
-C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Couchbase.AspNet.pdb
+C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\RAM.MVC.dll.config
+C:\Projects\AlkireConstruction\RAM\RAM.MVC\bin\Couchbase.xml

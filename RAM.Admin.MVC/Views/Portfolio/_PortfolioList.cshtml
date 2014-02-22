@@ -1,0 +1,56 @@
+﻿@model RAM.Admin.Controllers.ViewModels.HomeView
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="col-sm-3">
+                Title
+            </th>
+            <th class="col-sm-5">
+                Description
+            </th>
+            <th class="col-sm-1">
+                Category
+            </th>
+            <th class="col-sm-1">
+                Project Date
+            </th>
+            <th class="col-sm-2">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var portfolio in Model.Projects)
+        {
+            <tr>
+                <td>
+                    <span id="title_@portfolio.ID">
+                        @portfolio.Title
+                    </span>
+                </td>
+                <td>
+                    <span id="description_@portfolio.ID">
+                        @portfolio.Description
+                    </span>
+                </td>
+                <td>
+                    <span id="category_@portfolio.ID">
+                        @Enum.GetName(typeof(RAM.Core.Domain.Project.ProjectType), portfolio.Category)
+                    </span>
+                </td>
+                <td>
+                    <span id="projectdate_@portfolio.ID">
+                        @portfolio.ProjectDate.ToShortDateString()
+                    </span>
+                </td>
+                <td>
+                    <a id="portfolioEdit_@portfolio.ID" href="#portfolioModal" class="editModal btn btn-info" role="button" data-toggle="modal" data-id="@portfolio.ID">Edit</a>
+                    <button class="deleteProject btn btn-danger" data-id="@portfolio.ID" type="button">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

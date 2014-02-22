@@ -132,7 +132,6 @@ C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\System.Web.Http.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\System.Web.Http.WebHost.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\WebActivator.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\log4net.dll
-C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\IdeaSeed.Core.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\RAM.Core.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\RAM.Infrastructure.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\AutoMapper.xml
@@ -150,8 +149,8 @@ C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\System.Net.Http.Format
 C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\System.Web.Http.xml
 C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\System.Web.Http.WebHost.xml
 C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\log4net.xml
-C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\IdeaSeed.Core.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Services\obj\Debug\RAM.Services.csprojResolveAssemblyReference.cache
 C:\Projects\AlkireConstruction\RAM\RAM.Services\obj\Debug\RAM.Services.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Services\obj\Debug\RAM.Services.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\AutoMapper.Net4.dll
+C:\Projects\AlkireConstruction\RAM\RAM.Services\bin\Debug\Couchbase.xml

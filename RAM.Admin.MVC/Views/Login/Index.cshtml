@@ -1,0 +1,48 @@
+﻿@model RAM.Admin.Controllers.ViewModels.UserAccountView
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+<!-- Main wrapper -->
+<div class="login-wrapper">
+
+    <div class="login">
+
+        
+        <div style="text-align:center">
+            <h2>Please Sign In</h2>
+        </div>
+        <!-- Login block -->
+        <div class="jumbotron">
+            @using (Html.BeginForm("Authenticate", "Login", FormMethod.Post, new { email = ViewBag.UserName, password = "password", ReturnUrl = "/Home/Index", @class = "form-signin" }))
+            {
+               @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "regular", placeholder = "Email address", name = "Email" })
+                    @Html.ValidationMessageFor(m => m.Email)
+
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "pass", placeholder = "password", name = "Password" })
+                    @Html.ValidationMessageFor(m => m.Password)
+
+                
+
+                if (@Model.HasIssue)
+                {
+                    <div class="note note-danger" style="margin-bottom: 5px; margin-top: 5px;">
+                        <button type="button" class="close">x</button>
+                        @Model.Message
+                    </div>
+                }
+                <div class="login-btn">
+
+                    <input type="submit" name="lbLogin" value="Login" class="btn btn-large btn-primary" />
+
+                </div>
+            }
+        </div>
+        <!-- /login block -->
+
+    </div>
+
+</div>
+<!-- /main wrapper -->
+</div>
+

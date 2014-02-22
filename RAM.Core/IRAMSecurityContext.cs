@@ -9,5 +9,6 @@ namespace RAM.Core
 {
     public interface IRAMSecurityContext : ISecurityContext
     {
+        int CurrentAccessLevel { get; set; }
     }
 }

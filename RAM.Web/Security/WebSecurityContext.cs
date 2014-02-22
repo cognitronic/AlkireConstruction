@@ -69,6 +69,22 @@ namespace RAM.Web.Security
             }
         }
 
+        public int CurrentAccessLevel
+        {
+            get
+            {
+                if (SessionManager.Current[ResourceStrings.Session_CurrentAccessLevel] != null)
+                {
+                    return (int)SessionManager.Current[ResourceStrings.Session_CurrentAccessLevel];
+                }
+                return 0;
+            }
+            set
+            {
+                SessionManager.Current[ResourceStrings.Session_CurrentAccessLevel] = value;
+            }
+        }
+
         #endregion
 
         #region ISecurityContext Members

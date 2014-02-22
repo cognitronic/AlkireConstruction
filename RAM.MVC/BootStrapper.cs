@@ -9,6 +9,7 @@ using RAM.Services.Interfaces;
 using StructureMap;
 using RAM.Core.Domain.Blog;
 using RAM.Core.Domain.Project;
+using RAM.Core.Domain.Banner;
 using StructureMap.Configuration.DSL;
 using RAM.Infrastructure.Configuration;
 using RAM.Infrastructure.Logging;
@@ -47,6 +48,7 @@ namespace RAM.MVC
                     For<IUserRepository>().Use<UserRepository>();
                     For<IBlogRepository>().Use<BlogRepository>();
                     For<IProjectRepository>().Use<ProjectRepository>();
+                    For<IBannerRepository>().Use<BannerRepository>();
                     For<IBlogCategoryRepository>().Use<BlogCategoryRepository>();
 
                     For<IUnitOfWork>().Use<NHUnitOfWork>();
@@ -62,10 +64,12 @@ namespace RAM.MVC
                 For<IUser>().Use<User>();
                 For<IBlog>().Use<Blog>();
                 For<IProject>().Use<Project>();
+                For<IBanner>().Use<Banner>();
                 For<IBlogCategory>().Use<BlogCategory>();
 
                 //Services
                 For<IUserService>().Use<UserService>();
+                For<IBannerService>().Use<BannerService>();
                 For<IBlogService>().Use<BlogService>();
                 For<IProjectService>().Use<ProjectService>();
                 For<IBlogCategoryService>().Use<BlogCategoryService>();
@@ -108,10 +112,12 @@ namespace RAM.MVC
                 var container = new Container(x =>
                 {
                     x.For<IUserService>().Use<UserService>();
+                    x.For<IBannerService>().Use<BannerService>();
                     x.For<IBlogService>().Use<BlogService>();
                     x.For<IProjectService>().Use<ProjectService>();
                     x.For<IBlogCategoryService>().Use<BlogCategoryService>();
                     x.For<IUserRepository>().Use<UserRepository>();
+                    x.For<IBannerRepository>().Use<BannerRepository>();
 
 
                     x.For<IBlogRepository>().Use<BlogRepository>();
@@ -123,6 +129,7 @@ namespace RAM.MVC
                     x.For<ICacheStorage>().Use<CouchbaseCacheAdapter>();
 
                     x.For<IUser>().Use<User>();
+                    x.For<IBanner>().Use<Banner>();
                     x.For<IBlog>().Use<Blog>();
                     x.For<IProject>().Use<Project>();
                     x.For<IBlogCategory>().Use<BlogCategory>();

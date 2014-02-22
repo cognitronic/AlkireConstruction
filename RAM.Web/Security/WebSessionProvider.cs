@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IdeaSeed.Core;
 using System.Web.SessionState;
+using RAM.Infrastructure.Session;
 using System.Web;
 
 namespace RAM.Web.Security

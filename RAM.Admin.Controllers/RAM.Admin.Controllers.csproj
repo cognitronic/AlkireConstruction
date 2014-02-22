@@ -51,6 +51,7 @@
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -58,6 +59,7 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
     </Reference>
@@ -80,13 +82,24 @@
     <Compile Include="ActionArguments\IActionArgument.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="AutoMapperBootStrapper.cs" />
+    <Compile Include="Controllers\api\BannersController.cs" />
+    <Compile Include="Controllers\BannersController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BaseUserAccountController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
     <Compile Include="IOCControllerFactory.cs" />
     <Compile Include="JsonHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CallBackSettings.cs" />
+    <Compile Include="ViewModels\HomeView.cs" />
+    <Compile Include="ViewModels\NavigationView.cs" />
+    <Compile Include="ViewModels\UserAccountView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RAM.Core\RAM.Core.csproj">
@@ -105,10 +118,12 @@
       <Project>{6d850b93-7be8-4684-b7dc-91c157040065}</Project>
       <Name>RAM.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RAM.Web\RAM.Web.csproj">
+      <Project>{27e11447-f6d1-43d0-a95e-936c2fc0ab8f}</Project>
+      <Name>RAM.Web</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

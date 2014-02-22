@@ -17,16 +17,19 @@ namespace RAM.Admin.Controllers.Controllers
         protected readonly ILocalAuthenticationService _authenticationService;
         protected readonly IUserService _userService;
         protected readonly IExternalAuthenticationService _externalAuthenticationService;
+        protected readonly IFormsAuthentication _formsAuthentications;
         protected readonly IActionArguments _actionArguments;
 
         public BaseController(
             ILocalAuthenticationService authenticationService,
             IUserService userService,
             IExternalAuthenticationService externalAuthenticationService,
+            IFormsAuthentication formsAuthentication,
             IActionArguments actionArguments)
         {
             _actionArguments = actionArguments;
             _authenticationService = authenticationService;
+            _formsAuthentications = formsAuthentication;
             _externalAuthenticationService = externalAuthenticationService;
             _userService = userService;
 
@@ -35,29 +38,29 @@ namespace RAM.Admin.Controllers.Controllers
 
         protected override void OnAuthorization(AuthorizationContext filterContext)
         {
-            //if (SecurityContextManager.Current == null || SecurityContextManager.Current.CurrentUser == null)
-            //{
-            //    var url = new UrlHelper(filterContext.RequestContext);
-            //    var logonUrl = url.Action("Index", "Login", new { reason = "NotAuthorized" });
-            //    filterContext.Result = new RedirectResult(logonUrl);
-            //}
+            if (SecurityContextManager.Current == null || SecurityContextManager.Current.CurrentUser == null)
+            {
+                var url = new UrlHelper(filterContext.RequestContext);
+                var logonUrl = url.Action("Index", "Login", new { reason = "NotAuthorized" });
+                filterContext.Result = new RedirectResult(logonUrl);
+            }
 
-            //var skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true) ||
-            //                filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(
-            //                    typeof(AllowAnonymousAttribute), true);
-            //if (!skipAuthorization)
-            //{
-            //    base.OnAuthorization(filterContext);
-            //    if (SecurityContextManager.Current != null &&
-            //        SecurityContextManager.Current.CurrentUser != null &&
-            //        !SecurityContextManager.Current.IsAuthenticated)
-            //    {
-            //        var url = new UrlHelper(filterContext.RequestContext);
-            //        var logonUrl = url.Action("Index", "Login", new { reason = "NotAuthorized" });
-            //        filterContext.Result = new RedirectResult(logonUrl);
+            var skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true) ||
+                            filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(
+                                typeof(AllowAnonymousAttribute), true);
+            if (!skipAuthorization)
+            {
+                base.OnAuthorization(filterContext);
+                if (SecurityContextManager.Current != null &&
+                    SecurityContextManager.Current.CurrentUser != null &&
+                    !SecurityContextManager.Current.IsAuthenticated)
+                {
+                    var url = new UrlHelper(filterContext.RequestContext);
+                    var logonUrl = url.Action("Index", "Login", new { reason = "NotAuthorized" });
+                    filterContext.Result = new RedirectResult(logonUrl);
 
-            //    }
-            //}
+                }
+            }
         }
 
         public ActionResult RedirectBasedOn(string returnURL)

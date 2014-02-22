@@ -17,5 +17,11 @@ namespace RAM.Services.Interfaces
         GetProjectsResponse GetAllForAdmin();
         void SavePost(Project post);
         void DeletePost(Project post);
+
+        IList<IProjectImage> GetImagesByProjectID(int projectID);
+        IProjectImage GetImageByID(int imageID);
+        void SaveImage(ProjectImage image);
+        void DeleteImage(ProjectImage image);
+
     }
 }

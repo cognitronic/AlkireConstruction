@@ -45,3 +45,9 @@ C:\Projects\AlkireConstruction\RAM\RAM.Admin.Controllers\bin\Debug\Enyim.Caching
 C:\Projects\AlkireConstruction\RAM\RAM.Admin.Controllers\bin\Debug\Iesi.Collections.xml
 C:\Projects\AlkireConstruction\RAM\RAM.Admin.Controllers\obj\Debug\RAM.Admin.Controllers.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Admin.Controllers\obj\Debug\RAM.Admin.Controllers.pdb
+C:\Projects\AlkireConstruction\RAM\RAM.Admin.Controllers\bin\Debug\RAM.Web.dll
+C:\Projects\AlkireConstruction\RAM\RAM.Admin.Controllers\bin\Debug\IdeaSeed.Web.dll
+C:\Projects\AlkireConstruction\RAM\RAM.Admin.Controllers\bin\Debug\Telerik.Web.UI.dll
+C:\Projects\AlkireConstruction\RAM\RAM.Admin.Controllers\bin\Debug\RAM.Web.pdb
+C:\Projects\AlkireConstruction\RAM\RAM.Admin.Controllers\bin\Debug\IdeaSeed.Web.pdb
+C:\Projects\AlkireConstruction\RAM\RAM.Admin.Controllers\bin\Debug\Couchbase.xml

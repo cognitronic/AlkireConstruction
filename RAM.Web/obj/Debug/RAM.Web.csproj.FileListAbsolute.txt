@@ -154,3 +154,4 @@ C:\Projects\AlkireConstruction\RAM\RAM.Web\obj\Debug\RAM.Web.csprojResolveAssemb
 C:\Projects\AlkireConstruction\RAM\RAM.Web\obj\Debug\RAM.Web.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Web\obj\Debug\RAM.Web.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Web\bin\Debug\AutoMapper.Net4.dll
+C:\Projects\AlkireConstruction\RAM\RAM.Web\bin\Debug\Couchbase.xml

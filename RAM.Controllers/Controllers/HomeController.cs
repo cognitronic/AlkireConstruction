@@ -8,19 +8,22 @@ using RAM.Services.Interfaces;
 using RAM.Controllers.ActionArguments;
 using RAM.Controllers.ViewModels;
 using System.Web.Mvc;
+using RAM.Core.Domain.Banner;
 
 namespace RAM.Controllers.Controllers
 {
     public class HomeController : BaseController
     {
+        private readonly IBannerService _bannerService;
         public HomeController(ILocalAuthenticationService authenticationService,
             IUserService userService,
             IExternalAuthenticationService externalAuthenticationService,
             IFormsAuthentication formsAuthentication,
+            IBannerService bannerService,
             IActionArguments actionArguments)
             : base(authenticationService, userService, externalAuthenticationService, actionArguments)
         {
-
+            _bannerService = bannerService;
         }
 
 
@@ -44,7 +47,8 @@ namespace RAM.Controllers.Controllers
         {
             HomeView accountView = new HomeView();
             accountView.NavView.SelectedMenuItem = "nav-home";
-            return PartialView("Banners",accountView);
+            accountView.Banners = _bannerService.GetAll().BannerList;
+            return PartialView("_Banners",accountView);
 
         }
 

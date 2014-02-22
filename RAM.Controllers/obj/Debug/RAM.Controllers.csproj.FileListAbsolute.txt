@@ -148,7 +148,6 @@ C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\System.Web.Http.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\System.Web.Http.WebHost.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\WebActivator.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\log4net.dll
-C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\IdeaSeed.Core.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\FluentNHibernate.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\NHibernate.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\Couchbase.dll
@@ -168,7 +167,6 @@ C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\System.Net.Http.For
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\System.Web.Http.xml
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\System.Web.Http.WebHost.xml
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\log4net.xml
-C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\IdeaSeed.Core.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\FluentNHibernate.xml
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\NHibernate.xml
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\Couchbase.pdb
@@ -179,3 +177,4 @@ C:\Projects\AlkireConstruction\RAM\RAM.Controllers\obj\Debug\RAM.Controllers.csp
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\obj\Debug\RAM.Controllers.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\obj\Debug\RAM.Controllers.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\AutoMapper.Net4.dll
+C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\Couchbase.xml

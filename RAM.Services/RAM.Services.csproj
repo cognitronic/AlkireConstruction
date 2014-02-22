@@ -97,12 +97,14 @@
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
+    <Compile Include="Implementations\BannerService.cs" />
     <Compile Include="Implementations\BlogCategoryService.cs" />
     <Compile Include="Implementations\BlogService.cs" />
     <Compile Include="Implementations\HRRMarketingAuthenticationService.cs" />
     <Compile Include="Implementations\ProjectService.cs" />
     <Compile Include="Implementations\UserInvalidException.cs" />
     <Compile Include="Implementations\UserService.cs" />
+    <Compile Include="Interfaces\IBannerService.cs" />
     <Compile Include="Interfaces\IBlogCategoryService.cs" />
     <Compile Include="Interfaces\IBlogService.cs" />
     <Compile Include="Interfaces\IHRRMarketingAuthenticationService.cs" />
@@ -111,6 +113,10 @@
     <Compile Include="Mapping\UserMapper.cs" />
     <Compile Include="Messaging\Authentication\GetUserRequest.cs" />
     <Compile Include="Messaging\Authentication\GetUserResponse.cs" />
+    <Compile Include="Messaging\Banner\GetBannerByTitleRequest.cs" />
+    <Compile Include="Messaging\Banner\GetBannerByTitleResponse.cs" />
+    <Compile Include="Messaging\Banner\GetBannerByCategoryRequest.cs" />
+    <Compile Include="Messaging\Banner\GetBannerResponse.cs" />
     <Compile Include="Messaging\Blog\GetBlogByTitleRequest.cs" />
     <Compile Include="Messaging\Blog\GetBlogByTitleResponse.cs" />
     <Compile Include="Messaging\Blog\GetBlogCategoriesResponse.cs" />

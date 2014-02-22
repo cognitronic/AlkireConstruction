@@ -1,0 +1,48 @@
+﻿@model RAM.Admin.Controllers.ViewModels.HomeView
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Sub Text
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var banner in Model.Banners)
+        {
+            <tr>
+                <td>
+                    <span id="title_@banner.ID">
+                        @banner.Title
+                    </span>
+                </td>
+                <td>
+                    <span class="thumbnail">
+                        <img src='@System.Configuration.ConfigurationManager.AppSettings["PublicSiteURL"]@banner.ImagePath' class="img-rounded" style="width: 300px; height: 200px;" />
+                    </span>
+                </td>
+                <td>
+                    <span id="subtext_@banner.ID">
+                        @banner.SubText1
+                    </span>
+                </td>
+                <td>
+                    <a id="bannerEdit_@banner.ID" href="#bannerModal" class="editModal btn btn-info" role="button" data-toggle="modal" data-id="@banner.ID">Edit</a>
+                    <button class="deleteBanner btn btn-danger" data-id="@banner.ID" type="button">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

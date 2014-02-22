@@ -17,6 +17,11 @@ namespace RAM.Repository.NHibernate.Mappings
             Map(x => x.LastName);
             Map(x => x.Email);
             Map(x => x.Password);
+            Map(x => x.AccessLevel);
+            Map(x => x.EnteredBy);
+            Map(x => x.ChangedBy);
+            Map(x => x.DateCreated);
+            Map(x => x.LastUpdated);
         }
     }
 }

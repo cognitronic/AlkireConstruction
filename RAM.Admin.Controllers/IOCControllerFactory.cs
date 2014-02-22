@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using StructureMap;
 using System.Web.Mvc;
 using System.Web.Routing;
+using RAM.Web.Security;
+using RAM.Core;
+using RAM.Infrastructure.Session;
 
 namespace RAM.Admin.Controllers
 {
@@ -13,10 +16,10 @@ namespace RAM.Admin.Controllers
     {
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
         {
-            //if (SecurityContextManager.Current == null)
-            //    SecurityContextManager.Current = new WebSecurityContext();
-            //if (SessionManager.Current == null)
-            //    SessionManager.Current = new WebSessionProvider();
+            if (SecurityContextManager.Current == null)
+                SecurityContextManager.Current = new WebSecurityContext();
+            if (SessionManager.Current == null)
+                SessionManager.Current = new WebSessionProvider();
             return ObjectFactory.GetInstance(controllerType) as IController;
         }
     }

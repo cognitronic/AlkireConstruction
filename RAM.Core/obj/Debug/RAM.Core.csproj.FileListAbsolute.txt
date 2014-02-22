@@ -38,11 +38,9 @@ C:\Projects\AlkireConstruction\RAM\RAM.Core\bin\Debug\RAM.Core.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Core\bin\Debug\Newtonsoft.Json.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Core\bin\Debug\RAM.Infrastructure.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Core\bin\Debug\log4net.dll
-C:\Projects\AlkireConstruction\RAM\RAM.Core\bin\Debug\IdeaSeed.Core.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Core\bin\Debug\RAM.Infrastructure.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Core\bin\Debug\Newtonsoft.Json.xml
 C:\Projects\AlkireConstruction\RAM\RAM.Core\bin\Debug\log4net.xml
-C:\Projects\AlkireConstruction\RAM\RAM.Core\bin\Debug\IdeaSeed.Core.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Core\obj\Debug\RAM.Core.csprojResolveAssemblyReference.cache
 C:\Projects\AlkireConstruction\RAM\RAM.Core\obj\Debug\RAM.Core.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Core\obj\Debug\RAM.Core.pdb

@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Banner\Banner.cs" />
+    <Compile Include="Domain\Banner\IBanner.cs" />
+    <Compile Include="Domain\Banner\IBannerRepository.cs" />
     <Compile Include="Domain\Blog\Blog.cs" />
     <Compile Include="Domain\Blog\BlogCategory.cs" />
     <Compile Include="Domain\Blog\IBlog.cs" />

@@ -36,14 +36,14 @@ namespace RAM.Web.Bases
 
         public void InitializeSession()
         {
-            if (SessionManager.Current == null)
-            {
-                SessionManager.Current = new WebSessionProvider();
-            }
-            if (SecurityContextManager.Current == null)
-            {
-                SecurityContextManager.Current = new WebSecurityContext();
-            }
+            //if (SessionManager.Current == null)
+            //{
+            //    SessionManager.Current = new WebSessionProvider();
+            //}
+            //if (SecurityContextManager.Current == null)
+            //{
+            //    SecurityContextManager.Current = new WebSecurityContext();
+            //}
         }
 
         public void InitializeSecurityContextManagerValues()

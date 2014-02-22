@@ -12,6 +12,13 @@ namespace RAM.Core.Domain.Project
     [Serializable]
     public class ProjectImage : EntityBase, IProjectImage
     {
+        public ProjectImage() { }
+        public ProjectImage(int projectID, string imagePath, string altText)
+        {
+            this.ProjectID = projectID;
+            this.ImagePath = imagePath;
+            this.AltText = altText;
+        }
         [DataMember]
         public virtual int ID { get; set; }
         [DataMember]

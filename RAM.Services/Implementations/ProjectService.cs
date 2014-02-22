@@ -16,12 +16,14 @@ namespace RAM.Services.Implementations
     public class ProjectService : IProjectService
     {
         private readonly IProjectRepository _repository;
+        private readonly IProjectImageRepository _imageRepository;
         private readonly ICacheStorage _cache;
         private readonly IUnitOfWork _uow;
 
-        public ProjectService(IProjectRepository repository, ICacheStorage cache, IUnitOfWork uow)
+        public ProjectService(IProjectRepository repository, IProjectImageRepository imageRepository, ICacheStorage cache, IUnitOfWork uow)
         {
             _repository = repository;
+            _imageRepository = imageRepository;
             _cache = cache;
             _uow = uow;
         }
@@ -78,9 +80,17 @@ namespace RAM.Services.Implementations
             return response;
         }
 
-        public Core.Domain.Project.Project GetByID(int postID)
+        public Core.Domain.Project.Project GetByID(int projectID)
         {
-            throw new NotImplementedException();
+            var list = new List<IProject>();
+            var query = new Query();
+            query.Add(new Criterion("ID", projectID, CriteriaOperator.Equal));
+
+            if (_cache.Get<IList<IProject>>(RAM.Core.ResourceStrings.Cache_Projects) == null)
+            {
+                return _repository.FindBy(query).FirstOrDefault<Project>();
+            }
+            return _cache.Get<List<Project>>(RAM.Core.ResourceStrings.Cache_Projects).SingleOrDefault(s => s.ID == projectID);
         }
 
         public GetProjectsResponse GetAll()
@@ -120,12 +130,50 @@ namespace RAM.Services.Implementations
 
         public void SavePost(Core.Domain.Project.Project post)
         {
-            throw new NotImplementedException();
+            _repository.Save(post);
+            _uow.Commit();
+            _cache.Remove(RAM.Core.ResourceStrings.Cache_Projects);
         }
 
         public void DeletePost(Core.Domain.Project.Project post)
         {
-            throw new NotImplementedException();
+            _repository.Remove(post);
+            _uow.Commit();
+            _cache.Remove(RAM.Core.ResourceStrings.Cache_Projects);
         }
+
+        #region Project Images
+
+        public IList<IProjectImage> GetImagesByProjectID(int projectID) 
+        {
+            var query = new Query();
+            query.Add(new Criterion("ProjectID", projectID, CriteriaOperator.Equal));
+
+            return _imageRepository.FindBy(query).ToList<IProjectImage>();
+        }
+
+        public IProjectImage GetImageByID(int imageID)
+        {
+            var query = new Query();
+            query.Add(new Criterion("ID", imageID, CriteriaOperator.Equal));
+
+            return _imageRepository.FindBy(query).FirstOrDefault<IProjectImage>();
+        }
+
+        public void SaveImage(ProjectImage image)
+        {
+            _imageRepository.Save(image);
+            _uow.Commit();
+        }
+
+        public void DeleteImage(ProjectImage image)
+        {
+            _imageRepository.Save(image);
+            _uow.Commit();
+        }
+
+        #endregion
+
+
     }
 }

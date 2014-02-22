@@ -66,7 +66,6 @@ C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\bin\Debug\Newtonsof
 C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\bin\Debug\NHibernate.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\bin\Debug\RAM.Core.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\bin\Debug\RAM.Infrastructure.dll
-C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\bin\Debug\IdeaSeed.Core.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\bin\Debug\RAM.Core.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\bin\Debug\RAM.Infrastructure.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\bin\Debug\FluentNHibernate.xml
@@ -74,7 +73,6 @@ C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\bin\Debug\Iesi.Coll
 C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\bin\Debug\log4net.xml
 C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\bin\Debug\Newtonsoft.Json.xml
 C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\bin\Debug\NHibernate.xml
-C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\bin\Debug\IdeaSeed.Core.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\obj\Debug\RAM.Repository.NHibernate.csprojResolveAssemblyReference.cache
 C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\obj\Debug\RAM.Repository.NHibernate.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Repository.NHibernate\obj\Debug\RAM.Repository.NHibernate.pdb

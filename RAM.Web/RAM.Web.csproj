@@ -93,6 +93,8 @@
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\HyphenatedRouteHandler.cs" />
+    <Compile Include="Routing\RamHttpControllerHandler.cs" />
+    <Compile Include="Routing\RamHttpControllerRouteHandler.cs" />
     <Compile Include="Security\RAMMembershipProvider.cs" />
     <Compile Include="Security\RAMRoleProvider.cs" />
     <Compile Include="Security\WebSecurityContext.cs" />
