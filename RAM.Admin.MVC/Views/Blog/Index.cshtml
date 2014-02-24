@@ -1,7 +1,75 @@
-﻿
+﻿@model RAM.Admin.Controllers.ViewModels.HomeView
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Blog Management";
 }
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="pull-right" style="margin-top: 20px;">
+                <a href="#blogModal" class="editBlogModal btn btn-success" role="button" data-toggle="modal">New Post</a>
+            </div>
+            <h2>Blog List</h2>
+            <hr />
+            <div id="bloglist">
+                @Html.Partial("_BlogList")
+            </div>
+        </div>
+        <div class="col-lg-3 pull-right">
+            <div class="pull-right" style="margin-top: 20px;">
+                <a href="#categoryModal" class="editCategoryModal btn btn-success" role="button" data-toggle="modal">Add</a>
+            </div>
+            <h2>Categories</h2>
+            <hr />
+            <div>
 
-<h2>Index</h2>
+            </div>
+            <div class="pull-right" style="margin-top: 20px;">
+                <a href="#categoryModal" class="editCategoryModal btn btn-success" role="button" data-toggle="modal">Add</a>
+            </div>
+            <h2>Tags</h2>
+            <hr />
+            <div>
 
+            </div>
+        </div>
+    </div>
+    <div id="blogModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 id="modalLabel">Add/Edit Blog Post</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            Is Active <input id="modalBlogStatus" type="checkbox" /><br />
+                            <input id="modalBlogTitle" type="text" class="form-control required" placeholder="Enter Title" /><br />
+                            <select name="modalBlogCategory" id="modalBlogCategory" class="form-control">
+                                @foreach (var item in Model.BlogCategories)
+                                {
+                                    <option value="@item.ID">
+                                        @item.Name
+                                    </option>
+                                }
+                            </select><br />
+                            <textarea id="modalBlogPost" class="form-control" rows="10" placeholder="Enter Post"></textarea>
+                        </div>
+                    </div>
+                    <hr />
+                    <form action="~/Blog/SavePost" class="dropzone" id="dropzoneJsForm">
+                        <input name="title" type="hidden" id="hdnTitle" />
+                        <input name="status" type="hidden" id="hdnStatus" />
+                        <input name="post" type="hidden" id="hdnDescription" />
+                        <input name="category" type="hidden" id="hdnCategory" />
+                        <input name="blogID" type="hidden" id="hdnBlogID" />
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelModal" type="button" class="btn">Cancel</button>
+                    <button id="submit-all" type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

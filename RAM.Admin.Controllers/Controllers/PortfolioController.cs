@@ -51,9 +51,11 @@ namespace RAM.Admin.Controllers.Controllers
         public ActionResult GetPortfolioImages(string id)
         {
             var imgpaths = "";
+            var portfolio = new List<IProjectImage>();
+
             if (!string.IsNullOrEmpty(id))
             {
-                var portfolio = _projectService.GetImagesByProjectID(Convert.ToInt16(id));
+                portfolio = _projectService.GetImagesByProjectID(Convert.ToInt16(id)).ToList();
                 foreach (var p in portfolio)
                 {
                     imgpaths += p.ImagePath + ",";
@@ -64,7 +66,8 @@ namespace RAM.Admin.Controllers.Controllers
             return Json(new
             {
                 Message = "Banner failed to save with following error: ",
-                Paths = imgpaths.Remove(imgpaths.Length - 1, 1)
+                Paths = imgpaths.Remove(imgpaths.Length - 1, 1),
+                Images = portfolio
             });
         }
 
@@ -134,14 +137,47 @@ namespace RAM.Admin.Controllers.Controllers
             {
                 return Json(new
                 {
-                    Message = "Banner failed to save with following error: " + exc.Message,
+                    Message = "Portfolio failed to save with following error: " + exc.Message,
                     Status = "failed"
                 });
             }
 
             return Json(new
             {
-                Message = "Banner saved!",
+                Message = "Portfolio saved!",
+                Status = "success",
+                ReturnUrl = "/Portfolio"
+            });
+
+        }
+
+        public ActionResult SavePortfolioObj(Project portfolio)
+        {
+            var p = new Project();
+            if (portfolio != null)
+            {
+                p = _projectService.GetByID(portfolio.ID);
+                p.Title = portfolio.Title;
+                p.Description = portfolio.Description;
+                p.Category = portfolio.Category;
+                p.ProjectDate = portfolio.ProjectDate;
+            }
+
+            try
+            {
+                _projectService.SavePost(p);
+            }
+            catch (Exception exc)
+            {
+                return Json(new
+                {
+                    Message = "Portfolio failed to save with following error: " + exc.Message,
+                    Status = "failed"
+                });
+            }
+            return Json(new
+            {
+                Message = "Portfolio saved!",
                 Status = "success",
                 ReturnUrl = "/Portfolio"
             });
@@ -162,6 +198,21 @@ namespace RAM.Admin.Controllers.Controllers
             return Json(new
             {
                 Message = "Banner saved!",
+                Status = "success",
+                ReturnUrl = "/Portfolio"
+            });
+        }
+
+        public ActionResult DeletePortfolioImage(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                var p = _projectService.GetImageByID(Convert.ToInt16(id));
+                _projectService.DeleteImage((ProjectImage)p);
+            }
+            return Json(new
+            {
+                Message = "Project Image Deleted!",
                 Status = "success",
                 ReturnUrl = "/Portfolio"
             });

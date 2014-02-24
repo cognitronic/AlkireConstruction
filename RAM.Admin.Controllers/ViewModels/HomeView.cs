@@ -14,10 +14,12 @@ namespace RAM.Admin.Controllers.ViewModels
         public HomeView()
         {
             NavView = new NavigationView();
+            BlogCategories = new List<IBlogCategory>();
         }
         public NavigationView NavView { get; set; }
         public IList<IBanner> Banners { get; set; }
         public IList<IProject> Projects { get; set; }
         public IList<IBlog> Blogs { get; set; }
+        public IList<IBlogCategory> BlogCategories { get; set; }
     }
 }

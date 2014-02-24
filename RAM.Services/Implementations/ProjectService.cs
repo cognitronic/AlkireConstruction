@@ -168,7 +168,7 @@ namespace RAM.Services.Implementations
 
         public void DeleteImage(ProjectImage image)
         {
-            _imageRepository.Save(image);
+            _imageRepository.Remove(image);
             _uow.Commit();
         }
 

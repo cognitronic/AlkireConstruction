@@ -19,23 +19,38 @@ namespace RAM.Admin.Controllers.Controllers
     public class BlogController : BaseUserAccountController
     {
         private readonly IBlogService _blogService;
+        private readonly IBlogCategoryService _categoryService;
         public BlogController(ILocalAuthenticationService authenticationService,
             IUserService userService,
             IBlogService blogService,
+            IBlogCategoryService categoryService,
             IExternalAuthenticationService externalAuthenticationService,
             IFormsAuthentication formsAuthentication,
             IActionArguments actionArguments)
             : base(authenticationService, userService, externalAuthenticationService, formsAuthentication, actionArguments)
         {
             _blogService = blogService;
+            _categoryService = categoryService;
+
         }
 
         public ActionResult Index()
         {
             HomeView view = new HomeView();
+            view.BlogCategories = _categoryService.GetAll().Categories;
             view.NavView.SelectedMenuItem = "nav-blog";
             view.Blogs = _blogService.GetAll().BlogList;
             return View(view);
+
+        }
+
+        public ActionResult BlogList()
+        {
+            HomeView view = new HomeView();
+            view.NavView.SelectedMenuItem = "nav-blog";
+            view.Blogs = _blogService.GetAll().BlogList;
+
+            return PartialView("_BlogList", view);
 
         }
     }
