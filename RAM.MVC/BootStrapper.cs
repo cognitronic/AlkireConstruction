@@ -48,6 +48,7 @@ namespace RAM.MVC
                     For<IUserRepository>().Use<UserRepository>();
                     For<IBlogRepository>().Use<BlogRepository>();
                     For<IProjectRepository>().Use<ProjectRepository>();
+                    For<IProjectImageRepository>().Use<ProjectImageRepository>();
                     For<IBannerRepository>().Use<BannerRepository>();
                     For<IBlogCategoryRepository>().Use<BlogCategoryRepository>();
 
@@ -64,6 +65,7 @@ namespace RAM.MVC
                 For<IUser>().Use<User>();
                 For<IBlog>().Use<Blog>();
                 For<IProject>().Use<Project>();
+                For<IProjectImage>().Use<ProjectImage>();
                 For<IBanner>().Use<Banner>();
                 For<IBlogCategory>().Use<BlogCategory>();
 
@@ -122,6 +124,7 @@ namespace RAM.MVC
 
                     x.For<IBlogRepository>().Use<BlogRepository>();
                     x.For<IProjectRepository>().Use<ProjectRepository>();
+                    x.For<IProjectImageRepository>().Use<ProjectImageRepository>();
                     x.For<IBlogCategoryRepository>().Use<BlogCategoryRepository>();
 
                     x.For<IUnitOfWork>().Use<NHUnitOfWork>();
@@ -132,6 +135,7 @@ namespace RAM.MVC
                     x.For<IBanner>().Use<Banner>();
                     x.For<IBlog>().Use<Blog>();
                     x.For<IProject>().Use<Project>();
+                    x.For<IProjectImage>().Use<ProjectImage>();
                     x.For<IBlogCategory>().Use<BlogCategory>();
 
                     x.For<ILogger>().Use<Log4NetAdapter>();

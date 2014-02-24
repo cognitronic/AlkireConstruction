@@ -48,6 +48,26 @@ namespace RAM.Admin.Controllers.Controllers
             return PartialView("_PortfolioList", view);
         }
 
+        public ActionResult GetPortfolioImages(string id)
+        {
+            var imgpaths = "";
+            if (!string.IsNullOrEmpty(id))
+            {
+                var portfolio = _projectService.GetImagesByProjectID(Convert.ToInt16(id));
+                foreach (var p in portfolio)
+                {
+                    imgpaths += p.ImagePath + ",";
+                }
+            }
+
+
+            return Json(new
+            {
+                Message = "Banner failed to save with following error: ",
+                Paths = imgpaths.Remove(imgpaths.Length - 1, 1)
+            });
+        }
+
         public ActionResult SavePortfolio()
         {
             var portfolio = new Project();
@@ -123,7 +143,7 @@ namespace RAM.Admin.Controllers.Controllers
             {
                 Message = "Banner saved!",
                 Status = "success",
-                ReturnUrl = "/Banners"
+                ReturnUrl = "/Portfolio"
             });
 
         }
@@ -143,7 +163,7 @@ namespace RAM.Admin.Controllers.Controllers
             {
                 Message = "Banner saved!",
                 Status = "success",
-                ReturnUrl = "/Banners"
+                ReturnUrl = "/Portfolio"
             });
         }
     }
