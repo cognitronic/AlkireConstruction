@@ -46,6 +46,7 @@ namespace RAM.Admin.MVC
                 {
                     //Repositories
                     For<IUserRepository>().Use<UserRepository>();
+                    For<ITagRepository>().Use<TagRepository>();
                     For<IBannerRepository>().Use<BannerRepository>();
                     For<IBlogRepository>().Use<BlogRepository>();
                     For<IProjectRepository>().Use<ProjectRepository>();
@@ -63,6 +64,8 @@ namespace RAM.Admin.MVC
 
                 //Models
                 For<IUser>().Use<User>();
+                For<ITag>().Use<Tag>();
+                For<IBlogTag>().Use<BlogTag>();
                 For<IBlog>().Use<Blog>();
                 For<IBanner>().Use<Banner>();
                 For<IProject>().Use<Project>();
@@ -75,7 +78,7 @@ namespace RAM.Admin.MVC
                 For<IBlogService>().Use<BlogService>();
                 For<IProjectService>().Use<ProjectService>();
                 For<IBlogCategoryService>().Use<BlogCategoryService>();
-
+                For<ITagService>().Use<TagService>();
                 // Logger
                 For<ILogger>().Use
                           <Log4NetAdapter>();
@@ -114,13 +117,14 @@ namespace RAM.Admin.MVC
                 var container = new Container(x =>
                 {
                     x.For<IUserService>().Use<UserService>();
+                    x.For<ITagService>().Use<TagService>();
                     x.For<IBannerService>().Use<BannerService>();
                     x.For<IBlogService>().Use<BlogService>();
                     x.For<IProjectService>().Use<ProjectService>();
-                    x.For<IProjectService>().Use<ProjectService>();
                     x.For<IBlogCategoryService>().Use<BlogCategoryService>();
+                    
                     x.For<IUserRepository>().Use<UserRepository>();
-
+                    x.For<ITagRepository>().Use<TagRepository>();
                     x.For<IBannerRepository>().Use<BannerRepository>();
                     x.For<IBlogRepository>().Use<BlogRepository>();
                     x.For<IProjectRepository>().Use<ProjectRepository>();
@@ -133,6 +137,8 @@ namespace RAM.Admin.MVC
 
                     x.For<IUser>().Use<User>();
                     x.For<IBanner>().Use<Banner>();
+                    x.For<ITag>().Use<Tag>();
+                    x.For<IBlogTag>().Use<BlogTag>();
                     x.For<IBlog>().Use<Blog>();
                     x.For<IProject>().Use<Project>();
                     x.For<IProjectImage>().Use<ProjectImage>();

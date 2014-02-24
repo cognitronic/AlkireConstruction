@@ -20,9 +20,11 @@ namespace RAM.Admin.Controllers.Controllers
     {
         private readonly IBlogService _blogService;
         private readonly IBlogCategoryService _categoryService;
+        private readonly ITagService _tagService;
         public BlogController(ILocalAuthenticationService authenticationService,
             IUserService userService,
             IBlogService blogService,
+            ITagService tagService,
             IBlogCategoryService categoryService,
             IExternalAuthenticationService externalAuthenticationService,
             IFormsAuthentication formsAuthentication,
@@ -31,6 +33,7 @@ namespace RAM.Admin.Controllers.Controllers
         {
             _blogService = blogService;
             _categoryService = categoryService;
+            _tagService = tagService;
 
         }
 
@@ -38,6 +41,7 @@ namespace RAM.Admin.Controllers.Controllers
         {
             HomeView view = new HomeView();
             view.BlogCategories = _categoryService.GetAll().Categories;
+            view.Tags = _tagService.GetAll();
             view.NavView.SelectedMenuItem = "nav-blog";
             view.Blogs = _blogService.GetAll().BlogList;
             return View(view);

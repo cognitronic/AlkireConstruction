@@ -21,15 +21,19 @@
             <h2>Categories</h2>
             <hr />
             <div>
-
+                @Html.Partial("_BlogCategories")
             </div>
-            <div class="pull-right" style="margin-top: 20px;">
+            <div class="bg-info">
+                &nbsp;
+                <hr />
+            </div>
+            <div class="pull-right">
                 <a href="#categoryModal" class="editCategoryModal btn btn-success" role="button" data-toggle="modal">Add</a>
             </div>
             <h2>Tags</h2>
             <hr />
             <div>
-
+                @Html.Partial("_BlogTags")
             </div>
         </div>
     </div>

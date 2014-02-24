@@ -17,5 +17,9 @@ namespace RAM.Services.Interfaces
         GetBlogsResponse GetAllForAdmin();
         void SavePost(Blog post);
         void DeletePost(Blog post);
+
+        void SaveBlogTag(BlogTag blogtag);
+        void DeleteBlogTag(BlogTag blogtag);
+
     }
 }

@@ -22,5 +22,7 @@ namespace RAM.Core.Domain.Blog
         string ImagePath { get; set; }
         IUser EnteredByRef { get; set; }
         IBlogCategory Category { get; set; }
+
+        IList<BlogTag> Tags { get; set; }
     }
 }

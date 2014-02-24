@@ -58,8 +58,10 @@
     <Compile Include="Mappings\BannerMap.cs" />
     <Compile Include="Mappings\BlogCategoryMap.cs" />
     <Compile Include="Mappings\BlogMap.cs" />
+    <Compile Include="Mappings\BlogTagMap.cs" />
     <Compile Include="Mappings\ProjectImageMap.cs" />
     <Compile Include="Mappings\ProjectMap.cs" />
+    <Compile Include="Mappings\TagMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="NHibernateContractResolver.cs" />
     <Compile Include="NHUnitOfWork.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Repositories\BlogRepository.cs" />
     <Compile Include="Repositories\ProjectImageRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
+    <Compile Include="Repositories\TagRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="SessionFactory.cs" />
     <Compile Include="SessionStorage\HttpSessionContainer.cs" />

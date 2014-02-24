@@ -24,6 +24,8 @@ namespace RAM.Repository.NHibernate.Mappings
             Map(x => x.IsActive);
             Map(x => x.SEOKeywords);
             Map(x => x.ImagePath);
+            HasMany<BlogTag>(x => x.Tags)
+                .KeyColumn("ProjectID");
             References<BlogCategory>(x => x.Category)
                 .Column("BlogCategoryID")
                 .NotFound

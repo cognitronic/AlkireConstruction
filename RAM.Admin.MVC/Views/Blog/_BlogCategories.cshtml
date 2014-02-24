@@ -1,1 +1,32 @@
-﻿
+﻿@model RAM.Admin.Controllers.ViewModels.HomeView
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="col-sm-1">
+                Name
+            </th>
+            <th class="col-sm-2">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cat in Model.BlogCategories)
+        {
+            <tr>
+                <td>
+                    <span id="name_@cat.ID">
+                        @cat.Name
+                    </span>
+                </td>
+                <td>
+                    <a id="blogCategoryEdit_@cat.ID" href="#portfolioModal" class="editCategoryModal btn btn-info" role="button" data-toggle="modal" data-id="@cat.ID">Edit</a>
+                    <button class="deleteCategory btn btn-danger" data-id="@cat.ID" type="button">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

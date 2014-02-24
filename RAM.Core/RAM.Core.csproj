@@ -48,10 +48,15 @@
     <Compile Include="Domain\Banner\IBannerRepository.cs" />
     <Compile Include="Domain\Blog\Blog.cs" />
     <Compile Include="Domain\Blog\BlogCategory.cs" />
+    <Compile Include="Domain\Blog\BlogTag.cs" />
     <Compile Include="Domain\Blog\IBlog.cs" />
     <Compile Include="Domain\Blog\IBlogCategory.cs" />
     <Compile Include="Domain\Blog\IBlogCategoryRepository.cs" />
     <Compile Include="Domain\Blog\IBlogRepository.cs" />
+    <Compile Include="Domain\Blog\IBlogTag.cs" />
+    <Compile Include="Domain\Blog\ITag.cs" />
+    <Compile Include="Domain\Blog\ITagRepository.cs" />
+    <Compile Include="Domain\Blog\Tag.cs" />
     <Compile Include="Domain\Project\IProject.cs" />
     <Compile Include="Domain\Project\IProjectImage.cs" />
     <Compile Include="Domain\Project\IProjectImageRespository.cs" />

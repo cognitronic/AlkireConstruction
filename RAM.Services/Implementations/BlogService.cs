@@ -168,5 +168,16 @@ namespace RAM.Services.Implementations
             _cache.Remove(RAM.Core.ResourceStrings.Cache_BlogPosts);
         }
         #endregion
-    }
+    
+
+public void SaveBlogTag(BlogTag blogtag)
+{
+ 	throw new NotImplementedException();
+}
+
+public void DeleteBlogTag(BlogTag blogtag)
+{
+ 	throw new NotImplementedException();
+}
+}
 }

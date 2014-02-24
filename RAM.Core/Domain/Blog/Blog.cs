@@ -37,6 +37,10 @@ namespace RAM.Core.Domain.Blog
         public virtual IUser EnteredByRef { get; set; }
         public virtual IBlogCategory Category { get; set; }
 
+        private IList<BlogTag> _tags = new List<BlogTag>();
+        [DataMember]
+        public virtual IList<BlogTag> Tags { get { return _tags; } set { _tags = value; } }
+
         #endregion
 
         #region ISystemObject Members
