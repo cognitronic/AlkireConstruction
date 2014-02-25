@@ -13,6 +13,7 @@ using System.Web;
 using System.IO;
 using RAM.Core.Domain.Blog;
 using System.Configuration;
+using RAM.Services.Messaging.Blog;
 
 namespace RAM.Admin.Controllers.Controllers
 {
@@ -56,6 +57,179 @@ namespace RAM.Admin.Controllers.Controllers
 
             return PartialView("_BlogList", view);
 
+        }
+
+        public ActionResult TagList()
+        {
+            HomeView view = new HomeView();
+            view.NavView.SelectedMenuItem = "nav-blog";
+            view.Tags = _tagService.GetAll();
+
+            return PartialView("_BlogTags", view);
+
+        }
+
+        public ActionResult GetTagByID(int id)
+        {
+            if (id > 0)
+            {
+                return Json(new
+                {
+                    Message = "Tag retreived!",
+                    Status = "success",
+                    TagRef = _tagService.GetByID(id),
+                    ReturnUrl = "/Blog"
+                });
+            }
+            return Json(new
+            {
+                Message = "Tag could not be found!",
+                Status = "failed",
+                ReturnUrl = "/Blog"
+            });
+        }
+
+        public ActionResult SaveTag(Tag tag)
+        {
+            var t = new Tag();
+            if (tag != null)
+            {
+                if (tag.ID > 0)
+                {
+                    t = _tagService.GetByID(tag.ID);
+                }
+                t.Name = tag.Name;
+                _tagService.SaveTag(t);
+            }
+
+            return Json(new
+            {
+                Message = "Tag saved!",
+                Status = "success",
+                ReturnUrl = "/Blog"
+            });
+        }
+
+        public ActionResult DeleteTag(int id)
+        {
+            if (id > 0)
+            {
+                try
+                {                    
+                    _tagService.DeleteTag(_tagService.GetByID(id));
+                    return Json(new
+                    {
+                        Message = "Tag deleted!",
+                        Status = "success",
+                        ReturnUrl = "/Blog"
+                    });
+                }
+                catch (Exception exc)
+                {
+                    return Json(new
+                    {
+                        Message = "Tag failed to delete!  You must remove all blog posts with this tag before it can be deleted.",
+                        Status = "failed",
+                        ReturnUrl = "/Blog"
+                    });
+                }
+            }
+            return Json(new
+            {
+                Message = "Tag failed to delete!  Tag was null.",
+                Status = "failed",
+                ReturnUrl = "/Blog"
+            });
+        }
+
+
+        public ActionResult CategoryList()
+        {
+            HomeView view = new HomeView();
+            view.NavView.SelectedMenuItem = "nav-blog";
+            view.BlogCategories = _categoryService.GetAll().Categories;
+
+            return PartialView("_BlogCategories", view);
+
+        }
+
+        public ActionResult GetCategoryByID(int id)
+        {
+            if (id > 0)
+            {
+                var catrequest = new GetBlogCategoryByIDRequest();
+                catrequest.CategoryID = id;
+                return Json(new
+                {
+                    Message = "Category retreived!",
+                    Status = "success",
+                    CategoryRef = _categoryService.GetByID(catrequest).Category,
+                    ReturnUrl = "/Blog"
+                });
+            }
+            return Json(new
+            {
+                Message = "Category could not be found!",
+                Status = "failed",
+                ReturnUrl = "/Blog"
+            });
+        }
+
+        public ActionResult SaveCategory(BlogCategory category)
+        {
+            var c = new BlogCategory();
+            if (category != null)
+            {
+                if (category.ID > 0)
+                {
+                    var catrequest = new GetBlogCategoryByIDRequest();
+                    catrequest.CategoryID = category.ID;
+                    c = (BlogCategory)_categoryService.GetByID(catrequest).Category;
+                }
+                c.Name = category.Name;
+                _categoryService.Save(c);
+            }
+
+            return Json(new
+            {
+                Message = "Category saved!",
+                Status = "success",
+                ReturnUrl = "/Blog"
+            });
+        }
+
+        public ActionResult DeleteCategory(int id)
+        {
+            if (id > 0)
+            {
+                try
+                {
+                    var catrequest = new GetBlogCategoryByIDRequest();
+                    catrequest.CategoryID = id;
+                    _categoryService.Delete((BlogCategory)_categoryService.GetByID(catrequest).Category);
+                    return Json(new
+                    {
+                        Message = "Category deleted!",
+                        Status = "success",
+                        ReturnUrl = "/Blog"
+                    });
+                }
+                catch (Exception exc)
+                {
+                    return Json(new
+                    {
+                        Message = "Category failed to delete!  You must remove all blog posts with this category before it can be deleted.",
+                        Status = "failed",
+                        ReturnUrl = "/Blog"
+                    });
+                }
+            }
+            return Json(new
+            {
+                Message = "Category failed to delete!  Category was null.",
+                Status = "failed",
+                ReturnUrl = "/Blog"
+            });
         }
     }
 }

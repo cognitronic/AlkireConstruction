@@ -94,6 +94,18 @@ namespace RAM.Services.Implementations
             return response;
         }
 
+        public void Save(BlogCategory cat)
+        {
+            _repository.Save(cat);
+            _uow.Commit();
+        }
+
+        public void Delete(BlogCategory cat)
+        {
+            _repository.Remove(cat);
+            _uow.Commit();
+        }
+
         #endregion
     }
 }
