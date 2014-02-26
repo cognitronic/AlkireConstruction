@@ -68,7 +68,7 @@
             format: 'mm/dd/yyyy'
         });
 
-        $(".editModal").on('click', function (e) {
+        $("#portfolioList").on('click', '.editModal', function (e) {
             e.preventDefault();
             @*var banners = @Html.Raw(Json.Encode(Model.Banners));
             var banner = banners[$(this).data('id') - 1 ];*@
@@ -203,13 +203,13 @@
                 dropZoneInstance = getDropZoneInstance;
 
                 submitButton.addEventListener("click", function () {
-
+                
 
                     $("#hdnTitle").val($("#modalTitle").val());
                     $("#hdnDescription").val($("#modalDescription").val());
                     $("#hdnCategory").val($("#modalCategory").val());
                     $("#hdnProjectDate").val($("#modalProjectDate").val());
-
+                    console.log(filesadded);
                     if (filesadded) {
                         myDropzone.processQueue();
                     } else {

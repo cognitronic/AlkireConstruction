@@ -28,7 +28,7 @@
                 <hr />
             </div>
             <div class="pull-right">
-                <a href="#categoryModal" class="editCategoryModal btn btn-success" role="button" data-toggle="modal">Add</a>
+                <a href="#tagModal" class="editTagModal btn btn-success" role="button" data-toggle="modal">Add</a>
             </div>
             <h2>Tags</h2>
             <hr />
@@ -99,6 +99,7 @@
             </div>
         </div>
     </div>
+
     <div id="tagModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalTagLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -126,7 +127,7 @@
     $(document).ready(function () {
         /* Start Tags */
 
-        $(".editTagsModal").on('click', function (e) {
+        $("#tagContainer").on('click', '.editTagsModal', function (e) {
             e.preventDefault();
             var tagid = $(this).data('id');
             $.ajax({
@@ -143,7 +144,7 @@
             });
         });
 
-        $(".deleteTag").on('click', function (e) {
+        $("#tagContainer").on('click', '.deleteTag', function (e) {
             e.preventDefault();
 
             if (!confirm("Do you want to delete")) {
@@ -193,8 +194,9 @@
         /* Start Categories */
 
 
-        $(".editCategoryModal").on('click', function (e) {
+        $("#categoryContainer").on('click', '.editCategoryModal', function (e) {
             e.preventDefault();
+            console.log($(this).data('id'));
             var tagid = $(this).data('id');
             $.ajax({
                 url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Blog/GetCategoryByID',
@@ -213,7 +215,7 @@
             });
         });
 
-        $(".deleteCategory").on('click', function (e) {
+        $("#categoryContainer").on('click', '.deleteCategory', function (e) {
             e.preventDefault();
 
             if (!confirm("Do you want to delete")) {
@@ -262,7 +264,67 @@
 
         /* Start Blogs */
 
+        $("#bloglist").on('click', '.editBlogModal', function (e) {
+            e.preventDefault();
+            var blogid = $(this).data('id');
+            console.log($(this).data('id'));
+            $.ajax({
+                url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Blog/GetByID',
+                type: 'POST',
+                data: JSON.stringify({ id: blogid }),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    console.log(data.Message);
+                    $("#submit-all").data('id', data.BlogRef.ID);
+                    $("#modalBlogTitle").val(data.BlogRef.Title);
+                }
+            });
+        });
 
+        $("#tagContainer").on('click', '.deleteTag', function (e) {
+            e.preventDefault();
+
+            if (!confirm("Do you want to delete")) {
+                return false;
+            }
+
+            var tagid = $(this).data('id');
+            $.ajax({
+                url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Blog/DeleteTag',
+                type: 'POST',
+                data: JSON.stringify({ id: tagid }),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    $("#tagContainer").html("");
+                    $("#tagContainer").load('@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Blog/TagList');
+                    $('#tagContainer').effect("highlight", { color: "#7fd658" }, 1000);
+
+                }
+            });
+        });
+
+
+        $("#saveTag").on('click', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Blog/SaveTag',
+                type: 'POST',
+                data: JSON.stringify({ Name: $("#modalTagName").val(), ID: $(this).data('id') }),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    $("#tagModal").modal('hide');
+                    $("#tagContainer").html("");
+                    $("#tagContainer").load('@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Blog/TagList');
+                    $('#tagContainer').effect("highlight", { color: "#7fd658" }, 1000);
+
+                }
+            });
+
+        });
 
         /* End Blogs */
 

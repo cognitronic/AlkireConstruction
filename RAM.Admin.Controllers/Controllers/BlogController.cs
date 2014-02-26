@@ -59,6 +59,27 @@ namespace RAM.Admin.Controllers.Controllers
 
         }
 
+        public ActionResult GetByID(int id)
+        {
+            if (id > 0)
+            {
+                return Json(new
+                {
+                    Message = "Blog retreived!",
+                    Status = "success",
+                    BlogRef = _blogService.GetByID(id),
+                    ReturnUrl = "/Blog"
+                });
+            }
+            return Json(new
+            {
+                Message = "Blog could not be found!",
+                Status = "failed",
+                ReturnUrl = "/Blog"
+            });
+        }
+
+
         public ActionResult TagList()
         {
             HomeView view = new HomeView();
