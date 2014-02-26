@@ -21,12 +21,16 @@
             </select><br />
             <input id="seoKeywords" type="text" class="form-control required" placeholder="Enter SEO Keywords" /><br />
             <textarea id="seoDescription" class="form-control" rows="6" placeholder="Enter SEO Description"></textarea><br />
+            @if(Model.SelectedBlog != null)
+            { 
             <a href="#blogModal" class="editBlogModal" data-toggle="modal" data-id="@Model.SelectedBlog.ID">
                 <img id="postimage" src="@System.Configuration.ConfigurationManager.AppSettings["PublicSiteUrl"]@Model.SelectedBlog.ImagePath" alt="@Model.SelectedBlog.Title" class="img-thumbnail" style="height: 200px; width: 300px;" />
             </a><br />
+             }
             Post:<br />
             <textarea id="post" class="form-control" rows="10" placeholder="Enter Post"></textarea><br />
             <button class="savePost btn btn-success" role="button">Save Post</button>
+            <a href="/Blog" class="btn btn-info" role="button">Back To List</a>
         </div>
     </div>
 
@@ -78,7 +82,7 @@
         var post = @Html.Raw(Json.Encode(Model.SelectedBlog));
         var isNew = true;
         if(post === null || post === 'undefined'){
-            console.log(post.IsActive);
+            console.log('new blog post');
             $('h2').text('New Blog Post');
         } else{
             console.log(post.IsActive);
@@ -103,11 +107,13 @@
                 BlogCategoryID: $('#category').val(),
                 SEOKeywords: $('#seoKeywords').val(),
                 SEODescription: $('#seoDescription').val(),
-                Post: tinyMCE.activeEditor.getContent(),
-                ID: post.ID
+                Post: tinyMCE.activeEditor.getContent()
             };
             if(isNew){
                 p.ID = 0;
+            } else{
+                
+                p.ID = post.ID;
             }
 
             $.ajax({
@@ -118,7 +124,12 @@
                 contentType: "application/json;charset=utf-8",
                 success: function (data) {
                     console.log(data.Message);
-                    window.location = data.ReturnUrl;
+                    if(data.IsNew){
+                        $("#hdnBlogID").val(data.BlogID);
+                        $('#blogModal').modal('show');
+                    }else{
+                        window.location = data.ReturnUrl;
+                    }
                 }
             });
         });
@@ -152,7 +163,7 @@
                     if(response.Status == "success"){
                         console.log('Image changed!');
                         $('#blogModal').modal('hide');
-                        location.reload();
+                        window.location = response.ReturnUrl;
                     }
                 });
 

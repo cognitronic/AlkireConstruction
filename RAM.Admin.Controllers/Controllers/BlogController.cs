@@ -75,10 +75,12 @@ namespace RAM.Admin.Controllers.Controllers
         public ActionResult SavePost(Blog blog)
         {
             var b = new Blog();
+            var isNew = false;
             if (blog.ID == 0)
             {
                 b.EnteredBy = SecurityContextManager.Current.CurrentUser.ID;
                 b.DatePosted = DateTime.Now;
+                isNew = true;
             }
             else
             {
@@ -96,6 +98,8 @@ namespace RAM.Admin.Controllers.Controllers
             {
                 Message = "Blog saved!",
                 Status = "success",
+                BlogID = b.ID,
+                IsNew = isNew,
                 ReturnUrl = "/Blog"
             });
         }
@@ -144,7 +148,7 @@ namespace RAM.Admin.Controllers.Controllers
             {
                 Message = "Blog Image saved!",
                 Status = "success",
-                ReturnUrl = "/Blog"
+                ReturnUrl = "/Blog/Post/" + post.ID.ToString()
             });
         }
 
