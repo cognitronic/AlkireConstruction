@@ -85,7 +85,6 @@ namespace RAM.Admin.Controllers.Controllers
                 b = _blogService.GetByID(blog.ID);
             }
             b.BlogCategoryID = blog.BlogCategoryID;
-            b.ImagePath = blog.ImagePath;
             b.IsActive = blog.IsActive;
             b.Post = blog.Post;
             b.PostPreview = blog.PostPreview;
