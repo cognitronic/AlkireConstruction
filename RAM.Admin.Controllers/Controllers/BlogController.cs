@@ -157,13 +157,12 @@ namespace RAM.Admin.Controllers.Controllers
         {
             if (id > 0)
             {
-                var catrequest = new GetBlogCategoryByIDRequest();
-                catrequest.CategoryID = id;
+                var cat = _categoryService.GetByID(id);
                 return Json(new
                 {
                     Message = "Category retreived!",
                     Status = "success",
-                    CategoryRef = _categoryService.GetByID(catrequest).Category,
+                    CategoryRef = cat,
                     ReturnUrl = "/Blog"
                 });
             }
@@ -182,9 +181,7 @@ namespace RAM.Admin.Controllers.Controllers
             {
                 if (category.ID > 0)
                 {
-                    var catrequest = new GetBlogCategoryByIDRequest();
-                    catrequest.CategoryID = category.ID;
-                    c = (BlogCategory)_categoryService.GetByID(catrequest).Category;
+                    c = (BlogCategory)_categoryService.GetByID(category.ID);
                 }
                 c.Name = category.Name;
                 _categoryService.Save(c);
@@ -204,9 +201,7 @@ namespace RAM.Admin.Controllers.Controllers
             {
                 try
                 {
-                    var catrequest = new GetBlogCategoryByIDRequest();
-                    catrequest.CategoryID = id;
-                    _categoryService.Delete((BlogCategory)_categoryService.GetByID(catrequest).Category);
+                    _categoryService.Delete((BlogCategory)_categoryService.GetByID(id));
                     return Json(new
                     {
                         Message = "Category deleted!",

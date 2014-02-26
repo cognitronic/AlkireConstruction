@@ -11,7 +11,7 @@ namespace RAM.Services.Interfaces
     public interface IBlogCategoryService
     {
         GetBlogCategoriesResponse GetAll();
-        GetBlogCategoryResponse GetByID(GetBlogCategoryByIDRequest request);
+        BlogCategory GetByID(int id);
         GetBlogCategoryResponse GetByName(GetBlogCategoryByNameRequest request);
         void Save(BlogCategory cat);
         void Delete(BlogCategory cat);

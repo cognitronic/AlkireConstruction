@@ -14,7 +14,7 @@ namespace RAM.Repository.NHibernate.Mappings
         {
             Id(x => x.ID);
             Map(x => x.Name);
-            HasMany<Blog>(x => x.Posts);
+            //HasMany<Blog>(x => x.Posts);
         }
     }
 }

@@ -206,6 +206,9 @@
                     console.log(data.Message);
                     $("#saveCategory").data('id', data.CategoryRef.ID);
                     $("#modalCategoryName").val(data.CategoryRef.Name);
+                },
+                error: function (x, y, z) {
+                    console.log(x + '\n' + y + '\n' + z);
                 }
             });
         });
@@ -240,10 +243,11 @@
             $.ajax({
                 url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Blog/SaveCategory',
                 type: 'POST',
-                data: JSON.stringify({ Name: $("#modalTagName").val(), ID: $(this).data('id') }),
+                data: JSON.stringify({ Name: $("#modalCategoryName").val(), ID: $(this).data('id') }),
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
                 success: function (data) {
+                    $("#modalCategoryName").val("");
                     $("#categoryModal").modal('hide');
                     $("#categoryContainer").html("");
                     $("#categoryContainer").load('@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Blog/CategoryList');

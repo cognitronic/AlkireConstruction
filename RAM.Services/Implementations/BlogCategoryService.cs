@@ -48,27 +48,12 @@ namespace RAM.Services.Implementations
             return response;
         }
 
-        public GetBlogCategoryResponse GetByID(GetBlogCategoryByIDRequest request)
+        public BlogCategory GetByID(int id)
         {
-            var response = new GetBlogCategoryResponse();
-            Query query = new Query();
+            var query = new Query();
+            query.Add(new Criterion("ID", id, CriteriaOperator.Equal));
 
-            query.Add(new Criterion("ID", request.CategoryID, CriteriaOperator.Equal));
-
-            var cat = _repository.FindBy(query);
-            if (cat != null)
-            {
-                response.Success = true;
-                response.Message = "Blog Categories Retrieved Successfully!";
-                response.Category = (IBlogCategory)cat;
-            }
-            else
-            {
-                response.Success = false;
-                response.Message = "Blog Categories Retrieved Failed!";
-            }
-
-            return response;
+            return _repository.FindBy(query).FirstOrDefault<BlogCategory>();
         }
 
         public GetBlogCategoryResponse GetByName(GetBlogCategoryByNameRequest request)
