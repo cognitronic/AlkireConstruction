@@ -557,6 +557,7 @@
     <Content Include="Views\Blog\_BlogList.cshtml" />
     <Content Include="Views\Blog\_BlogCategories.cshtml" />
     <Content Include="Views\Blog\_BlogTags.cshtml" />
+    <Content Include="Views\Blog\Post.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RAM.Admin.Controllers\RAM.Admin.Controllers.csproj">

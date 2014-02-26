@@ -14,6 +14,7 @@ using System.IO;
 using RAM.Core.Domain.Blog;
 using System.Configuration;
 using RAM.Services.Messaging.Blog;
+using RAM.Core;
 
 namespace RAM.Admin.Controllers.Controllers
 {
@@ -57,6 +58,95 @@ namespace RAM.Admin.Controllers.Controllers
 
             return PartialView("_BlogList", view);
 
+        }
+
+        public ActionResult Post(int id = 0)
+        {
+            HomeView view = new HomeView();
+            if (id != 0)
+                view.SelectedBlog = _blogService.GetByID(id);
+            else
+                view.SelectedBlog = null;
+            view.NavView.SelectedMenuItem = "nav-blog";
+            view.BlogCategories = _categoryService.GetAll().Categories;
+            return View(view); 
+        }
+
+        public ActionResult SavePost(Blog blog)
+        {
+            var b = new Blog();
+            if (blog.ID == 0)
+            {
+                b.EnteredBy = SecurityContextManager.Current.CurrentUser.ID;
+                b.DatePosted = DateTime.Now;
+            }
+            else
+            {
+                b = _blogService.GetByID(blog.ID);
+            }
+            b.BlogCategoryID = blog.BlogCategoryID;
+            b.ImagePath = blog.ImagePath;
+            b.IsActive = blog.IsActive;
+            b.Post = blog.Post;
+            b.PostPreview = blog.PostPreview;
+            b.SEODescription = blog.SEODescription;
+            b.SEOKeywords = blog.SEOKeywords;
+            b.Title = blog.Title;
+            _blogService.SavePost(b);
+            return Json(new
+            {
+                Message = "Blog saved!",
+                Status = "success",
+                ReturnUrl = "/Blog"
+            });
+        }
+
+        public ActionResult SavePostImage()
+        {
+            var post = new Blog();
+            if (Request.Form.Count > 0)
+            {
+                if (!string.IsNullOrEmpty(Request.Form["blogID"]))
+                {
+                    post = _blogService.GetByID(Convert.ToInt16(Request.Form["blogID"]));
+                }
+            }
+            foreach (string fileName in Request.Files)
+            {
+                try
+                {
+                    var file = Request.Files[fileName];
+                    post.ImagePath = ConfigurationSettings.AppSettings["BlogImageURL"] + file.FileName;
+                    file.SaveAs(ConfigurationSettings.AppSettings["BlogImageDir"] + file.FileName);
+                }
+                catch (Exception fileException)
+                {
+                    return Json(new
+                    {
+                        Message = "File failed to save with following error: " + fileException.Message,
+                        Status = "failed"
+                    });
+                }
+            }
+            try
+            {
+                _blogService.SavePost(post);
+            }
+            catch (Exception exc)
+            {
+                return Json(new
+                {
+                    Message = "Blog post failed to save with following error: " + exc.Message,
+                    Status = "failed"
+                });
+            }
+
+            return Json(new
+            {
+                Message = "Blog Image saved!",
+                Status = "success",
+                ReturnUrl = "/Blog"
+            });
         }
 
         public ActionResult GetByID(int id)

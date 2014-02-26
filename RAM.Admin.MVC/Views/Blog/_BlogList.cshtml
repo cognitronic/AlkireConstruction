@@ -37,7 +37,7 @@
                 </td>
                 <td>
                     <span id="status_@blog.ID">
-                        @blog.IsActive
+                        @(blog.IsActive == true? "Active" : "Inactive")
                     </span>
                 </td>
                 <td>
@@ -46,7 +46,7 @@
                     </span>
                 </td>
                 <td>
-                    <a id="blogEdit_@blog.ID" href="#blogModal" class="editBlogModal btn btn-info" role="button" data-toggle="modal" data-id="@blog.ID">Edit</a>
+                    <a id="blogEdit_@blog.ID" href="/Blog/Post/@blog.ID" class="btn btn-info" role="button" data-id="@blog.ID" data-category="@blog.Category.ID">Edit</a>
                     <button class="deletePost btn btn-danger" data-id="@blog.ID" type="button">Delete</button>
                 </td>
             </tr>

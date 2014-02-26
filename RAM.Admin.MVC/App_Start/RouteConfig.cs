@@ -16,6 +16,7 @@ namespace RAM.Admin.MVC
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("{*browserlink}", new { browserlink = @".*/arterySignalR/ping" });
 
             var route = routes.MapHttpRoute(
                name: "DefaultApi",
@@ -23,6 +24,17 @@ namespace RAM.Admin.MVC
                defaults: new { action = "Get", id = RouteParameter.Optional }
               );
             route.RouteHandler = new RamHttpControllerRouteHandler();
+
+        //    routes.Add(
+        //    new Route("Blog/{id}",
+        //        new RouteValueDictionary(
+        //            new
+        //            {
+        //                controller = "Blog",
+        //                action = "ByTitle"
+        //            }),
+        //            new HyphenatedRouteHandler())
+        //);
 
             routes.MapRoute(
                 name: "Default",
