@@ -5,13 +5,13 @@
 }
 
 <div class="container">
-    <div class="row">
+    <div class="row center-block">
         <div class="col-lg-9">
             <h2></h2>
             <hr />
             Is Active <input id="status" type="checkbox" /><br />
-            <input id="title" type="text" class="form-control required" placeholder="Enter Title" /><br />
-            <select name="category" id="category" class="form-control">
+            <input id="title" type="text" class="form-control input-lg required" placeholder="Enter Title" /><br />
+            <select name="category" id="category" class="form-control input-lg">
                 @foreach (var item in Model.BlogCategories)
                 {
                     <option value="@item.ID">
@@ -19,14 +19,17 @@
                     </option>
                 }
             </select><br />
-            <input id="seoKeywords" type="text" class="form-control required" placeholder="Enter SEO Keywords" /><br />
+            <input id="seoKeywords" type="text" class="form-control required input-lg" placeholder="Enter SEO Keywords" /><br />
             <textarea id="seoDescription" class="form-control" rows="6" placeholder="Enter SEO Description"></textarea><br />
             @if(Model.SelectedBlog != null)
             { 
+                <span>Click Picture To Manage:</span><br />
             <a href="#blogModal" class="editBlogModal" data-toggle="modal" data-id="@Model.SelectedBlog.ID">
                 <img id="postimage" src="@System.Configuration.ConfigurationManager.AppSettings["PublicSiteUrl"]@Model.SelectedBlog.ImagePath" alt="@Model.SelectedBlog.Title" class="img-thumbnail" style="height: 200px; width: 300px;" />
             </a><br />
              }
+            <br />
+            <ul id="blogTags" class="form-control input-lg"></ul><br />
             Post:<br />
             <textarea id="post" class="form-control" rows="10" placeholder="Enter Post"></textarea><br />
             <button class="savePost btn btn-success" role="button">Save Post</button>
@@ -83,11 +86,11 @@
         var isNew = true;
         if(post === null || post === 'undefined'){
             console.log('new blog post');
-            $('h2').text('New Blog Post');
+            $('.col-lg-9 h2').text('New Blog Post');
         } else{
             console.log(post.IsActive);
             isNew = false;
-            $('h2').text(post.Title);
+            $('.col-lg-9 h2').text(post.Title);
             $("#status").prop('checked', post.IsActive);
             $('#title').val(post.Title);
             $('[name=category]').val(post.BlogCategoryID);
@@ -95,6 +98,37 @@
             $('#seoDescription').val(post.SEODescription);
             $('#post').val(post.Post);
         }
+
+
+        $("#blogTags").tagit({
+            allowSpaces: true,
+            placeholderText: 'Add Tags',
+            autocomplete: ({
+                source: function(request, response){
+                    $.ajax({
+                        url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Blog/GetTagsForAutoSelect',
+                        data: {format: "json", query: request.term},
+                        dataType: 'json',
+                        type: 'GET',
+                        success: function(data){
+                            response($.map(data.Tags, function(item){
+                                return{
+                                    label: item.ID,
+                                    value: item.Name,
+                                    id: item.ID
+                                }
+                            }));
+                        },
+                        error: function(request, status, error){
+                            console.log(error);
+                            alert(error);
+                        }
+                    })
+                },
+                minLength: 2
+            })
+        });
+
         //#endregion
 
         //#region Save Post

@@ -183,6 +183,14 @@ namespace RAM.Admin.Controllers.Controllers
 
         }
 
+        public ActionResult GetTagsForAutoSelect(string query) 
+        {
+            return Json(new
+            {
+                Tags = _tagService.GetForAutoComplete(query)
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult GetTagByID(int id)
         {
             if (id > 0)

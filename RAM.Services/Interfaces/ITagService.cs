@@ -12,6 +12,7 @@ namespace RAM.Services.Interfaces
     {
         Tag GetByID(int tagID);
         IList<Tag> GetAll();
+        IList<Tag> GetForAutoComplete(string query);
         void SaveTag(Tag tag);
         void DeleteTag(Tag tag);
     }

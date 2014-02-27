@@ -39,6 +39,13 @@ namespace RAM.Services.Implementations
             return _repository.FindAll();
         }
 
+        public IList<Tag> GetForAutoComplete(string input)
+        {
+            var query = new Query();
+            query.Add(new Criterion("Name", input + "%", CriteriaOperator.Like));
+            return _repository.FindBy(query);
+        }
+
         public void SaveTag(Tag tag)
         {
             _repository.Save(tag);

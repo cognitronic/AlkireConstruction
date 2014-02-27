@@ -12,6 +12,9 @@ namespace RAM.Admin.MVC
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery-ui-1.10.4.custom.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/tagit").Include(
+                        "~/Scripts/tag-it.*"));
+
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                        "~/Scripts/angular.js",
                        "~/Scripts/angular-route.js"));
@@ -35,7 +38,9 @@ namespace RAM.Admin.MVC
                       "~/Content/site.css",
                       "~/Content/bootstrap-responsive.css",
                       "~/Content/datepicker.css",
-                      "~/Content/datepicker3.css"));
+                      "~/Content/datepicker3.css",
+                      "~/Content/tagit.ui-zendesk.css",
+                      "~/Content/jquery.tagit.css"));
         }
     }
 }
