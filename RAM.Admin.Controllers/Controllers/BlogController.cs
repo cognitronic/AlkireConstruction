@@ -69,10 +69,11 @@ namespace RAM.Admin.Controllers.Controllers
                 view.SelectedBlog = null;
             view.NavView.SelectedMenuItem = "nav-blog";
             view.BlogCategories = _categoryService.GetAll().Categories;
+            //view.SelectedBlogTags = _blogService.g
             return View(view); 
         }
 
-        public ActionResult SavePost(Blog blog)
+        public ActionResult SavePost(Blog blog, string tags)
         {
             var b = new Blog();
             var isNew = false;
@@ -94,6 +95,29 @@ namespace RAM.Admin.Controllers.Controllers
             b.SEOKeywords = blog.SEOKeywords;
             b.Title = blog.Title;
             _blogService.SavePost(b);
+            foreach (var bt in b.Tags)
+            {
+                _blogService.DeleteBlogTag(bt);
+            }
+            foreach (var t in tags.Split(','))
+            {
+                var tag = _tagService.GetByName(t);
+                var blogtag = new BlogTag();
+                var newtag = new Tag();
+                if (tag == null)
+                {
+                    newtag.Name = t;
+                    _tagService.SaveTag(newtag);
+                }
+                else 
+                {
+                    newtag = tag;
+                }
+                blogtag.BlogID = blog.ID;
+                blogtag.TagID = newtag.ID;
+                _blogService.SaveBlogTag(blogtag);
+
+            }
             return Json(new
             {
                 Message = "Blog saved!",

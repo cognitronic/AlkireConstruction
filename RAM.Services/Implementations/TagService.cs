@@ -34,6 +34,14 @@ namespace RAM.Services.Implementations
             return _repository.FindBy(query).FirstOrDefault<Tag>();
         }
 
+        public Tag GetByName(string name)
+        {
+            var query = new Query();
+            query.Add(new Criterion("Name", name, CriteriaOperator.Equal));
+
+            return _repository.FindBy(query).FirstOrDefault<Tag>();
+        }
+
         public IList<Tag> GetAll()
         {
             return _repository.FindAll();

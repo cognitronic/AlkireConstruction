@@ -49,6 +49,7 @@ namespace RAM.Admin.MVC
                     For<ITagRepository>().Use<TagRepository>();
                     For<IBannerRepository>().Use<BannerRepository>();
                     For<IBlogRepository>().Use<BlogRepository>();
+                    For<IBlogTagRepository>().Use<BlogTagRepository>();
                     For<IProjectRepository>().Use<ProjectRepository>();
                     For<IProjectImageRepository>().Use<ProjectImageRepository>();
                     For<IBlogCategoryRepository>().Use<BlogCategoryRepository>();
@@ -127,6 +128,7 @@ namespace RAM.Admin.MVC
                     x.For<ITagRepository>().Use<TagRepository>();
                     x.For<IBannerRepository>().Use<BannerRepository>();
                     x.For<IBlogRepository>().Use<BlogRepository>();
+                    x.For<IBlogTagRepository>().Use<BlogTagRepository>();
                     x.For<IProjectRepository>().Use<ProjectRepository>();
                     x.For<IProjectImageRepository>().Use<ProjectImageRepository>();
                     x.For<IBlogCategoryRepository>().Use<BlogCategoryRepository>();

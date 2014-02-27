@@ -54,6 +54,7 @@
     <Compile Include="Domain\Blog\IBlogCategoryRepository.cs" />
     <Compile Include="Domain\Blog\IBlogRepository.cs" />
     <Compile Include="Domain\Blog\IBlogTag.cs" />
+    <Compile Include="Domain\Blog\IBlogTagRepository.cs" />
     <Compile Include="Domain\Blog\ITag.cs" />
     <Compile Include="Domain\Blog\ITagRepository.cs" />
     <Compile Include="Domain\Blog\Tag.cs" />

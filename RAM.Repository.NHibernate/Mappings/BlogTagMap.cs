@@ -15,12 +15,6 @@ namespace RAM.Repository.NHibernate.Mappings
             Id(x => x.ID);
             Map(x => x.BlogID);
             Map(x => x.TagID);
-            References<Blog>(x => x.BlogRef)
-               .Column("BlogID")
-               .NotFound
-               .Ignore()
-               .Not.Update()
-               .Not.Insert();
             References<Tag>(x => x.TagRef)
                .Column("TagID")
                .NotFound

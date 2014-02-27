@@ -16,12 +16,14 @@ namespace RAM.Services.Implementations
     public class BlogService : IBlogService
     {
         private readonly IBlogRepository _repository;
+        private readonly IBlogTagRepository _blogtagRepository;
         private readonly ICacheStorage _cache;
         private readonly IUnitOfWork _uow;
 
-        public BlogService(IBlogRepository repository, ICacheStorage cache, IUnitOfWork uow)
+        public BlogService(IBlogRepository repository, IBlogTagRepository blogtagRepository, ICacheStorage cache, IUnitOfWork uow)
         {
             _repository = repository;
+            _blogtagRepository = blogtagRepository;
             _cache = cache;
             _uow = uow;
         }
@@ -170,14 +172,16 @@ namespace RAM.Services.Implementations
         #endregion
     
 
-public void SaveBlogTag(BlogTag blogtag)
-{
- 	throw new NotImplementedException();
-}
+        public void SaveBlogTag(BlogTag blogtag)
+        {
+            _blogtagRepository.Save(blogtag);
+            _uow.Commit();
+        }
 
-public void DeleteBlogTag(BlogTag blogtag)
-{
- 	throw new NotImplementedException();
-}
-}
+        public void DeleteBlogTag(BlogTag blogtag)
+        {
+            _blogtagRepository.Remove(blogtag);
+            _uow.Commit();
+        }
+    }
 }

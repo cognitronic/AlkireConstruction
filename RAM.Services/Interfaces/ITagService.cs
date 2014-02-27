@@ -11,6 +11,7 @@ namespace RAM.Services.Interfaces
     public interface ITagService
     {
         Tag GetByID(int tagID);
+        Tag GetByName(string name);
         IList<Tag> GetAll();
         IList<Tag> GetForAutoComplete(string query);
         void SaveTag(Tag tag);

@@ -29,7 +29,17 @@
             </a><br />
              }
             <br />
-            <ul id="blogTags" class="form-control input-lg"></ul><br />
+            <ul id="blogTags" class="form-control input-lg">
+                @if (Model.SelectedBlog.Tags.Count > 0)
+                {
+                    foreach (var tag in Model.SelectedBlog.Tags)
+                    {
+                        <li>
+                            @tag.TagRef.Name
+                        </li>
+                    }
+                }
+            </ul><br />
             Post:<br />
             <textarea id="post" class="form-control" rows="10" placeholder="Enter Post"></textarea><br />
             <button class="savePost btn btn-success" role="button">Save Post</button>
@@ -113,9 +123,8 @@
                         success: function(data){
                             response($.map(data.Tags, function(item){
                                 return{
-                                    label: item.ID,
-                                    value: item.Name,
-                                    id: item.ID
+                                    label: item.Name,
+                                    value: item.Name
                                 }
                             }));
                         },
@@ -135,6 +144,7 @@
 
         $('.savePost').on('click', function(e){
             e.preventDefault();
+            var taglist = $('#blogTags').tagit("assignedTags") + "";
             var p = {
                 IsActive: $('#status').prop('checked'),
                 Title: $('#title').val(),
@@ -149,11 +159,10 @@
                 
                 p.ID = post.ID;
             }
-
             $.ajax({
                 url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Blog/SavePost',
                 type: 'POST',
-                data: JSON.stringify({ blog: p }),
+                data: JSON.stringify({ blog: p, tags: taglist }),
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
                 success: function (data) {

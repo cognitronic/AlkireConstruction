@@ -71,6 +71,7 @@
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\BlogCategoryRepository.cs" />
     <Compile Include="Repositories\BlogRepository.cs" />
+    <Compile Include="Repositories\BlogTagRepository.cs" />
     <Compile Include="Repositories\ProjectImageRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
