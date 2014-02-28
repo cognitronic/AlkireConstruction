@@ -25,8 +25,11 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
+                            <b>Title:</b><br />
                             <input id="modalTitle" type="text" class="form-control" placeholder="Enter Title" /><br />
+                            <b>Date of Project:</b><br />
                             <input type="text" id="modalProjectDate" placeholder="Enter Project Date" class="datepicker form-control" /><br />
+                            <b>Category:</b><br />
                             <select name="modalCategory" id="modalCategory" class="form-control">
                                 @foreach (var item in Enum.GetValues(typeof(RAM.Core.Domain.Project.ProjectType)))
                                 {
@@ -35,6 +38,7 @@
                                     </option> 
                                 }
                             </select><br />
+                            <b>Description:</b><br />
                             <textarea id="modalDescription" class="form-control" rows="4" placeholder="Enter Description"></textarea>
                         </div>
                     </div>

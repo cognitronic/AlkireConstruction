@@ -6,16 +6,17 @@
         @foreach (var item in Model.Projects)
         {
             <div class="gallery-item">
-                <div class="gallery-item-inner">
+				<div class="gallery-item-inner">
                     <a class="item-thumb" href="/projects/@Enum.GetName(typeof(ProjectType),item.Category)/@item.Title.Replace(" ", "-")"><img src="@item.DefaultImagePath" alt="@item.Title"></a>
-                    <div class="item-info">
-                        <h4 class="item-title"><a href="/projects/@Enum.GetName(typeof(ProjectType),item.Category)/@item.Title.Replace(" ", "-")">@item.Title</a></h4>
-                        <div class="item-tools">
-                            <a class="lightbox" href="@item.DefaultImagePath" data-lightbox-group="portfolio-projects"><i class="fa fa-expand"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>   
+					<div class="item-info">
+						<h4 class="item-title"><a href="/projects/@Enum.GetName(typeof(ProjectType),item.Category)/@item.Title.Replace(" ", "-")">@item.Title</a></h4>
+						<div class="item-tools">
+							<a href="portfolio-detail-list.html"><i class="fa fa-link"></i></a>
+                            <a class="lightbox" href="@item.DefaultImagePath" data-lightbox-group="home-projects"><i class="fa fa-expand"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
         }
     </div>
 </div>

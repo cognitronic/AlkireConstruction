@@ -6,6 +6,10 @@
 @{
     ViewBag.Title = Model.SelectedProject.Title + " - Alkire Construction";
 }
+@section metatags{
+    <meta name="keywords" content="@Model.SelectedProject.Title, @Enum.GetName(typeof(ProjectType), Model.SelectedProject.Category) Construction" />
+    <meta name="description" content="@Model.SelectedProject.Description" />
+}
 
 <!-- PAGE HEADING : begin -->
 <header class="page-heading">

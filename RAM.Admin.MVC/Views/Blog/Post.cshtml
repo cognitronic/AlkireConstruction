@@ -10,7 +10,9 @@
             <h2></h2>
             <hr />
             Is Active <input id="status" type="checkbox" /><br />
+            <b>Title:</b><br />
             <input id="title" type="text" class="form-control input-lg required" placeholder="Enter Title" /><br />
+            <b>Category:</b><br />
             <select name="category" id="category" class="form-control input-lg">
                 @foreach (var item in Model.BlogCategories)
                 {
@@ -19,18 +21,21 @@
                     </option>
                 }
             </select><br />
+            <b>SEO Keywords:</b>(comma separated list)<br />
             <input id="seoKeywords" type="text" class="form-control required input-lg" placeholder="Enter SEO Keywords" /><br />
+            <b>SEO Description:</b><br />
             <textarea id="seoDescription" class="form-control" rows="6" placeholder="Enter SEO Description"></textarea><br />
             @if(Model.SelectedBlog != null)
             { 
-                <span>Click Picture To Manage:</span><br />
+                <span><b>Click Picture To Manage:</b></span><br />
             <a href="#blogModal" class="editBlogModal" data-toggle="modal" data-id="@Model.SelectedBlog.ID">
                 <img id="postimage" src="@System.Configuration.ConfigurationManager.AppSettings["PublicSiteUrl"]@Model.SelectedBlog.ImagePath" alt="@Model.SelectedBlog.Title" class="img-thumbnail" style="height: 200px; width: 300px;" />
             </a><br />
              }
             <br />
+            <b>Tags:</b><br />
             <ul id="blogTags" class="form-control input-lg">
-                @if (Model.SelectedBlog.Tags.Count > 0)
+                @if (Model.SelectedBlog != null && Model.SelectedBlog.Tags.Count > 0)
                 {
                     foreach (var tag in Model.SelectedBlog.Tags)
                     {
@@ -40,7 +45,7 @@
                     }
                 }
             </ul><br />
-            Post:<br />
+            <b>Post:</b><br />
             <textarea id="post" class="form-control" rows="10" placeholder="Enter Post"></textarea><br />
             <button class="savePost btn btn-success" role="button">Save Post</button>
             <a href="/Blog" class="btn btn-info" role="button">Back To List</a>

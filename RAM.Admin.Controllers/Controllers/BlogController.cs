@@ -15,6 +15,7 @@ using RAM.Core.Domain.Blog;
 using System.Configuration;
 using RAM.Services.Messaging.Blog;
 using RAM.Core;
+using System.Text.RegularExpressions;
 
 namespace RAM.Admin.Controllers.Controllers
 {
@@ -90,7 +91,14 @@ namespace RAM.Admin.Controllers.Controllers
             b.BlogCategoryID = blog.BlogCategoryID;
             b.IsActive = blog.IsActive;
             b.Post = blog.Post;
-            b.PostPreview = blog.PostPreview;
+            if (blog.Post.Length > 300)
+            {
+                b.PostPreview = Regex.Replace(blog.Post.Substring(0, 297), @"<[^>]*>", String.Empty) + "...";
+            }
+            else
+            {
+                b.PostPreview = Regex.Replace(blog.Post, @"<[^>]*>", String.Empty); 
+            }
             b.SEODescription = blog.SEODescription;
             b.SEOKeywords = blog.SEOKeywords;
             b.Title = blog.Title;

@@ -15,11 +15,18 @@
             <script src="library/js/respond.min.js" type="text/javascript"></script>
         <![endif]-->
         @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/angular")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/alkire")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-48537904-1', 'alkireconstruction.net');
+        ga('send', 'pageview');
+
+    </script>
 </head>
 <body class="enable-body-parallax enable-inview-animations enable-fixed-header">
     <div class="body-inner">
@@ -293,7 +300,11 @@
                 </div>
             </footer>
             <!-- FOOTER : end -->
-
+        @Scripts.Render("~/bundles/angular")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/alkire")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
             <script type="text/javascript">
                 setCurrentMenuItem("@Model.NavView.SelectedMenuItem");
 
