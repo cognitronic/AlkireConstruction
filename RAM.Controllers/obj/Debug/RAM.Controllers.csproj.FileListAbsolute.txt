@@ -178,3 +178,7 @@ C:\Projects\AlkireConstruction\RAM\RAM.Controllers\obj\Debug\RAM.Controllers.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\obj\Debug\RAM.Controllers.pdb
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\AutoMapper.Net4.dll
 C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\Couchbase.xml
+C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\IdeaSeed.Core.dll
+C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\IdeaSeed.Web.dll
+C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\IdeaSeed.Core.pdb
+C:\Projects\AlkireConstruction\RAM\RAM.Controllers\bin\Debug\IdeaSeed.Web.pdb

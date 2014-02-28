@@ -108,6 +108,7 @@
 	/* -------------------------------------------------------------------------
 		CONTACT FORM
 	------------------------------------------------------------------------- */
+	
 
 	$.fn.stContactForm = function(){
 
@@ -138,13 +139,13 @@
 						success: function( data ){
 
 							form.find( '.alert-message.validation' ).hide();
-							form.prepend( data );
+							form.prepend( data.Message );
 							form.find( '.alert-message.success, .alert-message.phpvalidation' ).slideDown(300);
 							submit_btn.removeClass( 'loading' );
 							submit_btn.text( submit_btn.attr( 'data-label' ) );
 
 							// reset all inputs
-							if ( data.indexOf( 'success' ) > 0 ) {
+							if ( data.Status == 'success') {
 								form.find( 'input, textarea' ).each( function() {
 									$(this).val( '' );
 								});
@@ -343,7 +344,6 @@
 	------------------------------------------------------------------------- */
 
 	$.fn.stFormValid = function() {
-
 		function emailValid( email ) {
 			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(email);

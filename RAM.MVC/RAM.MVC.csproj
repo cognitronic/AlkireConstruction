@@ -57,10 +57,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Enyim.Caching.dll</HintPath>
     </Reference>
-    <Reference Include="IdeaSeed.Core">
+    <Reference Include="IdeaSeed.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\IdeaSeed.Core.dll</HintPath>
     </Reference>
-    <Reference Include="IdeaSeed.Web">
+    <Reference Include="IdeaSeed.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\IdeaSeed.Web.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
