@@ -155,26 +155,17 @@
                                     </h3>
                                     <p><strong>Stay Connected!</strong> Join our mailing list to stay up to speed with our projects and <strong>community outreach</strong>. </p>
 
-                                    <form class="mailchimp-subscribe-form" method="get" action="http://shakespearethemes.us7.list-manage1.com/subscribe/post-json?u=b240d13cb400b187f87b46f94&amp;id=e1a0a8176d&amp;c=?">
-                                        <p style="display: none;" class="alert-message warning validation">
-                                            <i class="ico fa fa-exclamation-circle"></i>
-                                            <strong>Email address is required!</strong>
-                                        </p>
-                                        <p style="display: none;" class="alert-message warning request">
-                                            <i class="ico fa fa-exclamation-circle"></i>
-                                            <strong>Form not sent!</strong><br>There was a connection problem. Try again later.
-                                        </p>
-                                        <p style="display: none;" class="alert-message success">
+                                        <p id="subscribeMsg" style="display: none;" class="alert-message success">
                                             <i class="ico fa fa-check-circle"></i>
-                                            <strong>Form sent successfully!</strong>
+                                            
                                         </p>
                                         <div class="form-fields">
                                             <p>
                                                 <input class="subscribe-form-input required email placeholder" type="text" data-placeholder="Enter your email please." value="Enter your email please." name="EMAIL" id="field_subscribe_email">
-                                                <button class="subscribe-form-submit button color-3 submit" data-loading-label="SENDING..." title="Subscribe">SUBSCRIBE</button>
+                                                <button class="newslettersub button color-3 submit" data-loading-label="SENDING..." title="Subscribe">SUBSCRIBE</button>
                                             </p>
                                         </div>
-                                    </form>
+                                    
                                 </div>
                                 <!-- SUBSCRIBE FORM : end -->
 
@@ -313,6 +304,48 @@
 
                     $("#" + item).addClass("active");
                 }
+
+                $(".newslettersub").on("click", function () {
+                    $("#subscribeMsg strong").remove();
+                    $("#subscribeMsg span").remove();
+                    var s = {
+                        email: $("#field_subscribe_email").val(),
+                        id:0,
+                        firstname: "",
+                        lastname: "",
+                        phone:""
+                    }
+
+                    $.ajax({
+                        url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Subscriber/SubscribeToNewsletter',
+                        type: 'POST',
+                        data: JSON.stringify({ subscriber: s }),
+                        dataType: "json",
+                        contentType: "application/json;charset=utf-8",
+                        success: function (data) {
+                            if (data.Status == 'success') {
+                                $("#subscribeMsg")
+                                    .removeAttr('style')
+                                    .append("<strong>Form sent successfully! </strong><span>" + data.Message + "</span>");
+                            } else {
+                                $("#subscribeMsg")
+                                .removeAttr('style')
+                                .removeClass('alert-message success')
+                                .addClass('alert-message warning')
+                                .append("<strong>What happened!? </strong><span>" + data.Message + "</span>");
+                            }
+
+                        },
+                        error: function (x, y, z) {
+                            $("#subscribeMsg")
+                                .removeAttr('style')
+                                .removeClass('alert-message success')
+                                .addClass('alert-message warning')
+                                .append("<strong>What happened!? </strong><span>" + data.Message + "</span>");
+                        }
+                    });
+                });
+
             </script>
         </div>
 </body>

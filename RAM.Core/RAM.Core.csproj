@@ -65,6 +65,9 @@
     <Compile Include="Domain\Project\Project.cs" />
     <Compile Include="Domain\Project\ProjectImage.cs" />
     <Compile Include="Domain\Project\ProjectType.cs" />
+    <Compile Include="Domain\Subscriber\ISubscriber.cs" />
+    <Compile Include="Domain\Subscriber\ISubscriberRepository.cs" />
+    <Compile Include="Domain\Subscriber\Subscriber.cs" />
     <Compile Include="Domain\User\EmailValidationSpecification.cs" />
     <Compile Include="Domain\User\IUser.cs" />
     <Compile Include="Domain\User\IUserRepository.cs" />

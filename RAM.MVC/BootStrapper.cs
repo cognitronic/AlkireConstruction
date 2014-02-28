@@ -10,6 +10,7 @@ using StructureMap;
 using RAM.Core.Domain.Blog;
 using RAM.Core.Domain.Project;
 using RAM.Core.Domain.Banner;
+using RAM.Core.Domain.Subscriber;
 using StructureMap.Configuration.DSL;
 using RAM.Infrastructure.Configuration;
 using RAM.Infrastructure.Logging;
@@ -48,6 +49,7 @@ namespace RAM.MVC
                     For<IUserRepository>().Use<UserRepository>();
                     For<IBlogRepository>().Use<BlogRepository>();
                     For<IBlogTagRepository>().Use<BlogTagRepository>();
+                    For<ISubscriberRepository>().Use<SubscriberRepository>();
                     For<IProjectRepository>().Use<ProjectRepository>();
                     For<IProjectImageRepository>().Use<ProjectImageRepository>();
                     For<IBannerRepository>().Use<BannerRepository>();
@@ -65,6 +67,7 @@ namespace RAM.MVC
                 //Models
                 For<IUser>().Use<User>();
                 For<IBlog>().Use<Blog>();
+                For<ISubscriber>().Use<Subscriber>();
                 For<IProject>().Use<Project>();
                 For<IProjectImage>().Use<ProjectImage>();
                 For<IBanner>().Use<Banner>();
@@ -73,6 +76,7 @@ namespace RAM.MVC
                 //Services
                 For<IUserService>().Use<UserService>();
                 For<IBannerService>().Use<BannerService>();
+                For<ISubscriberService>().Use<SubscriberService>();
                 For<IBlogService>().Use<BlogService>();
                 For<IProjectService>().Use<ProjectService>();
                 For<IBlogCategoryService>().Use<BlogCategoryService>();
@@ -118,12 +122,14 @@ namespace RAM.MVC
                     x.For<IBannerService>().Use<BannerService>();
                     x.For<IBlogService>().Use<BlogService>();
                     x.For<IProjectService>().Use<ProjectService>();
+                    x.For<ISubscriberService>().Use<SubscriberService>();
                     x.For<IBlogCategoryService>().Use<BlogCategoryService>();
 
                     x.For<IUserRepository>().Use<UserRepository>();
                     x.For<IBannerRepository>().Use<BannerRepository>();
                     x.For<IBlogTagRepository>().Use<BlogTagRepository>();
                     x.For<IBlogRepository>().Use<BlogRepository>();
+                    x.For<ISubscriberRepository>().Use<SubscriberRepository>();
                     x.For<IProjectRepository>().Use<ProjectRepository>();
                     x.For<IProjectImageRepository>().Use<ProjectImageRepository>();
                     x.For<IBlogCategoryRepository>().Use<BlogCategoryRepository>();
@@ -135,6 +141,7 @@ namespace RAM.MVC
                     x.For<IUser>().Use<User>();
                     x.For<IBanner>().Use<Banner>();
                     x.For<IBlog>().Use<Blog>();
+                    x.For<ISubscriber>().Use<Subscriber>();
                     x.For<IProject>().Use<Project>();
                     x.For<IProjectImage>().Use<ProjectImage>();
                     x.For<IBlogCategory>().Use<BlogCategory>();
