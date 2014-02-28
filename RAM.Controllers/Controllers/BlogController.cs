@@ -31,26 +31,29 @@ namespace RAM.Controllers.Controllers
 
         public ActionResult Index()
         {
-            BlogView view = new BlogView();
+            var view = new HomeView();
             view.NavView.SelectedMenuItem = "nav-blog";
+            view.Posts = _blogService.GetLatestPosts(2);
             return View(view);
 
         }
 
         public ActionResult GetList()
         {
-            BlogView view = new BlogView();
+            var view = new HomeView();
             view.NavView.SelectedMenuItem = "nav-blog";
             var response = _blogService.GetAll();
-            view.Posts = response.BlogList;
+            view.Categories = _categoryService.GetAll().Categories;
+            view.Posts = _blogService.GetLatestPosts(2);
             return PartialView("BlogList", view);
         }
 
         public ActionResult LatestPosts()
         {
-            BlogView view = new BlogView();
+            var view = new HomeView();
             view.NavView.SelectedMenuItem = "nav-blog";
             var response = _blogService.GetAll();
+            view.Categories = _categoryService.GetAll().Categories;
             view.Posts = response.BlogList;
             return PartialView("LatestPosts", view);
         }
@@ -58,24 +61,26 @@ namespace RAM.Controllers.Controllers
         public ActionResult ByTitle(string category, string title)
         {
 
-            BlogView view = new BlogView();
+            var view = new HomeView();
             view.NavView.SelectedMenuItem = "nav-blog";
             GetBlogByTitleRequest request = new GetBlogByTitleRequest();
             request.Title = title.Replace("-", " ");
             var response = _blogService.GetByTitle(request);
             view.SelectedPost = response.BlogPost;
+            view.Posts = _blogService.GetAll().BlogList;
             return View("BlogPost", view);
 
         }
 
         public ActionResult ByCategory(string category)
         {
-            BlogView view = new BlogView();
+            var view = new HomeView();
             view.NavView.SelectedMenuItem = "nav-blog";
             var request = new GetBlogsByCategoryRequest();
             var catrequest = new GetBlogCategoryByNameRequest();
             catrequest.CategoryName = category.Replace("-", " ");
             request.CategoryID = _categoryService.GetByName(catrequest).Category.ID;
+            view.Categories = _categoryService.GetAll().Categories;
             var response = _blogService.GetByCategory(request);
             view.Posts = response.BlogList;
             return View("BlogsByCategory", view);
@@ -84,10 +89,10 @@ namespace RAM.Controllers.Controllers
 
         public ActionResult Sidebar(string category)
         {
-            BlogView view = new BlogView();
+            var view = new HomeView();
             view.NavView.SelectedMenuItem = "nav-blog";
-            var response = _categoryService.GetAll();
-            return PartialView("Sidebar", response.Categories);
+            view.Categories = _categoryService.GetAll().Categories;
+            return PartialView("Sidebar", view);
 
         }
     }

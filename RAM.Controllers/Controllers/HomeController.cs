@@ -9,14 +9,19 @@ using RAM.Controllers.ActionArguments;
 using RAM.Controllers.ViewModels;
 using System.Web.Mvc;
 using RAM.Core.Domain.Banner;
+using RAM.Core.Domain.Project;
 
 namespace RAM.Controllers.Controllers
 {
     public class HomeController : BaseController
     {
         private readonly IBannerService _bannerService;
+        private readonly IProjectService _projectService;
+        private readonly IBlogService _blogService;
         public HomeController(ILocalAuthenticationService authenticationService,
             IUserService userService,
+            IProjectService projectService,
+            IBlogService blogService,
             IExternalAuthenticationService externalAuthenticationService,
             IFormsAuthentication formsAuthentication,
             IBannerService bannerService,
@@ -24,14 +29,17 @@ namespace RAM.Controllers.Controllers
             : base(authenticationService, userService, externalAuthenticationService, actionArguments)
         {
             _bannerService = bannerService;
+            _projectService = projectService;
+            _blogService = blogService;
         }
 
 
         public ActionResult Index()
         {
-            HomeView accountView = new HomeView();
-            accountView.NavView.SelectedMenuItem = "nav-home";
-            return View(accountView);
+            HomeView view = new HomeView();
+            view.NavView.SelectedMenuItem = "nav-home";
+            view.Posts = _blogService.GetLatestPosts(2);
+            return View(view);
 
         }
 
@@ -52,6 +60,15 @@ namespace RAM.Controllers.Controllers
 
         }
 
+        public ActionResult Portfolio()
+        {
+            var view = new HomeView();
+            view.NavView.SelectedMenuItem = "nav-home";
+            view.Projects = _projectService.GetAll().ProjectList.Take(10).ToList();
+            return PartialView("_Portfolio", view);
+
+        }
+
         public ActionResult Features()
         {
             HomeView accountView = new HomeView();
@@ -67,5 +84,6 @@ namespace RAM.Controllers.Controllers
             return PartialView("Footer", accountView);
 
         }
+
     }
 }

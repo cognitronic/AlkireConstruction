@@ -14,51 +14,58 @@ namespace RAM.Controllers.Controllers
 {
     public class ServicesController : BaseController
     {
+        private readonly IBlogService _blogService;
         public ServicesController(ILocalAuthenticationService authenticationService,
             IUserService userService,
+            IBlogService blogService,
             IExternalAuthenticationService externalAuthenticationService,
             IFormsAuthentication formsAuthentication,
             IActionArguments actionArguments)
             : base(authenticationService, userService, externalAuthenticationService, actionArguments)
         {
-
+            _blogService = blogService;
         }
 
         //
         // GET: /Services/
         public ActionResult Index()
         {
-            HomeView accountView = new HomeView();
-            accountView.NavView.SelectedMenuItem = "nav-services";
-            return View(accountView);
+            var view = new HomeView();
+            view.Posts = _blogService.GetLatestPosts(2);
+            view.NavView.SelectedMenuItem = "nav-services";
+            return View(view);
         }
 
         public ActionResult Industrial()
         {
-            HomeView accountView = new HomeView();
-            accountView.NavView.SelectedMenuItem = "nav-services";
-            return View(accountView);
+            HomeView view = new HomeView();
+            view.Posts = _blogService.GetLatestPosts(2);
+            view.NavView.SelectedMenuItem = "nav-services";
+            return View(view);
         }
 
         public ActionResult Commercial()
         {
-            HomeView accountView = new HomeView();
-            accountView.NavView.SelectedMenuItem = "nav-services";
-            return View(accountView);
+            HomeView view = new HomeView();
+            view.Posts = _blogService.GetLatestPosts(2);
+            view.NavView.SelectedMenuItem = "nav-services";
+            return View(view);
         }
 
         public ActionResult Residential()
         {
-            HomeView accountView = new HomeView();
-            accountView.NavView.SelectedMenuItem = "nav-services";
-            return View(accountView);
+            HomeView view = new HomeView();
+            view.Posts = _blogService.GetLatestPosts(2);
+            view.NavView.SelectedMenuItem = "nav-services";
+            return View(view);
         }
 
         public ActionResult BuildingMaintenance()
         {
-            HomeView accountView = new HomeView();
-            accountView.NavView.SelectedMenuItem = "nav-services";
-            return View(accountView);
+            HomeView view = new HomeView();
+            view.Posts = _blogService.GetLatestPosts(2);
+            view.NavView.SelectedMenuItem = "nav-services";
+            return View(view);
         }
 	}
 }

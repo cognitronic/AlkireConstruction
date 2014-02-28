@@ -1,62 +1,22 @@
-﻿@model IList<RAM.Core.Domain.Blog.IBlogCategory>
+﻿
 
-
+<div class="col-md-3 sidebar-column">
     <!-- SIDEBAR : begin -->
     <aside id="sidebar">
         <ul class="widget-list">
 
             <!-- MENU WIDGET : begin -->
-            <li class="widget menu-widget">
-                <h3 class="widget-title">Categories</h3>
-                <div class="widget-content">
-                    <div class="widget-content-inner">
-                        <ul>
-                            <li><a href="#">Industrial</a></li>
-                            <li><a href="#">Commercial</a></li>
-                            <li><a href="#">Residential</a></li>
-                            <li><a href="#">Building Maintenance</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
+            @Html.Partial("_Categories")
             <!-- MENU WIDGET : end -->
             <!-- POSTS WIDGET : begin -->
-            <li class="widget posts-widget">
-                <h3 class="widget-title">Latest Posts<span class="decor"></span></h3>
-                <div class="widget-content">
-                    <div class="widget-content-inner">
-                        <ul class="post-list paginated">
-
-                            <!-- POST 1 : begin -->
-                            <li class="post has-thumb">
-                                <h4 class="post-title"><a href="#">Danny Schreiber Remodel</a></h4>
-                                <ul class="post-info">
-                                    <li><i class="ico fa fa-clock-o"></i> January 3</li>
-                                    <li><i class="ico fa fa-folder"></i> <a href="#">floors</a>, <a href="#">cabinets</a></li>
-                                </ul>
-                            </li>
-                            <!-- POST 1 : end -->
-                            <!-- POST 2 : begin -->
-                            <li class="post has-thumb">
-                                <h4 class="post-title"><a href="#">Office Remodel</a></h4>
-                                <ul class="post-info">
-                                    <li><i class="ico fa fa-clock-o"></i> January 27</li>
-                                    <li><i class="ico fa fa-folder"></i> <a href="#">plumbing</a>, <a href="#">windows</a></li>
-                                </ul>
-                            </li>
-                            <!-- POST 2 : end -->
-
-                        </ul>
-                    </div>
-                </div>
-            </li>
+            
             <!-- POSTS WIDGET : end -->
             <!-- INSTAGRAM WIDGET : begin -->
             <li class="widget images-feed-widget">
                 <h3 class="widget-title">Instagram</h3>
                 <div class="widget-content">
                     <div class="widget-content-inner">
-                        <div class="instagram-feed loading" data-id="241041378" data-limit="9"><span class="loading-anim"><span></span></span></div>
+                        <div class="instagram-feed loading" data-id="262455397" data-limit="9"><span class="loading-anim"><span></span></span></div>
                     </div>
                 </div>
             </li>
@@ -66,7 +26,7 @@
                 <h3 class="widget-title">FLICKR</h3>
                 <div class="widget-content">
                     <div class="widget-content-inner">
-                        <div class="flickr-feed loading" data-id="88230091@N08" data-limit="9"><span class="loading-anim"><span></span></span></div>
+                        <div class="flickr-feed loading" data-id="117737192@N04" data-limit="9"><span class="loading-anim"><span></span></span></div>
                     </div>
                 </div>
             </li>
@@ -75,3 +35,4 @@
         </ul>
     </aside>
     <!-- SIDEBAR : end -->
+</div>

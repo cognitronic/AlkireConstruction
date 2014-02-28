@@ -547,6 +547,9 @@
     </Content>
     <Content Include="Views\Projects\ByTitle.cshtml" />
     <Content Include="Views\Home\_Banners.cshtml" />
+    <Content Include="Views\Home\_Portfolio.cshtml" />
+    <Content Include="Views\Blog\_Categories.cshtml" />
+    <Content Include="Views\Shared\_LatestPosts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RAM.Controllers\RAM.Controllers.csproj">

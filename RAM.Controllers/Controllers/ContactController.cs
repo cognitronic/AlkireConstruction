@@ -14,22 +14,25 @@ namespace RAM.Controllers.Controllers
 {
     public class ContactController : BaseController
     {
+        private readonly IBlogService _blogService;
         public ContactController(ILocalAuthenticationService authenticationService,
             IUserService userService,
+            IBlogService blogService,
             IExternalAuthenticationService externalAuthenticationService,
             IFormsAuthentication formsAuthentication,
             IActionArguments actionArguments)
             : base(authenticationService, userService, externalAuthenticationService, actionArguments)
         {
-
+            _blogService = blogService;
         }
 
 
         public ActionResult Index()
         {
-            HomeView accountView = new HomeView();
-            accountView.NavView.SelectedMenuItem = "nav-contact";
-            return View(accountView);
+            var view = new HomeView();
+            view.Posts = _blogService.GetLatestPosts(2);
+            view.NavView.SelectedMenuItem = "nav-contact";
+            return View(view);
 
         }
     }

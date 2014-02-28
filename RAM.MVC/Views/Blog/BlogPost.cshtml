@@ -1,185 +1,50 @@
 ﻿@using RAM.Core.Domain.Blog;
-@model RAM.Controllers.ViewModels.BlogView
+@model RAM.Controllers.ViewModels.HomeView
 
 @{
-    ViewBag.Title = "Culture Boss | " + Model.SelectedPost.Title;
+    ViewBag.Title = "Alkire Construction | " + Model.SelectedPost.Title;
 }
 @section metatags{
     <meta name="keywords" content="@Model.SelectedPost.SEOKeywords" />
     <meta name="description" content="@Model.SelectedPost.SEODescription" />
 }
 
+<!-- PAGE HEADING : begin -->
+<header class="page-heading">
+    <h1 class='heading-title'>@Model.SelectedPost.Title</h1>
+    <ul class="heading-breadcrumbs">
+        <li><a href="/">Home</a> /</li>
+        <li><a href="/Blog">Blog</a> /</li>
+        <li>@Model.SelectedPost.Title</li>
+    </ul>
+</header>
+
 <section class='section-wrapper post-w'>
-              <div class='container'>
-                <div class='row'>
-                  <div class='span8'>
-                    <div class='single-post-w'>
-                      <h1 class='post-title'>@Model.SelectedPost.Title</h1>
-                      <p class='post-info'>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-md-9'>
+                <div class='single-post-w'>
+                    
+                    <p class='post-info'>
                         <span class='info-item'>
-                          by
-                          <a href="#">@Model.SelectedPost.EnteredByRef.FirstName @Model.SelectedPost.EnteredByRef.LastName</a>
+                            by
+                            <a href="#">@Model.SelectedPost.EnteredByRef.FirstName @Model.SelectedPost.EnteredByRef.LastName</a>
                         </span>
                         <span class='info-item'>@Model.SelectedPost.DatePosted.ToString("MMM dd, yyyy", System.Globalization.CultureInfo.InvariantCulture)</span>
                         @*<span class='info-item'>
-                          <a href="#">3 Comments</a>
-                        </span>*@
-                      </p>
-                      <div class='single-post-image bottom decor-image'>
-                        <img alt="Image-placeholder-1" src="/images/photos/image-placeholder-1.jpg" />
-                      </div>
-                      <div class='post-content'>
-                        @Html.Raw(@Model.SelectedPost.Post)
-                      </div>
+                        <a href="#">3 Comments</a>
+                    </span>*@
+                    </p>
+                    <div class='single-post-image bottom decor-image'>
+                        <img alt="Image-placeholder-1" src="@Model.SelectedPost.ImagePath" />
                     </div>
-                    @*<div class='post-comments-w'>
-                      <h3 class='section-header'>
-                        Comments (175)
-                        <a href="#form-add-comment" class="roll-link roll-red"><span data-title='Add yours'>Add yours</span>
-                        </a>
-                      </h3>
-                      <ul class='post-comments-list'>
-                        <li>
-                          <div class='row'>
-                            <div class='span1'>
-                              <div class='comment-author-photo hidden-phone'>
-                                <img alt="Avatar-2" src="/images/test-user.png" />
-                              </div>
-                            </div>
-                            <div class='span7'>
-                              <div class='comment-author'>
-                                <a href="#" class="roll-link roll-red"><span data-title='Jonathan Mayers'>Jonathan Mayers</span>
-                                </a>
-                                says
-                              </div>
-                              <div class='comment-content'>Cras et ligula libero. Quisque quis magna vitae ipsum consequat varius in ut ante. Maecenas a mi nibh, eu euismod orci. Vivamus viverra lacus vitae tortor molestie malesuada. In nulla nibh, congue sed molestie nec, dapibus sed purus. Proin consectetur, nisi ac congue accumsan, lorem odio pretium quam, quis vestibulum nunc felis ut turpis. Nullam vulputate euismod urna non pharetra. Phasellus blandit mattis ipsum, ac laoreet lorem lacinia et.</div>
-                              <div class='comment-date pull-left'>
-                                Posted on Nov 16, 2012 | 10:16 AM EST
-                              </div>
-                              <a href="#form-add-comment" class="roll-link pull-right roll-red"><span data-title='Reply'>Reply</span>
-                              </a>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div class='row'>
-                            <div class='span1'>
-                              <div class='comment-author-photo hidden-phone'>
-                                <img alt="Avatar-4" src="/images/test-user.png" />
-                              </div>
-                            </div>
-                            <div class='span7'>
-                              <div class='comment-author'>
-                                <a href="#" class="roll-link roll-red"><span data-title='Michael Monson'>Michael Monson</span>
-                                </a>
-                                says
-                              </div>
-                              <div class='comment-content'>Nullam vulputate euismod urna non pharetra. Phasellus blandit mattis ipsum, ac laoreet lorem lacinia et.</div>
-                              <div class='comment-date pull-left'>
-                                Posted on Nov 16, 2012 | 10:16 AM EST
-                              </div>
-                              <a href="#form-add-comment" class="roll-link pull-right roll-red"><span data-title='Reply'>Reply</span>
-                              </a>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div class='row'>
-                            <div class='span1'>
-                              <div class='comment-author-photo hidden-phone'>
-                                <img alt="Avatar-1" src="/images/test-user.png" />
-                              </div>
-                            </div>
-                            <div class='span7'>
-                              <div class='comment-author'>
-                                <a href="#" class="roll-link roll-red"><span data-title='Mike Stiller'>Mike Stiller</span>
-                                </a>
-                                says
-                              </div>
-                              <div class='comment-content'>Sed euismod, metus sed congue rutrum, justo elit malesuada quam, id pulvinar velit massa et justo.</div>
-                              <div class='comment-date pull-left'>
-                                Posted on Nov 16, 2012 | 10:16 AM EST
-                              </div>
-                              <a href="#form-add-comment" class="roll-link pull-right roll-red"><span data-title='Reply'>Reply</span>
-                              </a>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div class='row'>
-                            <div class='span1'>
-                              <div class='comment-reply hidden-phone'>
-                                <img alt="Icon-message-reply" src="/images/icon-message-reply.png" />
-                              </div>
-                            </div>
-                            <div class='span1'>
-                              <div class='comment-author-photo hidden-phone'>
-                                <img alt="Avatar-4" src="/images/test-user.png" />
-                              </div>
-                            </div>
-                            <div class='span6'>
-                              <div class='comment-author'>
-                                <a href="#" class="roll-link roll-red"><span data-title='Michael Monson'>Michael Monson</span>
-                                </a>
-                                says
-                              </div>
-                              <div class='comment-content'>Nullam vulputate euismod urna non pharetra. Phasellus blandit mattis ipsum, ac laoreet lorem lacinia et.</div>
-                              <div class='comment-date pull-left'>
-                                Posted on Nov 16, 2012 | 10:16 AM EST
-                              </div>
-                              <a href="#form-add-comment" class="roll-link pull-right roll-red"><span data-title='Reply'>Reply</span>
-                              </a>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div class='row'>
-                            <div class='span1'>
-                              <div class='comment-author-photo hidden-phone'>
-                                <img alt="Avatar-3" src="/images/test-user.png" />
-                              </div>
-                            </div>
-                            <div class='span7'>
-                              <div class='comment-author'>
-                                <a href="#" class="roll-link roll-red"><span data-title='Gary Oldbridge'>Gary Oldbridge</span>
-                                </a>
-                                says
-                              </div>
-                              <div class='comment-content'>Integer velit mauris, commodo sit amet tempus ac, aliquet nec massa. Donec non lacus sed diam molestie venenatis sollicitudin sit amet metus. Proin consectetur, nisi ac congue accumsan, lorem odio pretium quam, quis vestibulum nunc felis ut turpis. Nullam vulputate euismod urna non pharetra. Phasellus blandit mattis ipsum, ac laoreet lorem lacinia et.</div>
-                              <div class='comment-date pull-left'>
-                                Posted on Nov 16, 2012 | 10:16 AM EST
-                              </div>
-                              <a href="#form-add-comment" class="roll-link pull-right roll-red"><span data-title='Reply'>Reply</span>
-                              </a>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                      <div class="white-card extra-padding">
-                      <form class='form-transparent' id='form-add-comment'>
-                        <fieldset>
-                          <div class='row-fluid'>
-                            <div class='span12'>
-                              <legend>Add your comment</legend>
-                            </div>
-                            <div class='controls controls-row'>
-                              <input class='search-input span6' placeholder='Your name' type='text'>
-                              <input class='search-input span6' placeholder='Your email' type='text'>
-                            </div>
-                            <div class='controls controls-row'>
-                              <textarea class='span12' placeholder='Your comment' rows='6'></textarea>
-                            </div>
-                            <div class='form-actions'>
-                              <button class='btn btn-small'>Submit Comment</button>
-                            </div>
-                          </div>
-                        </fieldset>
-                      </form>
-                      </div>
-                    </div>*@
-                  </div>
-                  @Html.Action("Sidebar", "Blog")
+                    <div class='post-content'>
+                        @Html.Raw(@Model.SelectedPost.Post)
+                    </div>
                 </div>
             </div>
-        </section>
+            @Html.Action("Sidebar", "Blog")
+        </div>
+    </div>
+</section>
 

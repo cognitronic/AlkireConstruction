@@ -18,6 +18,7 @@ namespace RAM.Services.Interfaces
         void SavePost(Blog post);
         void DeletePost(Blog post);
 
+        IList<IBlog> GetLatestPosts(int count);
         void SaveBlogTag(BlogTag blogtag);
         void DeleteBlogTag(BlogTag blogtag);
 

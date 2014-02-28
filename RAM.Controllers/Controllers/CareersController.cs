@@ -13,22 +13,25 @@ namespace RAM.Controllers.Controllers
 {
     public class CareersController : BaseController
     {
+        private readonly IBlogService _blogService;
         public CareersController(ILocalAuthenticationService authenticationService,
             IUserService userService,
+            IBlogService blogService,
             IExternalAuthenticationService externalAuthenticationService,
             IFormsAuthentication formsAuthentication,
             IActionArguments actionArguments)
             : base(authenticationService, userService, externalAuthenticationService, actionArguments)
         {
-
+            _blogService = blogService;
         }
 
 
         public ActionResult Index()
         {
-            HomeView accountView = new HomeView();
-            accountView.NavView.SelectedMenuItem = "nav-careers";
-            return View(accountView);
+           var view = new HomeView();
+            view.Posts = _blogService.GetLatestPosts(2);
+            view.NavView.SelectedMenuItem = "nav-careers";
+            return View(view);
 
         }
     }

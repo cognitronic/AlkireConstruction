@@ -1,0 +1,17 @@
+﻿@model RAM.Controllers.ViewModels.HomeView
+<li class="widget menu-widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-content">
+        <div class="widget-content-inner">
+            <ul>
+                @foreach (var c in Model.Categories)
+                {
+                    <li>
+                        <a href="/Blog/@c.Name.Replace(" ", "-")">@c.Name</a>
+                    </li>
+                }
+            </ul>
+
+        </div>
+    </div>
+</li>

@@ -47,6 +47,7 @@ namespace RAM.MVC
                     //Repositories
                     For<IUserRepository>().Use<UserRepository>();
                     For<IBlogRepository>().Use<BlogRepository>();
+                    For<IBlogTagRepository>().Use<BlogTagRepository>();
                     For<IProjectRepository>().Use<ProjectRepository>();
                     For<IProjectImageRepository>().Use<ProjectImageRepository>();
                     For<IBannerRepository>().Use<BannerRepository>();
@@ -118,10 +119,10 @@ namespace RAM.MVC
                     x.For<IBlogService>().Use<BlogService>();
                     x.For<IProjectService>().Use<ProjectService>();
                     x.For<IBlogCategoryService>().Use<BlogCategoryService>();
+
                     x.For<IUserRepository>().Use<UserRepository>();
                     x.For<IBannerRepository>().Use<BannerRepository>();
-
-
+                    x.For<IBlogTagRepository>().Use<BlogTagRepository>();
                     x.For<IBlogRepository>().Use<BlogRepository>();
                     x.For<IProjectRepository>().Use<ProjectRepository>();
                     x.For<IProjectImageRepository>().Use<ProjectImageRepository>();

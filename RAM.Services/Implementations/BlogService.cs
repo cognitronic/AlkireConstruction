@@ -115,6 +115,23 @@ namespace RAM.Services.Implementations
             return response;
         }
 
+        public IList<IBlog> GetLatestPosts(int count)
+        {
+            var list = new List<IBlog>();
+            if (_cache.Get<IList<IBlog>>(RAM.Core.ResourceStrings.Cache_BlogPosts) == null)
+            {
+                list = _repository.FindAll()
+                    .Where(o => o.IsActive = true)
+                    .OrderByDescending(o => o.DatePosted).Take(count).ToList<IBlog>();
+                _cache.Store(RAM.Core.ResourceStrings.Cache_BlogPosts, list);
+            }
+            else
+            {
+                list = _cache.Get<List<IBlog>>(RAM.Core.ResourceStrings.Cache_BlogPosts).Take(count).ToList();
+            }
+            return list;
+        }
+
         public GetBlogsResponse GetAllForAdmin()
         {
             var response = new GetBlogsResponse();
