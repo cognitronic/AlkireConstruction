@@ -223,7 +223,7 @@
                 });
 
                 document.querySelector("button#cancelModal").addEventListener("click", function () {
-
+                    window.location = window.location;
                     myDropzone.removeAllFiles();
                     $('#portfolioModal').modal('hide');
                     $("#portfolioList").html("");
