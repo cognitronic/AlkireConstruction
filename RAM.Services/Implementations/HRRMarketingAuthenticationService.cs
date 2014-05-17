@@ -45,7 +45,7 @@ namespace RAM.Services.Implementations
 
         public IUserAccount Login(string email, string password)
         {
-            var service = new UserService(_repository, _cache);
+            var service = new UserService(_repository, _cache, _uow);
             var response = service.AuthenticateUser(email, password);
 
             UserView userAccount = new UserView();

@@ -100,6 +100,58 @@ namespace RAM.Admin.Controllers.Controllers
 
         }
 
+        public ActionResult UpdateBanner(string title, string subText, string bannerID)
+        {
+            var banner = new Banner();
+            if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(subText))
+            {
+                if (!string.IsNullOrEmpty(bannerID))
+                {
+                    banner = _bannerService.GetByID(Convert.ToInt16(bannerID));
+                }
+                banner.Title = title;
+                banner.SubText1 = subText;
+            }
+            foreach (string fileName in Request.Files)
+            {
+                try
+                {
+                    var file = Request.Files[fileName];
+                    banner.ImagePath = ConfigurationSettings.AppSettings["BannerImageURL"] + file.FileName;
+                    file.SaveAs(ConfigurationSettings.AppSettings["BannerImageDir"] + file.FileName);
+                }
+                catch (Exception fileException)
+                {
+                    return Json(new
+                    {
+                        Message = "File failed to save with following error: " + fileException.Message,
+                        Status = "failed"
+                    });
+                }
+            }
+            try
+            {
+                banner.AltText = banner.Title;
+                _bannerService.SaveBanner(banner);
+            }
+            catch (Exception exc)
+            {
+                return Json(new
+                {
+                    Message = "Banner failed to save with following error: " + exc.Message,
+                    Status = "failed"
+                });
+            }
+
+            return Json(new
+            {
+                Message = "Banner saved!",
+                Status = "success",
+                ReturnUrl = "/Banners"
+            });
+
+        }
+
         public ActionResult DeleteBanner(string id)
         {
             if (!string.IsNullOrEmpty(id))

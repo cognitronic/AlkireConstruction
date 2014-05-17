@@ -564,6 +564,8 @@
     <Content Include="Views\Blog\Post.cshtml" />
     <Content Include="Views\Portfolio\Project.cshtml" />
     <Content Include="Views\Portfolio\_ImagesList.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\_UserList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RAM.Admin.Controllers\RAM.Admin.Controllers.csproj">

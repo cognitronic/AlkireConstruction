@@ -9,6 +9,7 @@ using RAM.Services.Interfaces;
 using RAM.Services.Messaging.UserService;
 using RAM.Services.Mapping;
 using RAM.Services.Cache;
+using RAM.Infrastructure.UnitOfWork;
 
 namespace RAM.Services.Implementations
 {
@@ -16,34 +17,16 @@ namespace RAM.Services.Implementations
     {
         private readonly IUserRepository _repository;
         private readonly ICacheStorage _cache;
+        private readonly IUnitOfWork _uow;
 
-        public UserService(IUserRepository repository, ICacheStorage cache)
+        public UserService(IUserRepository repository, ICacheStorage cache, IUnitOfWork uow)
         {
             _repository = repository;
             _cache = cache;
+            _uow = uow;
         }
 
         #region IUserService Members
-
-        //public GetAllUsersByTypeResponse GetAllUsers()
-        //{
-        //    GetAllUsersByTypeResponse response = new GetAllUsersByTypeResponse();
-        //    var accounts = _repository.FindAll();
-        //    response.Users = accounts;
-        //    return response;
-        //}
-
-        //public GetValidUserResponse GetUserByEmail(string email)
-        //{
-        //    GetValidUserResponse response = new GetValidUserResponse();
-
-        //    Query query = new Query();
-        //    query.Add(new Criterion("email", email, CriteriaOperator.Equal));
-        //    var account = _repository.FindBy(query);
-        //    if (account != null && account.Count() > 0)
-        //        response.SelectedUser = account.FirstOrDefault<IUser>();
-        //    return response;
-        //}
 
         public GetValidUserResponse AuthenticateUser(string email, string password)
         {
@@ -59,24 +42,6 @@ namespace RAM.Services.Implementations
             }
             return response;
         }
-
-        //public CreateUserResponse CreateUser(CreateUserRequest request)
-        //{
-        //    CreateUserResponse response = new CreateUserResponse();
-        //    User user = new User();
-        //    user.ID = request.UserID;
-        //    user.Email = request.Email;
-        //    user.FirstName = request.FirstName;
-        //    user.LastName = request.LastName;
-
-        //    ThrowExceptionIfUserIsInvalid(user);
-
-        //    _repository.Add(user);
-
-        //    response.User = user.ConvertToUserView();
-
-        //    return response;
-        //}
 
         public GetUserResponse GetUser(GetUserRequest request)
         {
@@ -111,5 +76,53 @@ namespace RAM.Services.Implementations
         }
 
         #endregion
+
+        public User FindByID(int id)
+        {
+            return _repository.FindByID(id);
+        }
+
+        public User FindByEmail(string email)
+        {
+            Query query = new Query();
+            query.Add(new Criterion("Email", email, CriteriaOperator.Equal));
+            return _repository.FindBy(query).FirstOrDefault<User>();
+        }
+
+        public IList<User> FindAll()
+        {
+            return _repository.FindAll();
+        }
+
+        public User CreateNewUser(User user)
+        {
+            if (user != null)
+            {
+                _repository.Add(user);
+                return user;
+            }
+            return null;
+        }
+
+        public User UpdateUser(User user)
+        {
+            if (user != null)
+            {
+                _repository.Save(user);
+                return user;
+            }
+            return null;
+        }
+
+        public User DeleteUser(User user)
+        {
+            if (user != null)
+            {
+                _repository.Remove(user);
+                _uow.Commit();
+                return user;
+            }
+            return null;
+        }
     }
 }

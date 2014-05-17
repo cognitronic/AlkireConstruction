@@ -121,7 +121,7 @@ namespace RAM.Admin.Controllers.Controllers
                 {
                     newtag = tag;
                 }
-                blogtag.BlogID = blog.ID;
+                blogtag.BlogID = b.ID;
                 blogtag.TagID = newtag.ID;
                 _blogService.SaveBlogTag(blogtag);
 
@@ -132,6 +132,45 @@ namespace RAM.Admin.Controllers.Controllers
                 Status = "success",
                 BlogID = b.ID,
                 IsNew = isNew,
+                ReturnUrl = "/Blog"
+            });
+        }
+
+        public ActionResult DeletePost(int id)
+        {
+            var blog = new Blog();
+            if (id > 0)
+            {
+                blog = _blogService.GetByID(id);
+                
+                try
+                {
+                    foreach(var t in blog.Tags)
+                    {
+                        _blogService.DeleteBlogTag(t);
+                    }
+                    _blogService.DeletePost(blog);
+                    return Json(new
+                    {
+                        Message = "Blog deleted!",
+                        Status = "success",
+                        ReturnUrl = "/Blog"
+                    });
+                }
+                catch (Exception exc)
+                {
+                    return Json(new
+                    {
+                        Message = "Blog failed to delete:  " + exc.Message,
+                        Status = "failed",
+                        ReturnUrl = "/Blog"
+                    });
+                }
+            }
+            return Json(new
+            {
+                Message = "Tag failed to delete!  Tag was null.",
+                Status = "failed",
                 ReturnUrl = "/Blog"
             });
         }

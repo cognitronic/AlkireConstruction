@@ -166,10 +166,18 @@
                                         <i class="ico fa fa-envelope-o"></i> Subscribe To Our Newsletter
                                     </h3>
                                     <p><strong>Stay Connected!</strong> Join our mailing list to stay up to speed with our projects and <strong>community outreach</strong>. </p>
-
-                                        <p id="subscribeMsg" style="display: none;" class="alert-message success">
+                                    <form class="mailchimp-subscribe-form">
+                                        <p style="display: none;" class="alert-message warning validation">
+                                            <i class="ico fa fa-exclamation-circle"></i>
+                                            <strong>Email address is required!</strong>
+                                        </p>
+                                        <p style="display: none;" class="alert-message warning request">
+                                            <i class="ico fa fa-exclamation-circle"></i>
+                                            <strong>Form not sent!</strong><br>There was a connection problem. Try again later.
+                                        </p>
+                                        <p style="display: none;" class="alert-message success">
                                             <i class="ico fa fa-check-circle"></i>
-                                            
+                                            <strong>Form sent successfully!</strong>
                                         </p>
                                         <div class="form-fields">
                                             <p>
@@ -177,8 +185,8 @@
                                                 <button class="newslettersub button color-3 submit" data-loading-label="SENDING..." title="Subscribe">SUBSCRIBE</button>
                                             </p>
                                         </div>
-                                    
-                                </div>
+                                    </form>
+</div>
                                 <!-- SUBSCRIBE FORM : end -->
 
                             </div>
@@ -306,17 +314,17 @@
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
             <script type="text/javascript">
-                setCurrentMenuItem("@Model.NavView.SelectedMenuItem");
+    setCurrentMenuItem("@Model.NavView.SelectedMenuItem");
 
-                function setCurrentMenuItem(item) {
-                    $(".menu-items li").each(function () {
-                        $(this).removeClass("active");
-                    });
+    function setCurrentMenuItem(item) {
+        $(".menu-items li").each(function () {
+            $(this).removeClass("active");
+        });
 
-                    $("#" + item).addClass("active");
-                }
+        $("#" + item).addClass("active");
+    }
 
-                $(".newslettersub").on("click", function () {
+    @*$(".newslettersub").on("click", function () {
                     $("#subscribeMsg strong").remove();
                     $("#subscribeMsg span").remove();
                     var s = {
@@ -355,7 +363,7 @@
                                 .append("<strong>What happened!? </strong><span>" + data.Message + "</span>");
                         }
                     });
-                });
+                });*@
 
             </script>
         </div>

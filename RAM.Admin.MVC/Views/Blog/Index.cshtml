@@ -282,6 +282,27 @@
             });
         });
 
+        $('.deletePost').on('click', function (e) {
+            e.preventDefault();
+            if (!confirm('Are you sure???')) {
+                return false;
+            }
+
+            var postId = $(this).data('id');
+            $.ajax({
+                url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Blog/DeletePost',
+                type: 'POST',
+                data: JSON.stringify({ id: postId }),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    window.location = data.ReturnUrl;
+
+                }
+            });
+
+        });
+
 
         $("#saveTag").on('click', function (e) {
             e.preventDefault();

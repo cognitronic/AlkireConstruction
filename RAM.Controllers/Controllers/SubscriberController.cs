@@ -9,6 +9,8 @@ using RAM.Controllers.ActionArguments;
 using RAM.Controllers.ViewModels;
 using RAM.Core.Domain.Subscriber;
 using System.Web.Mvc;
+using IdeaSeed.Core.Validation;
+using IdeaSeed.Core.Utils;
 
 namespace RAM.Controllers.Controllers
 {
@@ -35,31 +37,38 @@ namespace RAM.Controllers.Controllers
 
         }
 
-        public ActionResult SubscribeToNewsletter(Subscriber subscriber)
-        { 
-            var s = _subscriberService.GetByEmail(subscriber.Email);
-            if (s != null && !string.IsNullOrEmpty(s.Email))
-            {
+        public ActionResult SubscribeToNewsletter(string email)
+        {
+            if (ValidationUtils.IsEmailValid(email)) {
+                var s = _subscriberService.GetByEmail(email);
+                if (s != null && !string.IsNullOrEmpty(s.Email))
+                {
+                    return Json(new
+                    {
+                        Message = "It appears you're already on the list, we appreciate your enthusiasm",
+                        Status = "duplication"
+                    });
+                }
+                else
+                {
+                    s = new Subscriber();
+                    s.DateCreated = DateTime.Now;
+                    s.Email = email;
+                    s.FirstName = "";
+                    s.LastName = "";
+                    s.Phone = "";
+                }
+                _subscriberService.Save(s);
                 return Json(new
                 {
-                    Message = "It appears you're already on the list, we appreciate your enthusiasm",
-                    Status = "fail"
+                    Message = "Thanks for your registration!",
+                    Status = "success"
                 });
             }
-            else
-            {
-                s = new Subscriber();
-                s.DateCreated = DateTime.Now;
-                s.Email = subscriber.Email;
-                s.FirstName = "";
-                s.LastName = "";
-                s.Phone = "";
-            }
-            _subscriberService.Save(s);
             return Json(new
             {
-                Message = "You've been successfully added to the list!",
-                Status = "success"
+                Message = "Invalid Email address",
+                Status = "error"
             });
         }
     }

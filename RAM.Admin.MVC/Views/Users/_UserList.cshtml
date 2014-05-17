@@ -1,0 +1,50 @@
+﻿
+@model RAM.Admin.Controllers.ViewModels.HomeView
+
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Email
+            </th>
+            <th style="text-align: right;">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>
+                    <span id="firstname_@user.ID">
+                        @user.FirstName
+                    </span>
+                </td>
+                <td>
+                    <span id="lastname_@user.ID">
+                        @user.LastName
+                    </span>
+                </td>
+                <td>
+                    <span id="email_@user.ID">
+                        @user.Email
+                    </span>
+                </td>
+                <td style="text-align: right;">
+                    <a id="userEdit_@user.ID" href="#usersModal" class="editModal btn btn-info" role="button" data-toggle="modal" data-id="@user.ID">Edit</a>
+                    <button class="deleteUser btn btn-danger" data-id="@user.ID" type="button">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

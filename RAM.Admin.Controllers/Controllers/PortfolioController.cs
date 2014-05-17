@@ -178,8 +178,14 @@ namespace RAM.Admin.Controllers.Controllers
                 try
                 {
                     var file = Request.Files[fileName];
-                    image.ImagePath = ConfigurationSettings.AppSettings["PortfolioImageURL"] + file.FileName;
+                    //portfolio.DefaultImagePath = ConfigurationSettings.AppSettings["PortfolioImageURL"] + file.FileName;
                     file.SaveAs(ConfigurationSettings.AppSettings["PortfolioImageDir"] + file.FileName);
+                    
+                    _projectService.SaveImage(
+                        new ProjectImage(image.ProjectID,
+                            ConfigurationSettings.AppSettings["PortfolioImageURL"] + file.FileName,
+                            image.AltText
+                        ));
                 }
                 catch (Exception fileException)
                 {
@@ -192,12 +198,7 @@ namespace RAM.Admin.Controllers.Controllers
             }
             try
             {
-                if(image.IsDefault)
-                {
-                    ClearDefaultImage(image.ProjectID);
-                }
-                image.AltText = image.AltText;
-                _projectService.SaveImage(image);
+                
             }
             catch (Exception exc)
             {
@@ -236,16 +237,21 @@ namespace RAM.Admin.Controllers.Controllers
         public ActionResult SavePortfolioObj(Project portfolio)
         {
             var p = new Project();
-            if (portfolio != null)
+            if (portfolio != null && portfolio.ID > 0)
             {
                 p = _projectService.GetByID(portfolio.ID);
-                p.Title = portfolio.Title;
-                p.Description = portfolio.Description;
-                p.Category = portfolio.Category;
-                p.ProjectDate = portfolio.ProjectDate;
-                p.SEOKeywords = portfolio.SEOKeywords;
-                p.SEODescription = portfolio.SEODescription;
             }
+            else {
+                p.EnteredBy = SecurityContextManager.Current.CurrentUser.ID;
+                p.DateCreated = DateTime.Now;
+                p.DefaultImagePath = "/Images/Portfolio/project7.jpg";
+            }
+            p.Title = portfolio.Title;
+            p.Description = portfolio.Description;
+            p.Category = portfolio.Category;
+            p.ProjectDate = portfolio.ProjectDate;
+            p.SEOKeywords = portfolio.SEOKeywords;
+            p.SEODescription = portfolio.SEODescription;
 
             try
             {
@@ -256,7 +262,8 @@ namespace RAM.Admin.Controllers.Controllers
                 return Json(new
                 {
                     Message = "Portfolio failed to save with following error: " + exc.Message,
-                    Status = "failed"
+                    Status = "failed",
+                    ReturnUrl = "/Portfolio"
                 });
             }
             return Json(new
@@ -314,9 +321,13 @@ namespace RAM.Admin.Controllers.Controllers
 
             }
             else
-                view.SelectedProject = null;
+            {
+                view.SelectedProject = new Project();
+                view.SelectedProjectImages = new List<IProjectImage>();
+            }
+                
             view.NavView.SelectedMenuItem = "nav-portfolio";
-            //view.SelectedBlogTags = _blogService.g
+            view.ProjectTypes = this.ProjectTypes();
             return View(view);
         }
 
@@ -348,6 +359,15 @@ namespace RAM.Admin.Controllers.Controllers
                 img.IsDefault = false;
                 _projectService.SaveImage((ProjectImage)img);
             }
+        }
+
+        private Dictionary<string, string> ProjectTypes()
+        {
+            var types = new Dictionary<string, string>();
+            foreach (var item in Enum.GetValues(typeof(RAM.Core.Domain.Project.ProjectType))){
+                types.Add(item.ToString(), ((int)item).ToString());
+            }
+            return types;
         }
     }
 }

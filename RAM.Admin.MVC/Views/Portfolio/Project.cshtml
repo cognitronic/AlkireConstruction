@@ -20,10 +20,10 @@
             <input id="title" type="text" class="form-control input-lg required" placeholder="Enter Title" /><br />
             <b>Category:</b><br />
             <select name="category" id="category" class="form-control">
-                @foreach (var item in Enum.GetValues(typeof(RAM.Core.Domain.Project.ProjectType)))
+                @foreach (var item in Model.ProjectTypes)
                 {
-                    <option value="@((int)item)">
-                        @item
+                    <option value="@(item.Value)">
+                        @item.Key
                     </option>
                 }
             </select><br />
@@ -95,9 +95,10 @@
 
         var post = @Html.Raw(Json.Encode(Model.SelectedProject));
         var isNew = true;
-        if(post === null || post === 'undefined'){
+        if(post === null || post === 'undefined' || post.ID == 0){
             console.log('new project post');
             $('.col-lg-9 h2').text('New Project');
+            $(".datepicker").datepicker('update', new Date());
         } else{
             isNew = false;
             var dt = new Date(post.ProjectDate);
@@ -113,7 +114,9 @@
 
 
         $(".datepicker").datepicker({
-            format: 'mm/dd/yyyy'
+            format: 'mm/dd/yyyy',
+            todayHighlight: true
+            
         });
 
         //#endregion
@@ -122,6 +125,7 @@
 
         $('.saveProject').on('click', function(e){
             e.preventDefault();
+            console.log('wft');
             var p = {
                 Title: $('#title').val(),
                 Category: $('#category').val(),
@@ -136,6 +140,7 @@
 
                 p.ID = post.ID;
             }
+            console.log('lsdfj');
             $.ajax({
                 url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Portfolio/SavePortfolioObj',
                 type: 'POST',
@@ -170,7 +175,9 @@
 
             //prevents Dropzone from uploading dropped files immediately
             autoProcessQueue: false,
-            maxFilesize: 5000,
+            maxFilesize: 50,
+            maxFiles: 6,
+            parallelUploads: 6,
 
             init: function () {
                 var submitButton = document.querySelector("#submit-all");
@@ -188,12 +195,7 @@
 
                 this.on("success", function(file, response){
                     if(response.Status == "success"){
-                        window.location = response.ReturnUrl;
-                        $('#imagesList').effect("highlight", { color: "#7fd658" }, 1000);
-                        $("#modalAltText").val("");
-                        $("#imageModal").modal('hide');
-                        $("#imagesList").load('@Url.Action("ProjectImagesList", "Portfolio")');
-                        banners = @Html.Raw(Json.Encode(Model.Banners));
+                        window.location = window.location;
                     }
                 });
 

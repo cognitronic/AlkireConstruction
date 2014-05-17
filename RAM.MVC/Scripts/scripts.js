@@ -601,42 +601,85 @@
 					submitBtn.attr( 'data-label', submitBtn.text() ).text( submitBtn.data( 'loading-label' ) );
 
 					// send ajax request
-                    $.ajax({
-                        type: form.attr( 'method' ),
-                        url: form.attr( 'action' ),
-                        data: form.serialize(),
-                        cache : false,
-                        dataType : 'json',
-                        contentType: "application/json; charset=utf-8",
-                        // wait for a response
-                        success: function( data ){
+                    //$.ajax({
+                    //    type: form.attr( 'method' ),
+                    //    url: form.attr( 'action' ),
+                    //    data: form.serialize(),
+                    //    cache : false,
+                    //    dataType : 'json',
+                    //    contentType: "application/json; charset=utf-8",
+                    //    // wait for a response
+                    //    success: function( data ){
 
-                            if ( data.result === 'success' ) {
-                                form.find( '.alert-message' ).hide();
-                                form.find( '.alert-message.success' ).append( '<br>' + data.msg ).slideDown(300);
-                                form.find( 'input' ).each( function() {
-                                    $(this).val( $(this).data( 'placeholder' ) ).addClass( 'placeholder' );
-                                });
-                                form.find( '.form-fields' ).slideUp(300);
-                            }
-                            else {
-                                form.find( '.alert-message.validation' ).slideUp(300);
-                                form.find( '.alert-message.request' ).slideDown(300);
-                            }
+                    //        if ( data.result === 'success' ) {
+                    //            form.find( '.alert-message' ).hide();
+                    //            form.find( '.alert-message.success' ).append( '<br>' + data.msg ).slideDown(300);
+                    //            form.find( 'input' ).each( function() {
+                    //                $(this).val( $(this).data( 'placeholder' ) ).addClass( 'placeholder' );
+                    //            });
+                    //            form.find( '.form-fields' ).slideUp(300);
+                    //        }
+                    //        else {
+                    //            form.find( '.alert-message.validation' ).slideUp(300);
+                    //            form.find( '.alert-message.request' ).slideDown(300);
+                    //        }
 
-							form.removeClass( 'loading' );
-							submitBtn.text( submitBtn.attr( 'data-label' ) );
+					//		form.removeClass( 'loading' );
+					//		submitBtn.text( submitBtn.attr( 'data-label' ) );
 
-                        },
-                        error: function(){
+                    //    },
+                    //    error: function(){
 
-                            form.find( '.alert-message.validation' ).slideUp(300);
-                            form.find( '.alert-message.request' ).slideDown(300);
-                            form.removeClass( 'loading' );
-							submitBtn.text( submitBtn.attr( 'data-label' ) );
+                    //        form.find( '.alert-message.validation' ).slideUp(300);
+                    //        form.find( '.alert-message.request' ).slideDown(300);
+                    //        form.removeClass( 'loading' );
+					//		submitBtn.text( submitBtn.attr( 'data-label' ) );
 
-                        }
-                    });
+                    //    }
+				    //});
+
+					$.ajax({
+					    url:  '/Subscriber/SubscribeToNewsletter',
+					    type: 'POST',
+					    data: JSON.stringify({ email: $('#field_subscribe_email').val() }),
+					    dataType: "json",
+					    contentType: "application/json;charset=utf-8",
+					        success: function( data ){
+
+					            if ( data.Status === 'success' ) {
+					                form.find( '.alert-message' ).hide();
+					                form.find( '.alert-message.success' ).append( '<br>' + data.Message ).slideDown(300);
+					                form.find( 'input' ).each( function() {
+					                    $(this).val( $(this).data( 'placeholder' ) ).addClass( 'placeholder' );
+					                });
+					                form.find( '.form-fields' ).slideUp(300);
+					            }
+					            else if(data.Status === 'duplicate'){
+                                    form.find( '.alert-message' ).hide();
+                                    form.find('.alert-message.validation').append('<br>' + data.Message).slideDown(300);
+					                form.find( 'input' ).each( function() {
+					                    $(this).val( $(this).data( 'placeholder' ) ).addClass( 'placeholder' );
+					                });
+					                form.find( '.form-fields' ).slideUp(300);
+					            }
+					            else {
+					                form.find( '.alert-message.validation' ).slideUp(300);
+					                form.find( '.alert-message.request' ).slideDown(300);
+					            }
+
+					    		form.removeClass( 'loading' );
+					    		submitBtn.text( submitBtn.attr( 'data-label' ) );
+
+					        },
+					        error: function(){
+
+					            form.find( '.alert-message.validation' ).slideUp(300);
+					            form.find( '.alert-message.request' ).slideDown(300);
+					            form.removeClass( 'loading' );
+					    		submitBtn.text( submitBtn.attr( 'data-label' ) );
+
+					        }
+					});
 
 				}
 

@@ -12,7 +12,51 @@
     <div class="row">
         <hr />
         <div id="bannerList">
-            @Html.Partial("_BannerList")
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Image
+                        </th>
+                        <th>
+                            Sub Text
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var banner in Model.Banners)
+                    {
+                        <tr>
+                            <td>
+                                <span id="title_@banner.ID">
+                                    @banner.Title
+                                </span>
+                            </td>
+                            <td>
+                                <span class="thumbnail">
+                                    <img src='@System.Configuration.ConfigurationManager.AppSettings["PublicSiteURL"]@banner.ImagePath' class="img-rounded" style="width: 300px; height: 200px;" />
+                                </span>
+                            </td>
+                            <td>
+                                <span id="subtext_@banner.ID">
+                                    @banner.SubText1
+                                </span>
+                            </td>
+                            <td>
+                                <a id="bannerEdit_@banner.ID" href="#bannerModal" class="editModal btn btn-info" role="button" data-toggle="modal" data-id="@banner.ID">Edit</a>
+                                <button class="deleteBanner btn btn-danger" data-id="@banner.ID" type="button">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
         </div>
     </div>
     <div id="bannerModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -45,6 +89,7 @@
         </div>
     </div>
 </div>
+</div>
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -59,15 +104,15 @@
             $("#hdnBannerID").val($(this).data('id'));
         });
 
-        $(".deleteBanner").on('click', function(e){
+        $(".deleteBanner").on('click', function (e) {
             e.preventDefault();
-            if (!confirm("Do you want to delete")){
+            if (!confirm("Do you want to delete")) {
                 return false;
             }
             $.ajax({
                 url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Banners/DeleteBanner',
                 type: 'POST',
-                data: JSON.stringify({id: $(this).data('id')}),
+                data: JSON.stringify({ id: $(this).data('id') }),
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
                 success: function (data) {
@@ -91,24 +136,32 @@
                 var myDropzone = this; //closure
 
                 submitButton.addEventListener("click", function () {
-
+                    console.log(myDropzone);
 
                     $("#hdnTitle").val($("#modalTitle").val());
                     $("#hdnSubText").val($("#modalSubText").val());
 
-
-                    myDropzone.processQueue();
+                    if (myDropzone.files.length > 0) {
+                        console.log('yes');
+                        myDropzone.processQueue();
+                    } else {
+                        $.ajax({
+                            url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Banners/UpdateBanner',
+                            type: 'POST',
+                            data: JSON.stringify({ title: $("#modalTitle").val(), subText: $("#modalSubText").val(), bannerID: $('#hdnBannerID').val() }),
+                            dataType: "json",
+                            contentType: "application/json;charset=utf-8",
+                            success: function (data) {
+                                console.log(data.Message);
+                                window.location = window.location;
+                            }
+                        });
+                    }
                 });
 
                 this.on("success", function(file, response){
                     if(response.Status == "success"){
-                        window.location = response.ReturnUrl;
-                        $('#bannerList').effect("highlight", { color: "#7fd658" }, 1000);
-                        $("#modalTitle").val("");
-                        $("#modalSubText").val("");
-                        $("#bannerModal").modal('hide');
-                        $("#bannerList").load('@Url.Action("BannerList","Banners")');
-                        banners = @Html.Raw(Json.Encode(Model.Banners));
+                        window.location = window.location;
                     }
                 });
 
