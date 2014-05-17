@@ -20,6 +20,7 @@ namespace RAM.Admin.Controllers.Controllers
     public class PortfolioController : BaseUserAccountController
     {
         private readonly IProjectService _projectService;
+        
         public PortfolioController(ILocalAuthenticationService authenticationService,
             IUserService userService,
             IProjectService projectService,
@@ -46,6 +47,15 @@ namespace RAM.Admin.Controllers.Controllers
             view.NavView.SelectedMenuItem = "nav-portfolio";
             view.Projects = _projectService.GetAll().ProjectList;
             return PartialView("_PortfolioList", view);
+        }
+
+        public ActionResult ProjectImagesList(string id)
+        {
+            HomeView view = new HomeView();
+            view.NavView.SelectedMenuItem = "nav-banners";
+            view.SelectedProject = _projectService.GetByID(Convert.ToInt16(id));
+            view.SelectedProjectImages = view.SelectedProject.Images.ToList<IProjectImage>();
+            return PartialView("_ImagesList", view);
         }
 
         public ActionResult GetPortfolioImages(string id)
@@ -151,6 +161,78 @@ namespace RAM.Admin.Controllers.Controllers
 
         }
 
+        public ActionResult SaveNewProjectImage()
+        {
+            var image = new ProjectImage();
+            if (Request.Form.Count > 0)
+            {
+                if (!string.IsNullOrEmpty(Request.Form["projectID"]))
+                {
+                    image.ProjectID = Convert.ToInt16(Request.Form["projectID"]);
+                }
+                image.AltText = Request.Form["altText"];
+                image.IsDefault = Convert.ToBoolean(Request.Form["isDefault"]);
+            }
+            foreach (string fileName in Request.Files)
+            {
+                try
+                {
+                    var file = Request.Files[fileName];
+                    image.ImagePath = ConfigurationSettings.AppSettings["PortfolioImageURL"] + file.FileName;
+                    file.SaveAs(ConfigurationSettings.AppSettings["PortfolioImageDir"] + file.FileName);
+                }
+                catch (Exception fileException)
+                {
+                    return Json(new
+                    {
+                        Message = "File failed to save with following error: " + fileException.Message,
+                        Status = "failed"
+                    });
+                }
+            }
+            try
+            {
+                if(image.IsDefault)
+                {
+                    ClearDefaultImage(image.ProjectID);
+                }
+                image.AltText = image.AltText;
+                _projectService.SaveImage(image);
+            }
+            catch (Exception exc)
+            {
+                return Json(new
+                {
+                    Message = "Project Image failed to save with following error: " + exc.Message,
+                    Status = "failed"
+                });
+            }
+
+            return Json(new
+            {
+                Message = "Image saved!",
+                Status = "success",
+                ReturnUrl = "/Portfolio/Project/" + image.ProjectID.ToString()
+            });
+        }
+
+        public ActionResult SetImageAsDefault(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                var p = _projectService.GetImageByID(Convert.ToInt16(id));
+                ClearDefaultImage(p.ProjectID);
+                p.IsDefault = true;
+                _projectService.SaveImage((ProjectImage)p);
+            }
+            return Json(new
+            {
+                Message = "Project Image Deleted!",
+                Status = "success",
+                ReturnUrl = "/Portfolio"
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult SavePortfolioObj(Project portfolio)
         {
             var p = new Project();
@@ -161,6 +243,8 @@ namespace RAM.Admin.Controllers.Controllers
                 p.Description = portfolio.Description;
                 p.Category = portfolio.Category;
                 p.ProjectDate = portfolio.ProjectDate;
+                p.SEOKeywords = portfolio.SEOKeywords;
+                p.SEODescription = portfolio.SEODescription;
             }
 
             try
@@ -205,17 +289,65 @@ namespace RAM.Admin.Controllers.Controllers
 
         public ActionResult DeletePortfolioImage(string id)
         {
+            var p = new ProjectImage();
             if (!string.IsNullOrEmpty(id))
             {
-                var p = _projectService.GetImageByID(Convert.ToInt16(id));
+                p = (ProjectImage)_projectService.GetImageByID(Convert.ToInt16(id));
                 _projectService.DeleteImage((ProjectImage)p);
             }
             return Json(new
             {
                 Message = "Project Image Deleted!",
                 Status = "success",
+                ProjectID = p.ProjectID,
+                ReturnUrl = "/Portfolio"
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Project(int id = 0)
+        {   
+            HomeView view = new HomeView();
+            if (id != 0)
+            {
+                view.SelectedProject = _projectService.GetByID(id);
+                view.SelectedProjectImages = view.SelectedProject.Images.ToList<IProjectImage>();
+
+            }
+            else
+                view.SelectedProject = null;
+            view.NavView.SelectedMenuItem = "nav-portfolio";
+            //view.SelectedBlogTags = _blogService.g
+            return View(view);
+        }
+
+        public ActionResult GetByID(int id)
+        {
+            if (id > 0)
+            {
+                return Json(new
+                {
+                    Message = "Project retreived!",
+                    Status = "success",
+                    BlogRef = _projectService.GetByID(id),
+                    ReturnUrl = "/Portfolio"
+                });
+            }
+            return Json(new
+            {
+                Message = "Project could not be found!",
+                Status = "failed",
                 ReturnUrl = "/Portfolio"
             });
+        }
+
+        public void ClearDefaultImage(int projectID)
+        {
+            var list = _projectService.GetImagesByProjectID(projectID);
+            foreach (var img in list)
+            {
+                img.IsDefault = false;
+                _projectService.SaveImage((ProjectImage)img);
+            }
         }
     }
 }

@@ -14,5 +14,6 @@ namespace RAM.Core.Domain.Project
         int ProjectID { get; set; }
         string ImagePath { get; set; }
         string AltText { get; set; }
+        bool IsDefault { get; set; }
     }
 }

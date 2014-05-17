@@ -24,6 +24,8 @@ namespace RAM.Core.Domain.Project
         [DataMember]
         public virtual int ProjectID { get; set; }
         [DataMember]
+        public virtual bool IsDefault { get; set; }
+        [DataMember]
         public virtual string ImagePath { get; set; }
         [DataMember]
         public virtual string AltText { get; set; }

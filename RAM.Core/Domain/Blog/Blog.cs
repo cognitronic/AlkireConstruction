@@ -24,9 +24,9 @@ namespace RAM.Core.Domain.Blog
         [DataMember]
         public virtual int EnteredBy { get; set; }
         [DataMember]
-        public virtual string SEOKeywords { get; set; }
-        [DataMember]
         public virtual bool IsActive { get; set; }
+        [DataMember]
+        public virtual string SEOKeywords { get; set; }
         [DataMember]
         public virtual string SEODescription { get; set; }
         [DataMember]

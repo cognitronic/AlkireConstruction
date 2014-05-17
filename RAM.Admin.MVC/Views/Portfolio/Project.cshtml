@@ -1,0 +1,240 @@
+﻿@model RAM.Admin.Controllers.ViewModels.HomeView
+
+@{
+    ViewBag.Title = "Project Details";
+}
+
+<div class="container">
+    <div class="row center-block">
+        <div class="col-lg-9">
+            <span class="pull-right" style="margin-top: 20px;">
+                <button class="saveProject btn btn-success" role="button">Save Project</button>
+                <a href="/Portfolio" class="btn btn-info" role="button">Back To List</a>
+            </span>
+            <h2></h2>
+            <hr />
+            <div id="imagesList">
+                @Html.Partial("_ImagesList")
+            </div>
+            <b>Title:</b><br />
+            <input id="title" type="text" class="form-control input-lg required" placeholder="Enter Title" /><br />
+            <b>Category:</b><br />
+            <select name="category" id="category" class="form-control">
+                @foreach (var item in Enum.GetValues(typeof(RAM.Core.Domain.Project.ProjectType)))
+                {
+                    <option value="@((int)item)">
+                        @item
+                    </option>
+                }
+            </select><br />
+            <b>Date of Project:</b><br />
+            <input type="text" id="projectDate" placeholder="Enter Project Date" value="@Model.SelectedProject.ProjectDate.ToShortDateString()" class="datepicker form-control" /><br />
+            <b>SEO Keywords:</b>(comma separated list)<br />
+            <input id="seoKeywords" type="text" class="form-control required input-lg" placeholder="Enter SEO Keywords" /><br />
+            <b>SEO Description:</b><br />
+            <textarea id="seoDescription" class="form-control" rows="6" placeholder="Enter SEO Description"></textarea><br />
+            <b>Description:</b><br />
+            <textarea id="description" class="form-control" rows="4" placeholder="Enter Description"></textarea>
+            <hr />
+            <button class="saveProject btn btn-success" role="button">Save Project</button>
+            <a href="/Portfolio" class="btn btn-info" role="button">Back To List</a>
+        </div>
+    </div>
+    <div id="imageModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 id="modalLabel">Add Image</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <b>Is Default Image:</b><br />
+                            <input id="modalIsDefault" type="checkbox"/><br />
+                            <b>Alt Text:</b><br />
+                            <input id="modalAltText" type="text" class="form-control" placeholder="Enter Alt Text" />
+                            <hr />
+                            <form action="~/Portfolio/SaveNewProjectImage" class="dropzone" id="dropzoneJsForm">
+                                <input name="altText" type="hidden" id="hdnaltText" />
+                                <input name="projectID" type="hidden" id="hdnProjectID" />
+                                <input name="isDefault" type="hidden" id="hdnIsDefault" />
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                        <button id="submit-all" type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //#region Tiny MCE
+        tinymce.init({
+            selector: "textarea#description",
+            browser_spellcheck: true,
+            importcss_append: true,
+            height: 300,
+            plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste textcolor "
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright | bullist numlist | link image | forecolor | formatselect fontsizeselect",
+            menu: {
+
+            }
+        });
+        //#endregion
+
+        //#region Load Post Values
+
+        var post = @Html.Raw(Json.Encode(Model.SelectedProject));
+        var isNew = true;
+        if(post === null || post === 'undefined'){
+            console.log('new project post');
+            $('.col-lg-9 h2').text('New Project');
+        } else{
+            isNew = false;
+            var dt = new Date(post.ProjectDate);
+            $('.col-lg-9 h2').text(post.Title);
+            $('#title').val(post.Title);
+            $('[name=category]').val(post.Category);
+            $('#seoKeywords').val(post.SEOKeywords);
+            $('#seoDescription').val(post.SEODescription);
+            //$('#projectDate').val(post.ProjectDate);
+            $('#description').val(post.Description);
+        }
+
+
+
+        $(".datepicker").datepicker({
+            format: 'mm/dd/yyyy'
+        });
+
+        //#endregion
+
+        //#region Save Post
+
+        $('.saveProject').on('click', function(e){
+            e.preventDefault();
+            var p = {
+                Title: $('#title').val(),
+                Category: $('#category').val(),
+                SEOKeywords: $('#seoKeywords').val(),
+                SEODescription: $('#seoDescription').val(),
+                Description: tinyMCE.activeEditor.getContent(),
+                ProjectDate: $('#projectDate').val()
+            };
+            if(isNew){
+                p.ID = 0;
+            } else{
+
+                p.ID = post.ID;
+            }
+            $.ajax({
+                url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Portfolio/SavePortfolioObj',
+                type: 'POST',
+                data: JSON.stringify({ portfolio: p}),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    console.log(data.Message);
+                    if(data.IsNew){
+                        //$("#hdnProjectID").val(data.ProjectID);
+                        //$('#blogModal').modal('show');
+                    }else{
+                        window.location = data.ReturnUrl;
+                    }
+                }
+            });
+        });
+
+        //#endregion
+
+        var reloadImages = function(){
+            return confirm('are you sure??');
+        };
+
+        $(".editModal").on('click', function (e) {
+            e.preventDefault();
+            $("#hdnProjectID").val($(this).data('id'));
+        });
+
+
+        Dropzone.options.dropzoneJsForm = {
+
+            //prevents Dropzone from uploading dropped files immediately
+            autoProcessQueue: false,
+            maxFilesize: 5000,
+
+            init: function () {
+                var submitButton = document.querySelector("#submit-all");
+                var myDropzone = this; //closure
+
+                submitButton.addEventListener("click", function () {
+
+                    $("#hdnAltText").val($("#modalAltText").val());
+                    $("#hdnAltText").val($("#modalAltText").val());
+                    $("#hdnIsDefault").val($("#modalIsDefault").prop('checked'));
+
+
+                    myDropzone.processQueue();
+                });
+
+                this.on("success", function(file, response){
+                    if(response.Status == "success"){
+                        window.location = response.ReturnUrl;
+                        $('#imagesList').effect("highlight", { color: "#7fd658" }, 1000);
+                        $("#modalAltText").val("");
+                        $("#imageModal").modal('hide');
+                        $("#imagesList").load('@Url.Action("ProjectImagesList", "Portfolio")');
+                        banners = @Html.Raw(Json.Encode(Model.Banners));
+                    }
+                });
+
+                this.on("complete", function(file){
+                    this.removeFile(file);
+                });
+            }
+        };
+    });
+
+    $('.makeImageDefault').on('click', function () {
+        $.ajax({
+            url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Portfolio/SetImageAsDefault/' + $(this).data('id'),
+            type: 'GET',
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                console.log(data.Message);
+                // $('#imagesList').html('');
+                $('#imagesList').effect("highlight", { color: "#7fd658" }, 1000);
+                $("#imagesList").load('@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' +'/Portfolio/ProjectImagesList/' + data.ProjectID );
+                setTimeout($("#collapseOne").collapse('show'), 1000);
+            }
+        });
+    });
+
+    $('.deleteImage').on('click', function () {
+        $("#collapseOne").collapse('hide');
+        $.ajax({
+            url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Portfolio/DeletePortfolioImage/' + $(this).data('id'),
+            type: 'GET',
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                console.log(data.Message);
+
+                $('#imagesList').effect("highlight", { color: "#7fd658" }, 1000);
+                $("#imagesList").load('@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' +'/Portfolio/ProjectImagesList/'  + data.ProjectID );
+                $("#collapseOne").collapse('show');
+            }
+        });
+    });
+</script>
+

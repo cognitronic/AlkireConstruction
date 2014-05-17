@@ -21,6 +21,8 @@ namespace RAM.Repository.NHibernate.Mappings
             Map(x => x.Description);
             Map(x => x.EnteredBy);
             Map(x => x.ProjectDate);
+            Map(x => x.SEODescription);
+            Map(x => x.SEOKeywords);
             HasMany<ProjectImage>(x => x.Images)
                 .KeyColumn("ProjectID");
         }

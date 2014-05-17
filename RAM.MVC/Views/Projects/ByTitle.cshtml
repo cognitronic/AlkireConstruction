@@ -7,8 +7,8 @@
     ViewBag.Title = Model.SelectedProject.Title + " - Alkire Construction";
 }
 @section metatags{
-    <meta name="keywords" content="@Model.SelectedProject.Title, @Enum.GetName(typeof(ProjectType), Model.SelectedProject.Category) Construction" />
-    <meta name="description" content="@Model.SelectedProject.Description" />
+    <meta name="keywords" content="@Model.SelectedProject.SEOKeywords" />
+    <meta name="description" content="@Model.SelectedProject.SEODescription" />
 }
 
 <!-- PAGE HEADING : begin -->
@@ -64,7 +64,7 @@
                         <!-- PROJECT INFO : end -->
                         <!-- PROJECT DESCRIPTION : begin -->
                         <div class="project-description">
-                            <p>@Model.SelectedProject.Description</p>
+                             @Html.Raw(Model.SelectedProject.Description)
                         </div>
                         <!-- PROJECT DESCRIPTION : end -->
                         <!-- PROJECT FOLDERS : begin -->

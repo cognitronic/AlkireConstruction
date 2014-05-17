@@ -17,6 +17,7 @@ namespace RAM.Repository.NHibernate.Mappings
             Map(x => x.AltText);
             Map(x => x.ImagePath);
             Map(x => x.ProjectID);
+            Map(x => x.IsDefault);
         }
     }
 }

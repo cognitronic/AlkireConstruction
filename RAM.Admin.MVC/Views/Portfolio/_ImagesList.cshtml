@@ -1,0 +1,71 @@
+﻿@model RAM.Admin.Controllers.ViewModels.HomeView
+
+    @if (Model.SelectedProjectImages != null && Model.SelectedProjectImages.Count > 0)
+    {
+
+        <div class="panel-group" id="accordian">
+            <div class="panel-group panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseOne">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            Click To Manage Project Images
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="jumbotron">
+                            <h3>Manage Project Images</h3>
+                            <div class="pull-right">
+                                <a href="#imageModal" class=" editModal btn btn-success" data-id="@Model.SelectedProject.ID" role="button" data-toggle="modal">Add Image</a>
+                            </div>
+                            <div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Image
+                                            </th>
+                                            <th class="pull-right">
+                                                Actions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var img in Model.SelectedProjectImages)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <img src='@System.Configuration.ConfigurationManager.AppSettings["PublicSiteURL"]@img.ImagePath' class="img-rounded" style="width: 150px; height: 100px;" />
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <a href="" data-id="@img.ID"  class="deleteImage btn btn-danger pull-right" style="margin-left: 10px;">Delete</a>
+                                                    @*@if (!img.IsDefault)
+                                                    {
+                                                        <a href="" data-projectID="@img.ProjectID" data-id="@img.ID" class="makeImageDefault btn btn-info pull-right">
+                                                            Make Default
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button disabled="true" class="makeImageDefault btn btn-default pull-right">
+                                                            Default Image
+                                                        </button>
+                                                    }*@
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }

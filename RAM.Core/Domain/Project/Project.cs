@@ -32,6 +32,10 @@ namespace RAM.Core.Domain.Project
         [DataMember]
         public virtual DateTime DateCreated { get; set; }
         [DataMember]
+        public virtual string SEOKeywords { get; set; }
+        [DataMember]
+        public virtual string SEODescription { get; set; }
+        [DataMember]
         public virtual int EnteredBy { get; set; }
 
         protected override void Validate()

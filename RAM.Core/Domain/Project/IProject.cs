@@ -16,6 +16,8 @@ namespace RAM.Core.Domain.Project
         IList<ProjectImage> Images { get; set; }
         DateTime ProjectDate { get; set; }
         string Description { get; set; }
+        string SEOKeywords { get; set; }
+        string SEODescription { get; set; }
         string DefaultImagePath { get; set; }
         DateTime DateCreated { get; set; }
         int EnteredBy { get; set; }

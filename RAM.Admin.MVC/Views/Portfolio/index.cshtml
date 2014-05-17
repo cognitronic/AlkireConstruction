@@ -6,7 +6,7 @@
     <div class="row">
         <h2 class="pull-left">Portfolio Mangement</h2>
         <div class="pull-right" style="margin-top: 20px;">
-            <a href="#portfolioModal" class="editModal btn btn-success" role="button" data-toggle="modal">New Project</a>
+            <a href="/Portfolio/Project" class="editModal btn btn-success" role="button" data-toggle="modal">New Project</a>
         </div>
     </div>
     <div class="row">
@@ -98,7 +98,7 @@
             $("#hdnPortfolioID").val($(this).data('id'));
         });
 
-        $(".deletePortfolio").on('click', function (e) {
+        $(".deleteProject").on('click', function (e) {
             e.preventDefault();
             if (!confirm("Are you sure you want to delete?")) {
                 return false;
