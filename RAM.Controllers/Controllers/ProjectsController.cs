@@ -38,6 +38,16 @@ namespace RAM.Controllers.Controllers
             var response = _projectService.GetAll();
             view.Posts = _blogService.GetLatestPosts(2);
             view.Projects = response.ProjectList;
+            foreach (var p in view.Projects)
+            {
+                foreach (var i in p.Images)
+                {
+                    if (i.IsDefault)
+                    {
+                        p.DefaultImagePath = i.ImagePath;
+                    }
+                }
+            }
             return View(view);
         }
 
@@ -47,6 +57,16 @@ namespace RAM.Controllers.Controllers
             view.NavView.SelectedMenuItem = "nav-projects";
             view.Posts = _blogService.GetLatestPosts(2);
             view.Projects = _projectService.GetByCategory(new GetProjectsByCategoryRequest((int)Enum.Parse(typeof(ProjectType), category), "")).ProjectList;
+            foreach (var p in view.Projects)
+            {
+                foreach (var i in p.Images)
+                {
+                    if (i.IsDefault)
+                    {
+                        p.DefaultImagePath = i.ImagePath;
+                    }
+                }
+            }
             view.SelectedProject = _projectService.GetByTitle(new GetProjectByTitleRequest(title.Replace("-", " "))).ProjectPost;
             return View(view);
         }

@@ -21,7 +21,9 @@ namespace RAM.MVC
                         "~/Scripts/jquery.isotope.min.js",
                         "~/Scripts/jquery.jribbble.min.js",
                         "~/Scripts/jquery.embedagram.min.js",
-                        "~/Scripts/scripts.js"
+                        "~/Scripts/scripts.js",
+                        "~/Scripts/jquery.social.stream.1.5.4.js",
+                        "~/Scripts/jquery.social.stream.wall.1.3.js"
                         ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -41,6 +43,9 @@ namespace RAM.MVC
                       "~/Content/magnific-popup.css",
                       "~/Content/style.css",
                       "~/Content/skin/magma.css",
+                      "~/Content/dcsns_dark.css",
+                      "~/Content/dcsns_light.css",
+                      "~/Content/dcsns_wall.css",
                       "~/Content/site.css"));
         }
     }

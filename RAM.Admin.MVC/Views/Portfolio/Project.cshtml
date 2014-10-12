@@ -238,5 +238,22 @@
             }
         });
     });
+
+    $('.editImage').on('click', function () {
+        //$("#collapseOne").collapse('hide');
+        $.ajax({
+            url: '@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' + '/Portfolio/EditPortfolioImage/' + $(this).data('id'),
+            type: 'GET',
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                console.log(data.Message);
+                $(this).hide();
+                $('#imagesList').effect("highlight", { color: "#7fd658" }, 1000);
+                $("#imagesList").load('@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]' +'/Portfolio/ProjectImagesList/'  + data.ProjectID );
+                $("#collapseOne").collapse('show');
+            }
+        });
+    });
 </script>
 

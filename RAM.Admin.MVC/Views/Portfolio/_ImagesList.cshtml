@@ -42,6 +42,15 @@
                                                     </span>
                                                 </td>
                                                 <td>
+                                                    @if (!img.IsDefault)
+                                                    {
+                                                        <a href="" data-id="@img.ID" class="editImage btn btn-primary pull-right" style="margin-left: 10px;">Make Default</a> 
+                                                    } else
+                                                    {
+                                                        <span class="pull-right"><b>Default Image</b></span>
+                                                    }
+                                                </td>
+                                                <td>
                                                     <a href="" data-id="@img.ID"  class="deleteImage btn btn-danger pull-right" style="margin-left: 10px;">Delete</a>
                                                     @*@if (!img.IsDefault)
                                                     {

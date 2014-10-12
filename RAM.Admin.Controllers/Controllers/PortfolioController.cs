@@ -311,6 +311,31 @@ namespace RAM.Admin.Controllers.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult EditPortfolioImage(string id)
+        {
+            var p = new ProjectImage();
+            if (!string.IsNullOrEmpty(id))
+            {
+                p = (ProjectImage)_projectService.GetImageByID(Convert.ToInt16(id));
+
+                var old = _projectService.GetImagesByProjectID(p.ProjectID);
+                foreach(var img in old)
+                {
+                    img.IsDefault = false;
+                    _projectService.SaveImage((ProjectImage)img);
+                }
+                p.IsDefault = true;
+                _projectService.SaveImage((ProjectImage)p);
+            }
+            return Json(new
+            {
+                Message = "Project Image Deleted!",
+                Status = "success",
+                ProjectID = p.ProjectID,
+                ReturnUrl = "/Portfolio"
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Project(int id = 0)
         {   
             HomeView view = new HomeView();

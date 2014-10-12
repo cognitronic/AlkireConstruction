@@ -65,6 +65,16 @@ namespace RAM.Controllers.Controllers
             var view = new HomeView();
             view.NavView.SelectedMenuItem = "nav-home";
             view.Projects = _projectService.GetAll().ProjectList.Take(10).ToList();
+            foreach (var p in view.Projects)
+            {
+                foreach (var i in p.Images)
+                {
+                    if (i.IsDefault)
+                    {
+                        p.DefaultImagePath = i.ImagePath;
+                    }
+                }
+            }
             return PartialView("_Portfolio", view);
 
         }
